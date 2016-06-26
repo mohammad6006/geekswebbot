@@ -49,7 +49,9 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "welcome to @TurkTv"
+    		'text' => "به نظرسنجی برنامه سوروایور خوش آمدید :\n این نظرسنجی به منظور استفاده در کانال @TurkTv اکاربرد دارد
+    		و نتیجه این نظرسنجی از طریق کانال اطلاع رسانی میشود:\n
+    		برای ارتباط با ادمین کانال و برنامه نویس : @alo_survivor"
     		]);
 
     }
