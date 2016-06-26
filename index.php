@@ -39,18 +39,14 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n /contact -> Get email address of the owner \n /latest -> Get latest posts of the blog 
-    		/help -> Shows list of available commands",
-    		'reply_markup'=>json_encode([
-    			'inline_keyboard'=>[
-	    				[
-	    					['text'=>'Google','url'=>'http://google.com'],['text'=>'Yahoo!','url'=>'http://yahoo.com']	
-	    				],
-	    				[
-	    					['text'=>'hasangoli','urk'=>'http://msn.com']	
-	    				]
-    				]
-    			])
+    		'text'=>"اولین تلاش \n زمان :\n ".date('d M y -  h:i:s'),
+    'reply_markup'=>json_encode([
+        'inline_keyboard'=>[
+            [
+                ['text'=>"رفرش زمان",'callback_data'=>'1']
+            ]
+        ]
+    ])
     		]);
 
     }
