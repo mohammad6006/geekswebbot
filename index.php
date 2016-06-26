@@ -40,7 +40,17 @@ try {
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
     		'text' => "List of commands :\n /contact -> Get email address of the owner \n /latest -> Get latest posts of the blog 
-    		/help -> Shows list of available commands"
+    		/help -> Shows list of available commands",
+    		'reply_markup'=>json_encode([
+    			'inline_keyboard'=>[
+	    				[
+	    					['text'=>'Google','url'=>'http://google.com'],['text'=>'Yahoo!','url'=>'http://yahoo.com']	
+	    				],
+	    				[
+	    					['text'=>'hasangoli','urk'=>'http://msn.com']	
+	    				]
+    				]
+    			])
     		]);
 
     }
