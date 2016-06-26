@@ -39,7 +39,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n /email -> Get email address of the owner \n /latest -> Get latest posts of the blog 
+    		'text' => "List of commands :\n /contact -> Get email address of the owner \n /latest -> Get latest posts of the blog 
     		/help -> Shows list of available commands"
     		]);
 
@@ -49,7 +49,7 @@ try {
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
-    		'text' => "List of commands :\n /email -> Get email address of the owner \n /latest -> Get latest posts of the blog 
+    		'text' => "List of commands :\n /contact -> Get email address of the owner \n /latest -> Get latest posts of the blog 
     		/help -> Shows list of available commands"
     		]);
 
