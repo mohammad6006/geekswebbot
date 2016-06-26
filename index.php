@@ -43,7 +43,8 @@ try {
     'reply_markup'=>json_encode([
         'inline_keyboard'=>[
             [
-                ['text'=>'yahoo','url'=>'http://yahoo.com']
+                ['text'=>'yahoo','url'=>'http://yahoo.com'],
+                ['text'=>'msn','url'=>'http://msn.com']
             ],
             [
                 ['text'=>'google','url'=>'http://google.com']
