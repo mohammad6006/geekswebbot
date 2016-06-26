@@ -36,6 +36,7 @@ try {
     }
     else if($update->message->text == '/help')
     {
+    	$tried = $update->callback_query->data+1;
     	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     	$response = $client->sendMessage([
     		'chat_id' => $update->message->chat->id,
@@ -43,7 +44,7 @@ try {
     'reply_markup'=>json_encode([
         'inline_keyboard'=>[
             [
-                ['text'=>'yahoo','url'=>'http://yahoo.com'],
+                ['text'=>'yahoo','callback_data'=>"$tried"],
                 ['text'=>'msn','url'=>'http://msn.com']
             ],
             [
