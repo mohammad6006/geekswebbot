@@ -43,7 +43,7 @@ try {
     'reply_markup'=>json_encode([
         'inline_keyboard'=>[
             [
-                ['text'=>"رفرش زمان",'callback_data'=>'1']
+                ['text'=>'yahoo'],['text'=>'google']
             ]
         ]
     ])
