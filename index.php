@@ -44,6 +44,9 @@ try {
         'inline_keyboard'=>[
             [
                 ['text'=>'yahoo','url'=>'http://yahoo.com']
+            ],
+            [
+                ['text'=>'google','url'=>'http://google.com']
             ]
         ]
     ])
