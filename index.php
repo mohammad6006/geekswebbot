@@ -28,19 +28,19 @@ try {
 
     if($update->message->text == '/contact')
     {
-    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-    	$response = $client->sendMessage([
-        	'chat_id' => $update->message->chat->id,
-        	'text' => "You can send email to : Kasra@madadipouya.com"
-     	]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
+        ]);
     }
     else if($update->message->text == '/help')
     {
-    	$tried = $update->callback_query->data+1;
-    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-    	$response = $client->sendMessage([
-    		'chat_id' => $update->message->chat->id,
-    		'text'=>"اولین تلاش \n زمان :\n ".date('d M y -  h:i:s'),
+        $tried = $update->callback_query->data+1;
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text'=>"اولین تلاش \n زمان :\n ".date('d M y -  h:i:s'),
     'reply_markup'=>json_encode([
         'inline_keyboard'=>[
             [
@@ -52,44 +52,44 @@ try {
             ]
         ]
     ])
-    		]);
+            ]);
 
     }
     else if($update->message->text == '/start')
     {
-    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-    	$response = $client->sendMessage([
-    		'chat_id' => $update->message->chat->id,
-    		'text' => "به نظرسنجی برنامه سوروایور خوش آمدید :\n این نظرسنجی به منظور استفاده در کانال @TurkTv اکاربرد دارد
-    		و نتیجه این نظرسنجی از طریق کانال اطلاع رسانی میشود:\n
-    		برای ارتباط با ادمین کانال و برنامه نویس : @alo_survivor"
-    		]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "به نظرسنجی برنامه سوروایور خوش آمدید :\n این نظرسنجی به منظور استفاده در کانال @TurkTv اکاربرد دارد
+            و نتیجه این نظرسنجی از طریق کانال اطلاع رسانی میشود:\n
+            برای ارتباط با ادمین کانال و برنامه نویس : @alo_survivor"
+            ]);
 
     }
     else if($update->message->text == '/latest')
     {
-    		Feed::$cacheDir 	= __DIR__ . '/cache';
-			Feed::$cacheExpire 	= '5 hours';
-			$rss 		= Feed::loadRss($url);
-			$items 		= $rss->item;
-			$lastitem 	= $items[0];
-			$lastlink 	= $lastitem->link;
-			$lasttitle 	= $lastitem->title;
-			$message = $lasttitle . " \n ". $lastlink;
-			$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-			$response = $client->sendMessage([
-					'chat_id' => $update->message->chat->id,
-					'text' => $message
-				]);
+            Feed::$cacheDir     = __DIR__ . '/cache';
+            Feed::$cacheExpire  = '5 hours';
+            $rss        = Feed::loadRss($url);
+            $items      = $rss->item;
+            $lastitem   = $items[0];
+            $lastlink   = $lastitem->link;
+            $lasttitle  = $lastitem->title;
+            $message = $lasttitle . " \n ". $lastlink;
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+            $response = $client->sendMessage([
+                    'chat_id' => $update->message->chat->id,
+                    'text' => $message
+                ]);
 
     }
     else
     {
-    	$response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-    	$response = $client->sendMessage([
-    		'chat_id' => $update->message->chat->id,
-    		'text' => "Invalid command, please use /help to get list of available commands"
-    		]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "Invalid command, please use /help to get list of available commands"
+            ]);
     }
 
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
