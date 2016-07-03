@@ -85,12 +85,12 @@ try {
     }
     else
     {
-        $mimik = 'teee';
-        $mimik = $update->message->text;
+        $daryafti = 'Not detect';
+        $daryafti = $update->message->text;
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $mimik
+            'text' => $daryafti
             ]);
     }
 
