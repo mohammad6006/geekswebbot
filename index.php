@@ -89,7 +89,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $mimik " Invalid command, please use /help to get list of available commands"
+            'text' => "$mimik  Invalid command, please use /help to get list of available commands"
             ]);
     }
 
