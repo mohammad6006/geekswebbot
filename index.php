@@ -85,11 +85,11 @@ try {
     }
     else
     {
-        $update->message->text = json_encode($mimik);
+        $update->message->text = $mimik;
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => json_encode($update->message->text)
+            'text' => json_encode($mimik)
             ]);
     }
 
