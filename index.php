@@ -89,6 +89,13 @@ try {
                 ]);
 
     }
+    elseif ($update->message->reply_to_message) {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
+        ]);
+    }
     else
     {
         $daryafti = 'Not detect';
