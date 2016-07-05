@@ -67,7 +67,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "سال تولدتان را بنویسید:",
+            'text' => $update->message->message_id."سال تولدتان را بنویسید:",
             'reply_markup' => json_encode(['force_reply'=>true])
             ]);
 
@@ -93,9 +93,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "سال تولد دریافت شد لطفا ماه تولد خود را وارد کنید:",
-            'reply_markup' => json_encode(['force_reply'=>true])
-            ]);
+            'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
         ]);
     }
     else
