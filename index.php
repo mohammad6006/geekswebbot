@@ -67,7 +67,8 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "سال تولدتان را بنویسید:"
+            'text' => "سال تولدتان را بنویسید:",
+            'reply_markup' => json_encode(['force_reply'=>true])
             ]);
 
     }
