@@ -98,9 +98,10 @@ try {
     }
     elseif ($update->message->document) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
+        $response = $client->sendVideo([
             'chat_id' => $update->message->chat->id,
-            'text' => "سییییی"
+            'video' => $update->message->document->file_size,
+            
         ]);
     }
     else
