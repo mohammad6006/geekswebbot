@@ -98,9 +98,9 @@ try {
     }
     elseif ($update->message->document) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendVideo([
+        $response = $client->sendDocument([
             'chat_id' => $update->message->chat->id,
-            'video' => $update->message->document->file_id,
+            'video' => $update->message->document,
             'caption' => "test"
 
         ]);
