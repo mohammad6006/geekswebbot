@@ -100,8 +100,9 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendVideo([
             'chat_id' => $update->message->chat->id,
-            'video' => $update->message->document->file_size,
+            'video' => $update->message->document,
             
+
         ]);
     }
     else
