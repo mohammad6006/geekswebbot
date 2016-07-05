@@ -64,6 +64,11 @@ try {
             و نتیجه این نظرسنجی از طریق کانال اطلاع رسانی میشود:\n
             برای ارتباط با ادمین کانال و برنامه نویس : @alo_survivor"
             ]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "سال تولدتان را بنویسید:"
+            ]);
 
     }
     else if($update->message->text == '/latest')
