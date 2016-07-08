@@ -67,11 +67,13 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "سال تولدتان را بنویسید:",
+            'text' => "ماه تولد خودتونو انتخاب کنید:",
             'reply_markup' => json_encode([
                     'keyboard'=> [
-                        ['2','3','4'],
-                        ['1','5','6'],
+                        ['فروردین','اردیهشت','خرداد'],
+                        ['تیر','مرداد','شهریور'],
+                        ['مهر','آبان','آذر'],
+                        ['دی','بهمن','اسفند'],
                     ],
                     'resize_keyboard' => true,
                     'one_time_keyboard' => true
