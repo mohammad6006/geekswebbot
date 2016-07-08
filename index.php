@@ -118,6 +118,17 @@ try {
     {
         $daryafti = 'Not detect';
         $daryafti = $update->message->text;
+        switch ($daryafti) {
+            case 'فروردین':
+                $daryafti = 'koc';
+                break;
+            case 'اردیهشت':
+                $daryafti = 'terazi';
+                break;
+            default:
+                $daryafti = 'yaft nashod';
+                break;
+        }
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
