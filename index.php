@@ -67,7 +67,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $update->message->message_id."سال تولدتان را بنویسید:",
+            'text' => "سال تولدتان را بنویسید:",
             'reply_markup' => json_encode(['force_reply'=>true])
             ]);
 
@@ -100,7 +100,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendDocument([
             'chat_id' => $update->message->chat->id,
-            'video' => $update->message->document,
+            'document' => $update->message->document,
             'caption' => "test"
 
         ]);
