@@ -68,7 +68,14 @@ try {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => "سال تولدتان را بنویسید:",
-            'reply_markup' => json_encode(['force_reply'=>true])
+            'reply_markup' => json_encode([
+                    'keyboard'=> [
+                        ['2','3','4'],
+                        ['1','5','6'],
+                    ],
+                    'resize_keyboard' => true,
+                    'one_time_keyboard' => true
+                ]),
             ]);
 
     }
