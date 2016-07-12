@@ -107,11 +107,9 @@ try {
     }
     elseif ($update->message->document) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendDocument([
+        $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'document' => $update->message->document,
-            'caption' => "test"
-
+            'text' => $update->message->file_id
         ]);
     }
     else
