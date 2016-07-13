@@ -111,7 +111,7 @@ try {
                 'file_id'=> $update->message->document->file_id
             ]);
         $response = $client->sendDocument([
-            'chat_id'=> $update->message->chat_id->id,
+            'chat_id'=> $update->message->chat->id,
             'document'=>$update->message->document->file_id,
             'caption'=>'@TurkTv'
             ]);
