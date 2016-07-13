@@ -110,10 +110,10 @@ try {
         $response = $client->getFile([
                 'file_id'=> $update->message->document->file_id
             ]);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => $update->message->chat->id.'-'.$update->message->document->file_id
-        ]);
+        // $response = $client->sendMessage([
+        //     'chat_id' => $update->message->chat->id,
+        //     'text' => $update->message->chat->id.'-'.$update->message->document->file_id
+        // ]);
 
     }
     else
