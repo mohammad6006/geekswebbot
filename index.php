@@ -123,9 +123,9 @@ try {
     }
     elseif ($update->message->photo) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->getFile([
-                'file_id'=> $update->message->photo->file_id
-            ]);
+        // $response = $client->getFile([
+        //         'file_id'=> $update->message->photo->file_id
+        //     ]);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => $update->message->chat->id.'-'.$update->message->photo->file_id
