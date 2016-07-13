@@ -39,12 +39,31 @@ try {
     	'photo' => fopen('/home/www/photo.jpg', 'r')
     ]);
     print_r($response);
-} catch (\Zelenin\Telegram\Bot\NotOkException $e) {
+} catch (\Zelenin\Telegram\Bot\Exception\NotOkException $e) {
     echo $e->getMessage();
 }
 ```
 
 See [Bot API documentation](https://core.telegram.org/bots/api) for other methods.
+
+### Daemon
+
+```php
+$config = [
+    'token' => 'your-api-token'
+];
+
+$client = new Api($config['token']);
+
+$daemon = new \Zelenin\Telegram\Bot\Daemon\Daemon($client);
+
+$daemon
+    ->onUpdate(function (\Zelenin\Telegram\Bot\Type\Update $update) {
+        print_r($update);
+    });
+
+$daemon->run();
+```
 
 ## Author
 

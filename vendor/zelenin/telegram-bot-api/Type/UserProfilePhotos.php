@@ -27,11 +27,12 @@ class UserProfilePhotos extends Type
     {
         parent::loadResult($result);
 
-        if (isset($result->photos)) {
-            $this->photos = [];
-            foreach ($result->photos[0] as $photo) {
-                $this->photos[] = new PhotoSize($photo);
-            }
+        $this->photos = [];
+
+        if ($result->total_count > 0) {
+            $this->photos = array_map(function ($photo) {
+                return new PhotoSize($photo);
+            }, $result->photos[0]);
         }
     }
 }

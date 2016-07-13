@@ -19,6 +19,20 @@ class Audio extends Type
     public $duration;
 
     /**
+     * Optional. Performer of the audio as defined by sender or by audio tags
+     *
+     * @var string
+     */
+    public $performer;
+
+    /**
+     * Optional. Title of the audio as defined by sender or by audio tags
+     *
+     * @var string
+     */
+    public $title;
+
+    /**
      * Optional. MIME type of the file as defined by sender
      *
      * @var string
