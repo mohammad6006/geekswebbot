@@ -151,7 +151,7 @@ try {
         // ]);
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
-            'photo'=>$url,
+            'photo'=>'https://scontent.cdninstagram.com/t51.2885-15/e35/13686993_138629679899643_954209215_n.jpg',
             'caption'=>'@TurkTv'
             ]);
     }
