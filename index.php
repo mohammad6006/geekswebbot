@@ -145,6 +145,19 @@ try {
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
         $url = $clai->downloadUrl();
+        $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
+        $response = $client->sendPhoto([
+            'chat_id'=> $update->message->chat->id,
+            'photo'=>$img,
+            'caption'=>'@TurkTv'
+            ]);
+        // $ch = curl_init('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png');
+        // $fp = fopen('flower.png', 'wb');
+        // curl_setopt($ch, CURLOPT_FILE, $fp);
+        // curl_setopt($ch, CURLOPT_HEADER, 0);
+        // curl_exec($ch);
+        // curl_close($ch);
+        // fclose($fp);
         // $response = $client->getFile([
         //         'file_id'=> file_get_contents($url)
         //     ]);
@@ -153,17 +166,17 @@ try {
         //     'chat_id' => $update->message->chat->id,
         //     'text' => $update->message->chat->id.'-'.$url
         // ]);
-        $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
-        $response = $client->sendPhoto([
-            'chat_id'=> $update->message->chat->id,
-            'photo'=>$img,
-            'caption'=>'@TurkTv'
-            ]);
+        // $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
         // $response = $client->sendPhoto([
         //     'chat_id'=> $update->message->chat->id,
-        //     'photo'=>file_get_contents('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png'),
+        //     'photo'=>$img,
         //     'caption'=>'@TurkTv'
         //     ]);
+        $response = $client->sendPhoto([
+            'chat_id'=> $update->message->chat->id,
+            'photo'=>file_get_contents('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png'),
+            'caption'=>'@TurkTv'
+            ]);
     }
     else
     {
