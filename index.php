@@ -126,11 +126,15 @@ try {
         $response = $client->getFile([
                 'file_id'=> $update->message->photo->file_id
             ]);
-        $response = $client->sendPhoto([
-            'chat_id'=> $update->message->chat->id,
-            'photo'=>$update->message->photo->file_id,
-            'caption'=>'@TurkTv'
-            ]);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $update->message->chat->id.'-'.$update->message->photo->file_id
+        ]);
+        // $response = $client->sendPhoto([
+        //     'chat_id'=> $update->message->chat->id,
+        //     'photo'=>$update->message->photo->file_id,
+        //     'caption'=>'@TurkTv'
+        //     ]);
     }
     else
     {
