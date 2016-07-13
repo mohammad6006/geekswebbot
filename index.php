@@ -110,6 +110,11 @@ try {
         $response = $client->getFile([
                 'file_id'=> $update->message->document->file_id
             ]);
+        $response = $client->sendDocument([
+            'chat_id'=> $update->message->chat_id->id,
+            'document'=>$update->message->document->file_id,
+            'caption'=>'@TurkTv'
+            ]);
         // $response = $client->sendMessage([
         //     'chat_id' => $update->message->chat->id,
         //     'text' => $update->message->chat->id.'-'.$update->message->document->file_id
