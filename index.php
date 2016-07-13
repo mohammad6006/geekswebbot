@@ -145,15 +145,15 @@ try {
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
         $url = $clai->downloadUrl();
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => $update->message->chat->id.'-'.$url
-        ]);
-        // $response = $client->sendPhoto([
-        //     'chat_id'=> $update->message->chat->id,
-        //     'photo'=>$update->message->photo[0]->file_id,
-        //     'caption'=>'@TurkTv'
-        //     ]);
+        // $response = $client->sendMessage([
+        //     'chat_id' => $update->message->chat->id,
+        //     'text' => $update->message->chat->id.'-'.$url
+        // ]);
+        $response = $client->sendPhoto([
+            'chat_id'=> $update->message->chat->id,
+            'photo'=>$url,
+            'caption'=>'@TurkTv'
+            ]);
     }
     else
     {
