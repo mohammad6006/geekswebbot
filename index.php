@@ -18,6 +18,7 @@
 *
 */
 require 'vendor/autoload.php';
+require 'InstagramDownload.class.php';
 
 $client = new Zelenin\Telegram\Bot\Api('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus'); // Set your access token
 $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
@@ -141,9 +142,12 @@ try {
         // $response = $client->getFile([
         //         'file_id'=> $update->message->photo[0]->file_id
         //     ]);
+        $url = $update->message->text;
+        $clai = new InstagramDownload($url);
+        $url = $clai->downloadUrl();
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $update->message->chat->id.'-'.$update->message->text
+            'text' => $update->message->chat->id.'-'.$url
         ]);
         // $response = $client->sendPhoto([
         //     'chat_id'=> $update->message->chat->id,
