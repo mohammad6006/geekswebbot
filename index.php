@@ -128,7 +128,7 @@ try {
         //     ]);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $update->message->chat->id.'-'.$update->message->photo->file_id
+            'text' => $update->message->chat->id.'-'.$update->message->photo[0]->file_id
         ]);
         // $response = $client->sendPhoto([
         //     'chat_id'=> $update->message->chat->id,
