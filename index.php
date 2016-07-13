@@ -145,19 +145,19 @@ try {
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
         $url = $clai->downloadUrl();
-        $response = $client->getFile([
-                'file_id'=> $url
-            ]);
-        return $response;
+        // $response = $client->getFile([
+        //         'file_id'=> file_get_contents($url)
+        //     ]);
+        // return $response;
         // $response = $client->sendMessage([
         //     'chat_id' => $update->message->chat->id,
         //     'text' => $update->message->chat->id.'-'.$url
         // ]);
-        // $response = $client->sendPhoto([
-        //     'chat_id'=> $update->message->chat->id,
-        //     'photo'=>'https://scontent.cdninstagram.com/t51.2885-15/e35/13686993_138629679899643_954209215_n.jpg',
-        //     'caption'=>'@TurkTv'
-        //     ]);
+        $response = $client->sendPhoto([
+            'chat_id'=> $update->message->chat->id,
+            'photo'=>file_get_contents('https://scontent.cdninstagram.com/t51.2885-15/e35/13686993_138629679899643_954209215_n.jpg'),
+            'caption'=>'@TurkTv'
+            ]);
     }
     else
     {
