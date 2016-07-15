@@ -123,7 +123,7 @@ try {
 
     }
     elseif ($update->message->photo) {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $response = $client->getFile([
                 'file_id'=> $update->message->photo[0]->file_id
             ]);
@@ -148,7 +148,7 @@ try {
         // $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
-            'photo'=>fopen($url,'r'),
+            'photo'=>fopen('https://trabantland.files.wordpress.com/2012/10/img_6485.jpg','r'),
             'caption'=>'@TurkTv'
             ]);
         // print_r($response);
