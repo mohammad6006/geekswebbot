@@ -17,7 +17,6 @@
 * © 2015 Kasra Madadipouya <kasra@madadipouya.com>
 *
 */
-require 'InstagramDownload.class.php';
 require 'vendor/autoload.php';
 
 
@@ -25,7 +24,8 @@ $client = new Zelenin\Telegram\Bot\Api('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOd
 $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 
-//your app
+require 'InstagramDownload.class.php';
+
 try {
 
     if($update->message->text == '/contact')
