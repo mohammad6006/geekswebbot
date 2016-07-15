@@ -148,7 +148,7 @@ try {
         // $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
-            'photo'=>fopen('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','r'),
+            'photo'=>fopen($url,'r'),
             'caption'=>'@TurkTv'
             ]);
         // print_r($response);
