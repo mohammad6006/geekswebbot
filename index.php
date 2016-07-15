@@ -144,8 +144,8 @@ try {
         //         'file_id'=> $update->message->photo[0]->file_id
         //     ]);
         $url = $update->message->text;
-        $clai = new InstagramDownload($url);
-        $url = $clai->downloadUrl();
+        $clasih = new InstagramDownload($url);
+        $url = $clasih->downloadUrl();
         $instaImg2 = $client->downloadUrl(TRUE);
         $error1 = $client->getError();
         $type1 = $client->type();
