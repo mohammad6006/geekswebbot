@@ -145,10 +145,10 @@ try {
         //     ]);
         $url = $update->message->text;
         $clasih = new InstagramDownload($url);
-        // $url = $clasih->downloadUrl();
-        $instaImg2 = $client->downloadUrl(TRUE);
-        $error1 = $client->getError();
-        $type1 = $client->type();
+        $url = $clasih->downloadUrl();
+        $instaImg2 = $clasih->downloadUrl(TRUE);
+        $error1 = $clasih->getError();
+        $type1 = $clasih->type();
         // $response = $client->sendPhoto([
         //     'chat_id'=> $update->message->chat->id,
         //     'photo'=>fopen($instaImg,'r'),
