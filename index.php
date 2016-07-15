@@ -149,16 +149,12 @@ try {
         $instaImg2 = $clasih->downloadUrl(TRUE);
         $error1 = $clasih->getError();
         $type1 = $clasih->type();
-        // $response = $client->sendPhoto([
-        //     'chat_id'=> $update->message->chat->id,
-        //     'photo'=>fopen($instaImg,'r'),
-        //     'caption'=>'@TurkTv'
-        //     ]);
         if (isset($url)) {
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => $url
-            ]);
+            $response = $client->sendPhoto([
+                'chat_id'=> $update->message->chat->id,
+                'photo'=>fopen($url,'r'),
+                'caption'=>'@TurkTv'
+                ]);
         }else{
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
