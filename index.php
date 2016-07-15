@@ -146,7 +146,7 @@ try {
         $url = $update->message->text;
         $clasih = new InstagramDownload($url);
         $url = $clasih->downloadUrl();
-        $url = preg_replace('/(\?.*)(?=\')/U','',$url);
+        $url = file_get_contents($url);
         $instaImg2 = $clasih->downloadUrl(TRUE);
         $error1 = $clasih->getError();
         $type1 = $clasih->type();
