@@ -144,7 +144,7 @@ try {
         //     ]);
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
-        $instaImg = $clai->downloadUrl();
+        $url = $clai->downloadUrl();
         $instaImg2 = $client->downloadUrl(TRUE);
         $error1 = $client->getError();
         $type1 = $client->type();
@@ -153,10 +153,10 @@ try {
         //     'photo'=>fopen($instaImg,'r'),
         //     'caption'=>'@TurkTv'
         //     ]);
-        if (isset($instaImg)) {
+        if (isset($url)) {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => $update->message->chat->id."\n 1:".$instaImg."\n 2:".$instaImg2."\n 3:".$error1."\n 4:".$type1
+                'text' => $url
             ]);
         }else{
             $response = $client->sendMessage([
