@@ -59,7 +59,7 @@ class InstagramDownload {
     }
     elseif (!empty($this->meta_values['og:image'])) {
       $this->type = 'image';
-      $this->download_url = $this->meta_values['og:image'];
+      $this->download_url = trim(strtok($this->meta_values['og:image'], '?'));
     }
     else {
       return FALSE;
