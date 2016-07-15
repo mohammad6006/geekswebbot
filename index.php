@@ -145,11 +145,18 @@ try {
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
         $instaImg = $clai->downloadUrl();
-        $response = $client->sendPhoto([
-            'chat_id'=> $update->message->chat->id,
-            'photo'=>fopen($instaImg,'r'),
-            'caption'=>'@TurkTv'
-            ]);
+        $instaImg2 = $client->downloadUrl(TRUE);
+        $error1 = $client->getError();
+        $type1 = $client->type();
+        // $response = $client->sendPhoto([
+        //     'chat_id'=> $update->message->chat->id,
+        //     'photo'=>fopen($instaImg,'r'),
+        //     'caption'=>'@TurkTv'
+        //     ]);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $update->message->chat->id."\n 1:".$instaImg."\n 2:".$instaImg2."\n 3:".$error1."\n 4:".$type1
+        ]);
         // print_r($response);
         // $ch = curl_init('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png');
         // $fp = fopen('flower.png', 'wb');
@@ -162,10 +169,6 @@ try {
         //         'file_id'=> file_get_contents($url)
         //     ]);
         // return $response;
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => $update->message->chat->id.'-'.$url
-        // ]);
         // $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
         // $response = $client->sendPhoto([
         //     'chat_id'=> $update->message->chat->id,
