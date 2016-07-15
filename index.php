@@ -138,7 +138,7 @@ try {
             ]);
     }
     elseif ($update->message->entities[0]->type == 'url') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         // $response = $client->getFile([
         //         'file_id'=> $update->message->photo[0]->file_id
         //     ]);
