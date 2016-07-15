@@ -147,7 +147,7 @@ try {
         $instaImg = $clai->downloadUrl();
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
-            'photo'=>fopen('https://scontent.cdninstagram.com/t51.2885-15/e35/13686993_138629679899643_954209215_n.jpg','r'),
+            'photo'=>fopen($instaImg,'r'),
             'caption'=>'@TurkTv'
             ]);
         // print_r($response);
