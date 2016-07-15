@@ -139,25 +139,30 @@ try {
             ]);
     }
     elseif ($update->message->entities[0]->type == 'url') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         // $response = $client->getFile([
         //         'file_id'=> $update->message->photo[0]->file_id
         //     ]);
         $url = $update->message->text;
         $clasih = new InstagramDownload($url);
         $url = $clasih->downloadUrl();
-        $url = trim(strtok($url, '?'));
-        // $url = file_get_contents($url);
-        $instaImg2 = $clasih->downloadUrl(TRUE);
-        $error1 = $clasih->getError();
         $type1 = $clasih->type();
-        if (isset($url)) {
+        if ($type1 == 'image') {
+            $url = trim(strtok($url, '?'));
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
             $response = $client->sendPhoto([
                 'chat_id'=> $update->message->chat->id,
                 'photo'=>fopen($url,'r'),
                 'caption'=>'@TurkTv'
                 ]);
+        }elseif ($type1 == 'video') {
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
+            $response = $client->sendVideo([
+                'chat_id'=> $update->message->chat->id,
+                'photo'=>fopen($url,'r'),
+                'caption'=>'@TurkTv'
+                ]);
         }else{
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
                 'text' => 'olmadi'
