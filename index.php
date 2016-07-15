@@ -144,11 +144,10 @@ try {
         //     ]);
         $url = $update->message->text;
         $clai = new InstagramDownload($url);
-        $url = $clai->downloadUrl();
-        // $img = curl_file_create('startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png','image/png');
+        $instaImg = $clai->downloadUrl();
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
-            'photo'=>fopen('https://trabantland.files.wordpress.com/2012/10/img_6485.jpg','r'),
+            'photo'=>fopen('https://scontent.cdninstagram.com/t51.2885-15/e35/13686993_138629679899643_954209215_n.jpg','r'),
             'caption'=>'@TurkTv'
             ]);
         // print_r($response);
