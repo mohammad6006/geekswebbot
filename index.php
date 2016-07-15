@@ -17,8 +17,9 @@
 * © 2015 Kasra Madadipouya <kasra@madadipouya.com>
 *
 */
-require 'vendor/autoload.php';
 require 'InstagramDownload.class.php';
+require 'vendor/autoload.php';
+
 
 $client = new Zelenin\Telegram\Bot\Api('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus'); // Set your access token
 $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
