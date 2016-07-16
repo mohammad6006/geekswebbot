@@ -161,7 +161,7 @@ try {
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => $file['playtime_string'].'+'.$file['filesize']
+                'text' => $file->playtime_string.'+'.$file->filesize
             ]);
             // $response = $client->sendVideo([
             //     'chat_id'=> $update->message->chat->id,
