@@ -146,6 +146,7 @@ try {
         $clasih = new InstagramDownload($url);
         $url = $clasih->downloadUrl();
         $type1 = $clasih->type();
+
         if ($type1 == 'image') {
             $url = trim(strtok($url, '?'));
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
@@ -155,11 +156,14 @@ try {
                 'caption'=>'@TurkTv'
                 ]);
         }elseif ($type1 == 'video') {
+            $getID3 = new getID3;
+            $file = $getID3->analyze($url);
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
             $response = $client->sendVideo([
                 'chat_id'=> $update->message->chat->id,
                 'video'=>fopen($url,'r'),
-                'caption'=>'@TurkTv'
+                'caption'=>'@TurkTv',
+                'duration'=>$file['playtime_string']
                 ]);
         }else{
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
