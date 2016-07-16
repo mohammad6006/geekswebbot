@@ -159,12 +159,16 @@ try {
             $getID3 = new getID3;
             $file = $getID3->analyze($url);
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
-            $response = $client->sendVideo([
-                'chat_id'=> $update->message->chat->id,
-                'video'=>fopen($url,'r'),
-                'caption'=>'@TurkTv',
-                'duration'=>$file['playtime_string']
-                ]);
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => $file['playtime_string'].'+'.$file['filesize']
+            ]);
+            // $response = $client->sendVideo([
+            //     'chat_id'=> $update->message->chat->id,
+            //     'video'=>fopen($url,'r'),
+            //     'caption'=>'@TurkTv',
+            //     'duration'=>$file['playtime_string']
+            //     ]);
         }else{
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
             $response = $client->sendMessage([
