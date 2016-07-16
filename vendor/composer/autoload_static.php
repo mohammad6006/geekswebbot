@@ -64,6 +64,9 @@ class ComposerStaticInit95419506929a0927fedda1e6652c31ff
     public static $classMap = array (
         'Feed' => __DIR__ . '/..' . '/dg/rss-php/src/Feed.php',
         'FeedException' => __DIR__ . '/..' . '/dg/rss-php/src/Feed.php',
+        'getID3' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/getid3.php',
+        'getid3_exception' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/getid3.php',
+        'getid3_handler' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/getid3.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -8,4 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Feed' => $vendorDir . '/dg/rss-php/src/Feed.php',
     'FeedException' => $vendorDir . '/dg/rss-php/src/Feed.php',
+    'getID3' => $vendorDir . '/james-heinrich/getid3/getid3/getid3.php',
+    'getid3_exception' => $vendorDir . '/james-heinrich/getid3/getid3/getid3.php',
+    'getid3_handler' => $vendorDir . '/james-heinrich/getid3/getid3/getid3.php',
 );
