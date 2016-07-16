@@ -62,9 +62,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "به نظرسنجی برنامه سوروایور خوش آمدید :\n این نظرسنجی به منظور استفاده در کانال @TurkTv اکاربرد دارد
-            و نتیجه این نظرسنجی از طریق کانال اطلاع رسانی میشود:\n
-            برای ارتباط با ادمین کانال و برنامه نویس : @alo_survivor"
+            'text' => "test\n test"
             ]);
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
@@ -146,29 +144,21 @@ try {
         $clasih = new InstagramDownload($url);
         $url = $clasih->downloadUrl();
         $type1 = $clasih->type();
-
         if ($type1 == 'image') {
             $url = trim(strtok($url, '?'));
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
             $response = $client->sendPhoto([
                 'chat_id'=> $update->message->chat->id,
                 'photo'=>fopen($url,'r'),
-                'caption'=>'@TurkTv'
+                'caption'=>'test'
                 ]);
         }elseif ($type1 == 'video') {
-            $getID3 = new getID3;
-            $file = $getID3->analyze($url);
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => $file
-            ]);
-            // $response = $client->sendVideo([
-            //     'chat_id'=> $update->message->chat->id,
-            //     'video'=>fopen($url,'r'),
-            //     'caption'=>'@TurkTv',
-            //     'duration'=>$file['playtime_string']
-            //     ]);
+            $response = $client->sendVideo([
+                'chat_id'=> $update->message->chat->id,
+                'video'=>fopen($url,'r'),
+                'caption'=>'test'
+                ]);
         }else{
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
             $response = $client->sendMessage([
