@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/bolandish/vendor/autoload.php';
 
 //Its getting 10 images/videoes from instagram with the hastag #nofilter
 $media = Bolandish\Instagram::getMediaByHashtag("nofilter", 10);
