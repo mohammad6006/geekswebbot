@@ -146,12 +146,20 @@ try {
         $type1 = $clasih->type();
         if ($type1 == 'image') {
             $url = trim(strtok($url, '?'));
-            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
-            $response = $client->sendPhoto([
-                'chat_id'=> $update->message->chat->id,
-                'photo'=>fopen($url,'r'),
-                'caption'=>'test'
+            if ($url != '') {
+                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+                $response = $client->sendPhoto([
+                    'chat_id'=> $update->message->chat->id,
+                    'photo'=>fopen($url,'r'),
+                    'caption'=>'test'
+                    ]);
+            }else{
+                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+                $response = $client->sendMessage([
+                    'chat_id' => $update->message->chat->id,
+                    'text' => 'olmadi - not found'
                 ]);
+            }
         }elseif ($type1 == 'video') {
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
             $response = $client->sendVideo([
