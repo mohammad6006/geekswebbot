@@ -50,6 +50,20 @@ try {
           }
         }
     }
+    elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+        $media = Bolandish\Instagram::getMediaByHashtag("survivor", 6);
+        foreach($media as $value){
+          if ($value->dimensions->width === $value->dimensions->height){
+                $url = trim(strtok($value->display_src, '?')); 
+                $response = $client->sendPhoto([
+                    'chat_id'=> $update->message->chat->id,
+                    'photo'=>fopen($url,'r'),
+                    'caption'=>$value->caption
+                    ]);
+          }
+        }
+    }
     else if($update->message->text == '/help')
     {
         $tried = $update->callback_query->data+1;
