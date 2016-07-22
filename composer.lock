@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4cae9045debea8194387e7748fce8394",
-    "content-hash": "9c01d16b7667294f7059fa45465b8e74",
+    "hash": "b4fbf9cd9b5ba4de0363b68bf0cdf8a3",
+    "content-hash": "8f8646cb2547bb705639682c7c20c553",
     "packages": [
         {
             "name": "amphp/amp",
@@ -63,6 +63,36 @@
                 "promise"
             ],
             "time": "2016-05-12 12:54:59"
+        },
+        {
+            "name": "bolandish/instagram-grabber",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bolandish/Instagram-Grabber.git",
+                "reference": "2449912ced0606e2a6180f9acc18205acddd23e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bolandish/Instagram-Grabber/zipball/2449912ced0606e2a6180f9acc18205acddd23e9",
+                "reference": "2449912ced0606e2a6180f9acc18205acddd23e9",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bolandish\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Thomas Bolander",
+                    "email": "privat@thomasbolander.dk"
+                }
+            ],
+            "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken",
+            "time": "2016-06-14 08:37:10"
         },
         {
             "name": "dg/rss-php",

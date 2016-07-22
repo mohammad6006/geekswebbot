@@ -417,5 +417,37 @@
             "php",
             "tags"
         ]
+    },
+    {
+        "name": "bolandish/instagram-grabber",
+        "version": "1.0.9",
+        "version_normalized": "1.0.9.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Bolandish/Instagram-Grabber.git",
+            "reference": "2449912ced0606e2a6180f9acc18205acddd23e9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Bolandish/Instagram-Grabber/zipball/2449912ced0606e2a6180f9acc18205acddd23e9",
+            "reference": "2449912ced0606e2a6180f9acc18205acddd23e9",
+            "shasum": ""
+        },
+        "time": "2016-06-14 08:37:10",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Bolandish\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Thomas Bolander",
+                "email": "privat@thomasbolander.dk"
+            }
+        ],
+        "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken"
     }
 ]

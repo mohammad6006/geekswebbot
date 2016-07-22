@@ -2,6 +2,7 @@
     "require": {
         "zelenin/telegram-bot-api": "~0.0",
 		"dg/rss-php": "^1.2",
-        "james-heinrich/getid3": "^1.9"
+        "james-heinrich/getid3": "^1.9",
+        "bolandish/instagram-grabber": "^1.0"
     }
 }

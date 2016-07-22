@@ -28,6 +28,10 @@ class ComposerStaticInit95419506929a0927fedda1e6652c31ff
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'B' => 
+        array (
+            'Bolandish\\' => 10,
+        ),
         'A' => 
         array (
             'Amp\\' => 4,
@@ -54,6 +58,10 @@ class ComposerStaticInit95419506929a0927fedda1e6652c31ff
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Bolandish\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bolandish/instagram-grabber/src',
         ),
         'Amp\\' => 
         array (
