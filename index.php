@@ -37,14 +37,16 @@ try {
         ]);
     }
     elseif ($update->message->text == '/grab') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $media = Bolandish\Instagram::getMediaByHashtag("wildlife", 2);
         foreach($media as $value){
           if ($value->dimensions->width === $value->dimensions->height){
-                $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
-                    'text' => $value->display_src
-                ]);
+                $url = trim(strtok($value->display_src, '?')); 
+                $response = $client->sendPhoto([
+                    'chat_id'=> $update->message->chat->id,
+                    'photo'=>fopen($url,'r'),
+                    'caption'=>'test'
+                    ]);
           }
         }
     }
