@@ -37,11 +37,17 @@ try {
         ]);
     }
     elseif ($update->message->text == '/grab') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
-        ]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+        $media = Bolandish\Instagram::getMediaByHashtag("wildlife", 2);
+        foreach($media as $value){
+          if ($value->dimensions->width === $value->dimensions->height){
+            $response = $client->sendPhoto([
+                'chat_id'=> $update->message->chat->id,
+                'photo'=>fopen($value->display_src,'r'),
+                'caption'=>$value->caption
+                ]);
+          }
+        }
     }
     else if($update->message->text == '/help')
     {
