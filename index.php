@@ -44,7 +44,7 @@ try {
             $response = $client->sendPhoto([
                 'chat_id'=> $update->message->chat->id,
                 'photo'=>fopen($value->display_src,'r'),
-                'caption'=>$value->caption
+                'caption'=>'test'
                 ]);
           }
         }
