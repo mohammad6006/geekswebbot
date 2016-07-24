@@ -55,7 +55,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $update->message->text = $instagrab;
         $insa = explode(' ', $instagrab);
-        $media = Bolandish\Instagram::getMediaByHashtag($insa[1], $insa[2]);
+        $media = Bolandish\Instagram::getMediaByHashtag($insa[1], intval($insa[2]));
         foreach($media as $value){
           if ($value->dimensions->width === $value->dimensions->height){
                 $url = trim(strtok($value->display_src, '?')); 
