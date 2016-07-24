@@ -45,7 +45,7 @@ try {
                 $response = $client->sendPhoto([
                     'chat_id'=> $update->message->chat->id,
                     'photo'=>fopen($url,'r'),
-                    'caption'=>$value->caption
+                    'caption'=>substr($value->caption, 0,190)
                     ]);
           }
         }
@@ -65,7 +65,7 @@ try {
                 $response = $client->sendPhoto([
                     'chat_id'=> $update->message->chat->id,
                     'photo'=>fopen($url,'r'),
-                    'caption'=>$value->caption
+                    'caption'=>substr($value->caption, 0,190)
                     ]);
           }
         }
