@@ -155,10 +155,6 @@ try {
         $response = $client->getFile([
                 'file_id'=> $update->message->photo[0]->file_id
             ]);
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => $update->message->chat->id.'-'.$update->message->photo[0]->file_id
-        // ]);
         $response = $client->sendPhoto([
             'chat_id'=> $update->message->chat->id,
             'photo'=>$update->message->photo[0]->file_id,
