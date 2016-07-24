@@ -52,7 +52,7 @@ try {
     }
     elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+        // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $insa = explode(' ', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
