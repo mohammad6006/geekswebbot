@@ -56,7 +56,7 @@ try {
         $insa = explode(' ', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $insa[0].'-'$insa[1].'-'.$insa[2]
+            'text' => $insa[0].'-'.$insa[1].'-'.$insa[2]
         ]);
         // $media = Bolandish\Instagram::getMediaByHashtag($insa[1], 3);
         // foreach($media as $value){
