@@ -149,11 +149,6 @@ try {
             'document'=>$update->message->document->file_id,
             'caption'=>'@TurkTv'
             ]);
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => $update->message->chat->id.'-'.$update->message->document->file_id
-        // ]);
-
     }
     elseif ($update->message->photo) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
