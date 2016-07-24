@@ -54,17 +54,21 @@ try {
         
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $insa = explode(' ', $update->message->text);
-        $media = Bolandish\Instagram::getMediaByHashtag($insa[1], 3);
-        foreach($media as $value){
-          if ($value->dimensions->width === $value->dimensions->height){
-                $url = trim(strtok($value->display_src, '?')); 
-                $response = $client->sendPhoto([
-                    'chat_id'=> $update->message->chat->id,
-                    'photo'=>fopen($url,'r'),
-                    'caption'=>$value->caption
-                    ]);
-          }
-        }
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $insa[0].'-'$insa[1].'-'.$insa[2]
+        ]);
+        // $media = Bolandish\Instagram::getMediaByHashtag($insa[1], 3);
+        // foreach($media as $value){
+        //   if ($value->dimensions->width === $value->dimensions->height){
+        //         $url = trim(strtok($value->display_src, '?')); 
+        //         $response = $client->sendPhoto([
+        //             'chat_id'=> $update->message->chat->id,
+        //             'photo'=>fopen($url,'r'),
+        //             'caption'=>$value->caption
+        //             ]);
+        //   }
+        // }
     }
     else if($update->message->text == '/help')
     {
