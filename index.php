@@ -54,23 +54,23 @@ try {
         
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $insa = explode(' ', $update->message->text);
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => $insa[0].'-'.$insa[1].'-'.$insa[2]
-        // ]);
-        $media = Bolandish\Instagram::getMediaByHashtag($insa[1], intval($insa[2]));
-        foreach($media as $value){
-          if ($value->dimensions->width === $value->dimensions->height){
-                $url = trim(strtok($value->display_src, '?')); 
-                $response = $client->sendPhoto([
-                    'chat_id'=> $update->message->chat->id,
-                    'photo'=>fopen($url,'r'),
-                    'caption'=>substr($value->caption, 0,190)
-                    ]);
-          }
-        }
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $insa[0].'-'.$insa[1].'-'.$insa[2]
+        ]);
+        // $media = Bolandish\Instagram::getMediaByHashtag($insa[1], intval($insa[2]));
+        // foreach($media as $value){
+        //   if ($value->dimensions->width === $value->dimensions->height){
+        //         $url = trim(strtok($value->display_src, '?')); 
+        //         $response = $client->sendPhoto([
+        //             'chat_id'=> $update->message->chat->id,
+        //             'photo'=>fopen($url,'r'),
+        //             'caption'=>substr($value->caption, 0,190)
+        //             ]);
+        //   }
+        // }
     }
-    else if($update->message->text == '/help')
+    elseif($update->message->text == '/help')
     {
         $tried = $update->callback_query->data+1;
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
