@@ -53,9 +53,8 @@ try {
     elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
-        $update->message->text = $instagrab;
-        $insa = explode(' ', $instagrab);
-        $media = Bolandish\Instagram::getMediaByHashtag("palang", 3);
+        $insa = explode(' ', $update->message->text);
+        $media = Bolandish\Instagram::getMediaByHashtag($insa[1], 3);
         foreach($media as $value){
           if ($value->dimensions->width === $value->dimensions->height){
                 $url = trim(strtok($value->display_src, '?')); 
