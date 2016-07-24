@@ -162,9 +162,6 @@ try {
             ]);
     }
     elseif ($update->message->entities[0]->type == 'url') {
-        // $response = $client->getFile([
-        //         'file_id'=> $update->message->photo[0]->file_id
-        //     ]);
         $url = $update->message->text;
         $clasih = new InstagramDownload($url);
         $url = $clasih->downloadUrl();
