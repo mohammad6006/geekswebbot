@@ -24,7 +24,7 @@ require 'vendor/autoload.php';
 $client = new Zelenin\Telegram\Bot\Api('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus'); // Set your access token
 $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-
+$hasanak = ENV['tez'];
 //your app
 try {
 
@@ -33,7 +33,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => ENV['tez']
+            'text' => $hasanak
         ]);
     }
     elseif ($update->message->text == '/grab') {
