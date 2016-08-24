@@ -49,6 +49,12 @@ try {
           }
         }
     }
+    elseif (isset($update->callback_query)) {
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'call back query '
+        ]);
+    }
     elseif ($update->message->text == '/caltest') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
