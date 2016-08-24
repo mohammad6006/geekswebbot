@@ -3,270 +3,311 @@
 namespace Zelenin\Telegram\Bot;
 
 use stdClass;
+use Zelenin\Telegram\Bot\Client\Client;
+use Zelenin\Telegram\Bot\Client\Response;
 use Zelenin\Telegram\Bot\Exception\NotOkException;
 use Zelenin\Telegram\Bot\Type\File;
+use Zelenin\Telegram\Bot\Type\Keyboard;
 use Zelenin\Telegram\Bot\Type\Message;
-use Zelenin\Telegram\Bot\Type\ReplyMarkup;
 use Zelenin\Telegram\Bot\Type\Update;
 use Zelenin\Telegram\Bot\Type\User;
 use Zelenin\Telegram\Bot\Type\UserProfilePhotos;
 
-class Api
+final class Api
 {
     /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var ClientInterface
+     * @var Client
      */
     private $client;
 
     /**
-     * @param $token
+     * @param Client $client
      */
-    public function __construct($token)
-    {
-        $this->token = $token;
-    }
-
-    /**
-     * @param $method
-     * @param array $params
-     *
-     * @return mixed|stdClass
-     *
-     * @throws NotOkException
-     */
-    public function request($method, $params = [])
-    {
-        $response = $this->getClient()->request($method, $params);
-        if (!$response->getOk()) {
-            throw new NotOkException('Code: ' . $response->getErrorCode() . '. Description: "' . $response->getDescription() . '".');
-        }
-        return $response->getResult();
-    }
-
-    /**
-     * @return Client|ClientInterface
-     */
-    private function getClient()
-    {
-        if (!$this->client instanceof ClientInterface) {
-            $this->client = new Client($this->token);
-        }
-        return $this->client;
-    }
-
-    /**
-     * @param ClientInterface $client
-     */
-    public function setClient(ClientInterface $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
     /**
-     * @return User
+     * @param string $method
+     * @param array $params
      *
-     * @throws NotOkException
+     * @return Response
+     */
+    public function request($method, array $params = [])
+    {
+        $response = $this->client->request($method, $params);
+        if (!$response->getOk()) {
+            throw new NotOkException(sprintf('Code: %s. Description: "%s".', $response->getErrorCode(), $response->getDescription()));
+        }
+        return $response;
+    }
+
+    /**
+     * @return User
      */
     public function getMe()
     {
-        return new User($this->request('getMe'));
+        return User::createFromResponse($this->request('getMe'));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendMessage($params)
+    public function sendMessage(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendMessage', $params));
+        return Message::createFromResponse($this->request('sendMessage', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function forwardMessage($params)
+    public function forwardMessage(array $params)
     {
-        return new Message($this->request('forwardMessage', $params));
+        return Message::createFromResponse($this->request('forwardMessage', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendPhoto($params)
+    public function sendPhoto(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendPhoto', $params));
+        return Message::createFromResponse($this->request('sendPhoto', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendAudio($params)
+    public function sendAudio(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendAudio', $params));
+        return Message::createFromResponse($this->request('sendAudio', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendDocument($params)
+    public function sendDocument(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendDocument', $params));
+        return Message::createFromResponse($this->request('sendDocument', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendSticker($params)
+    public function sendSticker(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendSticker', $params));
+        return Message::createFromResponse($this->request('sendSticker', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendVideo($params)
+    public function sendVideo(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendVideo', $params));
+        return Message::createFromResponse($this->request('sendVideo', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendVoice($params)
+    public function sendVoice(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendVideo', $params));
+        return Message::createFromResponse($this->request('sendVideo', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return Message
-     *
-     * @throws NotOkException
      */
-    public function sendLocation($params)
+    public function sendLocation(array $params)
     {
-        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof ReplyMarkup) {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
             $params['reply_markup'] = json_encode($params['reply_markup']);
         }
-        return new Message($this->request('sendLocation', $params));
+        return Message::createFromResponse($this->request('sendLocation', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
-     * @return mixed
-     *
-     * @throws NotOkException
+     * @return Message
      */
-    public function sendChatAction($params)
+    public function sendVenue(array $params)
+    {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
+            $params['reply_markup'] = json_encode($params['reply_markup']);
+        }
+        return Message::createFromResponse($this->request('sendVenue', $params));
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Message
+     */
+    public function sendContact(array $params)
+    {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
+            $params['reply_markup'] = json_encode($params['reply_markup']);
+        }
+        return Message::createFromResponse($this->request('sendContact', $params));
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Response
+     */
+    public function sendChatAction(array $params)
     {
         return $this->request('sendChatAction', $params);
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return UserProfilePhotos
-     *
-     * @throws NotOkException
      */
-    public function getUserProfilePhotos($params)
+    public function getUserProfilePhotos(array $params)
     {
-        return new UserProfilePhotos($this->request('getUserProfilePhotos', $params));
+        return UserProfilePhotos::createFromResponse($this->request('getUserProfilePhotos', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
      * @return File
-     *
-     * @throws NotOkException
      */
-    public function getFile($params)
+    public function getFile(array $params)
     {
-        return new File($this->request('getFile', $params));
+        return File::createFromResponse($this->request('getFile', $params));
     }
 
     /**
-     * @param $params
+     * @param array $params
+     *
+     * @return Response
+     */
+    public function answerCallbackQuery(array $params)
+    {
+        return $this->request('answerCallbackQuery', $params);
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Response
+     */
+    public function unbanChatMember(array $params)
+    {
+        return $this->request('unbanChatMember', $params);
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Response
+     */
+    public function kickChatMember(array $params)
+    {
+        return $this->request('kickChatMember', $params);
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Message
+     */
+    public function editMessageText(array $params)
+    {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
+            $params['reply_markup'] = json_encode($params['reply_markup']);
+        }
+        return Message::createFromResponse($this->request('editMessageText', $params));
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Message
+     */
+    public function editMessageCaption(array $params = [])
+    {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
+            $params['reply_markup'] = json_encode($params['reply_markup']);
+        }
+        return Message::createFromResponse($this->request('editMessageCaption', $params));
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return Message
+     */
+    public function editMessageReplyMarkup(array $params = [])
+    {
+        if (isset($params['reply_markup']) && $params['reply_markup'] instanceof Keyboard) {
+            $params['reply_markup'] = json_encode($params['reply_markup']);
+        }
+        return Message::createFromResponse($this->request('editMessageReplyMarkup', $params));
+    }
+
+    /**
+     * @param array $params
      *
      * @return Update[]
-     *
-     * @throws NotOkException
      */
-    public function getUpdates($params)
+    public function getUpdates(array $params = [])
     {
-        return array_map(function (stdClass $item) {
-            return new Update($item);
-        }, $this->request('getUpdates', $params));
+        return array_map(function (stdClass $update) {
+            return Update::create($update);
+        }, $this->request('getUpdates', $params)->getResult());
     }
 
     /**
-     * @param $params
+     * @param array $params
      *
-     * @return mixed
-     *
-     * @throws NotOkException
+     * @return Response
      */
-    public function setWebhook($params)
+    public function setWebhook(array $params = [])
     {
         return $this->request('setWebhook', $params);
     }
