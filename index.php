@@ -49,6 +49,25 @@ try {
           }
         }
     }
+    elseif ($update->message->text == '/caltest') {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'contact us ',
+            'reply_markup' => json_encode([
+                'inline_keyboard' => [
+                        [
+                            ['text' => '+plus','callback_data'=>'1'],
+                            ['text'=> '-min','callback_data'=>'2']
+                        ],
+                        [
+                            ['text'=>'reset','callback_data'=>'0']
+                        ]
+                    ]
+                ])
+
+        ]);
+    }
     // elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
     //     // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
