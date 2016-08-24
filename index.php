@@ -50,8 +50,8 @@ try {
         }
     }
     elseif (isset($update->callback_query)) {
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
+        $response = $client->answerCallbackQuery([
+            'callback_query_id' => $update->callback_query->id,
             'text' => 'call back query '
         ]);
     }
