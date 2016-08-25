@@ -19,13 +19,14 @@
 */
 require 'InstagramDownload.class.php';
 require 'vendor/autoload.php';
+use Zelenin\Telegram\Bot\Api;
+use Zelenin\Telegram\Bot\Client as TelegramClient;
+$token = getenv('acstok');
 
-$teleToken = getenv('acstok');
-
-
-$client1 = new Zelenin\Telegram\Bot\Api; // Set your access token
-$client = $client1('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus');
-$url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
+$client = new Api($token);
+// $client1 = new Zelenin\Telegram\Bot\Api; // Set your access token
+// $client = $client1('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus');
+// $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 //your app
 try {
