@@ -23,7 +23,7 @@ require 'vendor/autoload.php';
 $teleToken = getenv('acstok');
 
 
-$client = new Zelenin\Telegram\Bot\Api('235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus'); // Set your access token
+$client = new Zelenin\Telegram\Bot\Api('bot235690241:AAFNMapgWZpOQIswS51FdqY0tjiXOdzNJus'); // Set your access token
 // $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 //your app
