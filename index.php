@@ -20,10 +20,9 @@
 require 'InstagramDownload.class.php';
 require 'vendor/autoload.php';
 
-$teleToken = getenv('acstok');
+$token = getenv('acstok');
+$client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 
-
-$client = new Zelenin\Telegram\Bot\Api('235'); // Set your access token
 // $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 //your app
