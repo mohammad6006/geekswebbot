@@ -36,6 +36,15 @@ try {
             'text' => 'contact us '
         ]);
     }
+    elseif ($update->message->text == '/vidiol') {
+        $url = 'https://raw.githubusercontent.com/mohammad6006/geekswebbot/master/sample1mb.mp4';
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
+            $response = $client->sendVideo([
+                'chat_id'=> $update->message->chat->id,
+                'video'=> $url,
+                'caption'=>'test'
+                ]);
+    }
     elseif ($update->message->text == '/grab') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
         $media = Bolandish\Instagram::getMediaByHashtag("palang", 6);
