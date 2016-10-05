@@ -41,7 +41,7 @@ try {
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
             $response = $client->sendVideo([
                 'chat_id'=> $update->message->chat->id,
-                'video'=> $url,
+                'video'=>fopen($url,'r'),
                 'caption'=>'test'
                 ]);
     }
