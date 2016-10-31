@@ -41,7 +41,7 @@ try {
         $dom = new Dom;
         $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
-        $btimes = $dom->find('div.two.columns.time');
+        $btimes = $dom->find('div[class=two columns time]');
         $progtitle = $dom->find('div.ten.columns');
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         // foreach ($btimes as $key => $btime) {
