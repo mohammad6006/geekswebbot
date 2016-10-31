@@ -41,12 +41,15 @@ try {
         $dom = new Dom;
         $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
-        $a = $dom->find('span.date')[0];
+        $btimes = $dom->find('div.two.columns.time');
+        $progtitle = $dom->find('div.ten.columns');
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => $a->text
-        ]);
+        foreach ($btimes as $key => $btime) {
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => $btime->text
+            ]);
+        }
         // echo $a->text; // "click here"
     }
     // elseif ($update->message->text == '/vidiol') {
