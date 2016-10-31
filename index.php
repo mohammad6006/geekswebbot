@@ -27,24 +27,15 @@ $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 // $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 //your app
-    function tezfun($value='dsdsd')
-    {
-        return $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => 'contact us '
-        ]);
-
-    }
 try {
 
     if($update->message->text == '/contact')
     {
-        return tezfun();   
-        // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => 'contact us '
-        // ]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'contact us '
+        ]);
     }
     elseif ($update->message->text == '/tv8') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
