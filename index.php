@@ -23,18 +23,26 @@ use PHPHtmlParser\Dom;
 
 $token = getenv('acstok');
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
-
-// $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
-//your app
+
+function tezfanc($taz)
+{
+    try {
+        $taza = 'tazaaaa';
+    } catch (Exception $e) {
+        $taza = '1111';
+    }
+    return $taza;
+}
 try {
 
     if($update->message->text == '/contact')
     {
+        $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => 'contact us '
+            'text' => $tttt
         ]);
     }
     elseif ($update->message->text == '/tv8') {
