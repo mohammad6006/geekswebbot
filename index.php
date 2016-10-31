@@ -47,7 +47,7 @@ try {
         foreach ($btimes as $key => $btime) {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => $btime->text.':'.$progtitle[$key]
+                'text' => $btime->text.':'.$progtitle[$key]->text
             ]);
 
         }
