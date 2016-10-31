@@ -27,7 +27,7 @@ $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 // $url = 'http://feeds.feedburner.com/eu/NlGz'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 //your app
-    function tezfun($value='dsdsd')
+    public function tezfun($value='dsdsd')
     {
         return $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
