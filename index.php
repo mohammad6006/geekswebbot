@@ -39,8 +39,9 @@ try {
     }
     elseif ($update->message->text == '/parse') {
         $dom = new Dom;
-        $dom->load('<div class="all"><p>Hey bro, <a href="google.com">click here</a><br /> :)</p></div>');
-        $a = $dom->find('a')[0];
+        $dom->loadFromUrl('http://www.tvyayinakisi.com/tv-8');
+        $html = $dom->outerHtml;
+        $a = $html->find('span.date')[0];
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
