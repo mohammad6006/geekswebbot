@@ -44,12 +44,13 @@ try {
         $btimes = $dom->find('div.two.columns.time');
         $progtitle = $dom->find('div.ten.columns');
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        foreach ($btimes as $key => $btime) {
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => $btime->text
-            ]);
-        }
+        // foreach ($btimes as $key => $btime) {
+
+        // }
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $btimes[0]->text
+        ]);
         // echo $a->text; // "click here"
     }
     // elseif ($update->message->text == '/vidiol') {
