@@ -37,11 +37,12 @@ try {
             'text' => 'contact us '
         ]);
     }
-    elseif ($update->message->text == '/parse') {
+    elseif ($update->message->text == '/tv8') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $dom = new Dom;
         $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
+        $roztime = $dom->find('span[class=date]')[0];
         $btimes = $dom->find('div[class=two columns time]');
         $progtitles = $dom->find('div[class=ten columns]');
         $arri = '';
@@ -50,7 +51,7 @@ try {
         }
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $arri
+            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$roztime->text."\n".$arri
         ]);
     }
     // elseif ($update->message->text == '/vidiol') {
