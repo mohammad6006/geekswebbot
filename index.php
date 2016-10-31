@@ -51,7 +51,7 @@ try {
         }
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$roztime->text."\n".$arri
+            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$roztime->text."\n".$arri."آدرس کانال » @TurkTv \n گزارش خطا: @alo_survivor"
         ]);
     }
     // elseif ($update->message->text == '/vidiol') {
