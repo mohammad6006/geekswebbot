@@ -42,12 +42,12 @@ try {
         $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
         $btimes = $dom->find('div[class=two columns time]');
-        $progtitle = $dom->find('div.ten.columns');
+        $progtitle = $dom->find('div[class=ten columns]');
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         foreach ($btimes as $key => $btime) {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => $btime->text
+                'text' => $btime->text.':'.$progtitle[$key]
             ]);
 
         }
