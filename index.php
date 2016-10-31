@@ -28,14 +28,22 @@ $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
 //your app
 try {
-
-    if($update->message->text == '/contact')
+    public function tezfun($value='dsdsd')
     {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => 'contact us '
         ]);
+    }
+
+    if($update->message->text == '/contact')
+    {
+        tezfun();
+        // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        // $response = $client->sendMessage([
+        //     'chat_id' => $update->message->chat->id,
+        //     'text' => 'contact us '
+        // ]);
     }
     elseif ($update->message->text == '/tv8') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
