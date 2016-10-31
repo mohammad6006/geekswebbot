@@ -25,6 +25,20 @@ $token = getenv('acstok');
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
 
+function listbarnameha($kanal)
+{
+    $dom = new Dom;
+    $dom->load('http://www.tvyayinakisi.com/tv-8');
+    $html = $dom->outerHtml;
+    $roztime = $dom->find('span[class=date]')[0];
+    $btimes = $dom->find('div[class=two columns time]');
+    $progtitles = $dom->find('div[class=ten columns]');
+    $arri = '';
+    foreach ($btimes as $key => $btime) {
+        $arri .= $btime->text.":".$progtitles[$key]->text."\n";
+    }
+    return $arri;
+}
 function tezfanc($taz)
 {
     try {
@@ -47,19 +61,20 @@ try {
     }
     elseif ($update->message->text == '/tv8') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $dom = new Dom;
-        $dom->load('http://www.tvyayinakisi.com/tv-8');
-        $html = $dom->outerHtml;
-        $roztime = $dom->find('span[class=date]')[0];
-        $btimes = $dom->find('div[class=two columns time]');
-        $progtitles = $dom->find('div[class=ten columns]');
-        $arri = '';
-        foreach ($btimes as $key => $btime) {
-            $arri .= $btime->text.":".$progtitles[$key]->text."\n";
-        }
+        // $dom = new Dom;
+        // $dom->load('http://www.tvyayinakisi.com/tv-8');
+        // $html = $dom->outerHtml;
+        // $roztime = $dom->find('span[class=date]')[0];
+        // $btimes = $dom->find('div[class=two columns time]');
+        // $progtitles = $dom->find('div[class=ten columns]');
+        // $arri = '';
+        // foreach ($btimes as $key => $btime) {
+        //     $arri .= $btime->text.":".$progtitles[$key]->text."\n";
+        // }
+        $arri = listbarnameha();
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$roztime->text."\n".$arri."آدرس کانال تلگرام » @TurkTv \n گزارش خطا: @alo_survivor"
+            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$arri."آدرس کانال تلگرام » @TurkTv \n گزارش خطا: @alo_survivor"
         ]);
     }
     // elseif ($update->message->text == '/vidiol') {
