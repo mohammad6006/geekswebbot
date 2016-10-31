@@ -19,6 +19,7 @@
 */
 require 'InstagramDownload.class.php';
 require 'vendor/autoload.php';
+use PHPHtmlParser\Dom;
 
 $token = getenv('acstok');
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
@@ -35,6 +36,17 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => 'contact us '
         ]);
+    }
+    elseif ($update->message->text == '/parse') {
+        $dom = new Dom;
+        $dom->load('<div class="all"><p>Hey bro, <a href="google.com">click here</a><br /> :)</p></div>');
+        $a = $dom->find('a')[0];
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $a->text
+        ]);
+        // echo $a->text; // "click here"
     }
     // elseif ($update->message->text == '/vidiol') {
     //     $url = 'https://raw.githubusercontent.com/mohammad6006/geekswebbot/master/sample1mb.mp4';
