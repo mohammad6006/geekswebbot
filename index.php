@@ -30,10 +30,11 @@ $update = json_decode(file_get_contents('php://input'));
 try {
     function tezfun($value='dsdsd')
     {
-        $response = $client->sendMessage([
+        return $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => 'contact us '
         ]);
+
     }
 
     if($update->message->text == '/contact')
