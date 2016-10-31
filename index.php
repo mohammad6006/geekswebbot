@@ -41,7 +41,7 @@ try {
         $dom = new Dom;
         $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
-        $a = $dom->find('a')[0];
+        $a = $dom->find('a')[1];
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
