@@ -39,9 +39,9 @@ try {
     }
     elseif ($update->message->text == '/parse') {
         $dom = new Dom;
-        $dom->loadFromUrl('http://www.tvyayinakisi.com/tv-8');
+        $dom->load('http://www.tvyayinakisi.com/tv-8');
         $html = $dom->outerHtml;
-        $a = $html->find('title')[0];
+        $a = $html->find('a')[0];
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
