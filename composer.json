@@ -1,5 +1,6 @@
 {
     "require": {
+    	"ext-mbstring": "*",
         "zelenin/telegram-bot-api": "~1.0",
 		"dg/rss-php": "^1.2",
         "james-heinrich/getid3": "^1.9",

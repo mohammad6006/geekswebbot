@@ -33,6 +33,13 @@ final class Sticker extends Type
     public $thumb;
 
     /**
+     * Optional. Emoji associated with the sticker
+     *
+     * @var string
+     */
+    public $emoji;
+
+    /**
      * Optional. File size
      *
      * @var integer
@@ -40,14 +47,14 @@ final class Sticker extends Type
     public $file_size;
 
     /**
-     * @param array $attributes
+     * @inheritdoc
      */
     public function loadRelated(array $attributes)
     {
         parent::loadRelated($attributes);
 
-        if (isset($result['thumb'])) {
-            $this->thumb = PhotoSize::create($result['thumb']);
+        if (isset($attributes['thumb'])) {
+            $this->thumb = PhotoSize::create($attributes['thumb']);
         }
     }
 }

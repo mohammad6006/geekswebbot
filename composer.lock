@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc7ec9ebe0194da857daa0c78b295fea",
-    "content-hash": "48da7eab09a5cb467ff0847f02791b3d",
+    "hash": "74e17d9f7075e22b8042a22c99de8e89",
+    "content-hash": "2f6e868c6067d3b6d36b445b756dffef",
     "packages": [
         {
             "name": "bolandish/instagram-grabber",
@@ -81,16 +81,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.1",
+            "version": "6.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "3f808fba627f2c5b69e2501217bf31af349c1427"
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/3f808fba627f2c5b69e2501217bf31af349c1427",
-                "reference": "3f808fba627f2c5b69e2501217bf31af349c1427",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2016-07-15 17:22:37"
+            "time": "2016-10-08 15:01:37"
         },
         {
             "name": "guzzlehttp/promises",
@@ -433,16 +433,16 @@
         },
         {
             "name": "zelenin/telegram-bot-api",
-            "version": "1.0.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zelenin/telegram-bot-api.git",
-                "reference": "076d4ea4c863b41ba71c067d484f062f9d8121bc"
+                "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zelenin/telegram-bot-api/zipball/076d4ea4c863b41ba71c067d484f062f9d8121bc",
-                "reference": "076d4ea4c863b41ba71c067d484f062f9d8121bc",
+                "url": "https://api.github.com/repos/zelenin/telegram-bot-api/zipball/166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
+                "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
                 "shasum": ""
             },
             "require": {
@@ -476,7 +476,7 @@
                 "bot",
                 "telegram"
             ],
-            "time": "2016-04-13 00:05:33"
+            "time": "2016-08-25 13:40:34"
         }
     ],
     "packages-dev": [],
@@ -485,6 +485,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-mbstring": "*"
+    },
     "platform-dev": []
 }
