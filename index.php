@@ -46,7 +46,7 @@ try {
         $progtitles = $dom->find('div[class=ten columns]');
         $arri = '';
         foreach ($btimes as $key => $btime) {
-            $arri .= $btime->text.':'.$progtitles[$key]->text.'<br>';
+            $arri .= '*'$btime->text.'*:'.$progtitles[$key]->text;
         }
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
