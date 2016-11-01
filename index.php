@@ -186,10 +186,10 @@ try {
             'text' => "ماه تولد خودتونو انتخاب کنید:",
             'reply_markup' => json_encode([
                     'keyboard'=> [
-                        ['فروردین','اردیهشت','خرداد'],
-                        ['تیر','مرداد','شهریور'],
-                        ['مهر','آبان','آذر'],
-                        ['دی','بهمن','اسفند'],
+                        ['/ kanal Tv8','/kanal StarTv','/kanal D'],
+                        ['/kanal ShowTv','/kanal ATV','/kanal TRT1'],
+                        ['/kanal 7','/kanal Tv2','/kanal FOX'],
+                        ['دیگر کانالها'],
                     ],
                     'resize_keyboard' => true,
                     'one_time_keyboard' => true
