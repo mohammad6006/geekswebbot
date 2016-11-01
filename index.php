@@ -350,7 +350,7 @@ try {
     // }
     else
     {
-        $logger->addInfo('namoshakhas:'$update->message->text.'-'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username.'-search:'.$kanalname[1]);
+        $logger->addInfo('namoshakhas:'.$update->message->text.'-'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         $daryafti = 'Not detect';
         $daryafti = $update->message->text;
         // switch ($daryafti) {
