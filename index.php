@@ -164,7 +164,7 @@ try {
         if ($kanaln == "not found") {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => 'نام کانال اشتباه وارد شده است'
+                'text' => 'در حال حاضر فقط کانالهای پرطرفدار به لیست اضافه شده است. اگر کانال مورد علاقه شما در این لیست موجور نیست  از طریق اکانت @alo_survivor نام کانال را برای ما ارسال کنید تا به این لیست اضافه کنیم'
             ]);
         } else {
             $arri = listbarnameha($kanaln);
