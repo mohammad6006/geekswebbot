@@ -30,7 +30,6 @@ $update = json_decode(file_get_contents('php://input'));
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
 $logger->pushHandler(new FirePHPHandler());
-$logger->addInfo('My logger is now ready');
 
 function listbarnameha($kanal)
 {
@@ -184,6 +183,8 @@ try {
     }
     else if($update->message->text == '/start')
     {
+        $logger->addInfo('chatid:'.$update->message->chat->id);
+
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
