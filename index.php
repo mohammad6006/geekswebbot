@@ -126,11 +126,64 @@ try {
         ]);
     }
     elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
-        $kanalname = explode(' ', $update->message->text);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $kanalname = explode('-', $update->message->text);
+        switch ($kanalname[1]) {
+            case 'Tv8':
+                $kanaln = 'tv-8';
+                break;
+            case 'StarTv':
+                $kanaln = 'star-tv';
+                break;
+            case 'D':
+                $kanaln = 'kanal-d-tv';
+                break;
+            case 'ShowTv':
+                $kanaln = 'show-tv';
+                break;
+            case 'ATV':
+                $kanaln = 'atv';
+                break;
+            case 'TRT1':
+                $kanaln = 'trt-1';
+                break;
+            
+            default:
+                $kanaln = "not found";
+                break;
+        }
+        if ($kanaln == "not found") {
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => 'نام کانال اشتباه وارد شده است'
+            ]);
+        } else {
+            $arri = listbarnameha($kanaln);
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => $arri
+            ]);
+        }
+        
+    }
+    else if($update->message->text == '/start')
+    {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $kanalname[0].'-'.$kanalname[1]
-        ]);
+            'text' => "کانال دلخواه خود را از لیست زیر انتخاب کنید:",
+            'reply_markup' => json_encode([
+                    'keyboard'=> [
+                        ['/kanal-Tv8','/kanal-StarTv','/kanal-D'],
+                        ['/kanal-ShowTv','/kanal-ATV','/kanal-TRT1'],
+                        ['/kanal-7','/kanal-Tv2','/kanal-FOX'],
+                        ['دیگر کانالها'],
+                    ],
+                    'resize_keyboard' => true,
+                    'one_time_keyboard' => true
+                ]),
+            ]);
+
     }
     // elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
@@ -170,30 +223,6 @@ try {
             ]
         ]
     ])
-            ]);
-
-    }
-    else if($update->message->text == '/start')
-    {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "test\n test"
-            ]);
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "ماه تولد خودتونو انتخاب کنید:",
-            'reply_markup' => json_encode([
-                    'keyboard'=> [
-                        ['/ kanal Tv8','/kanal StarTv','/kanal D'],
-                        ['/kanal ShowTv','/kanal ATV','/kanal TRT1'],
-                        ['/kanal 7','/kanal Tv2','/kanal FOX'],
-                        ['دیگر کانالها'],
-                    ],
-                    'resize_keyboard' => true,
-                    'one_time_keyboard' => true
-                ]),
             ]);
 
     }
