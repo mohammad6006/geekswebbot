@@ -131,9 +131,9 @@ try {
     //     ]);
     // }
     elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
-        $logger->addInfo('search - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username.'-search:'.$kanalname[1]);
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $kanalname = explode('-', $update->message->text);
+        $logger->addInfo('search - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username.'-search:'.$kanalname[1]);
         switch ($kanalname[1]) {
             case 'Tv8':
                 $kanaln = 'tv-8';
