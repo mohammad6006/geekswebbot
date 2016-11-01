@@ -5,6 +5,7 @@
 		"dg/rss-php": "^1.2",
         "james-heinrich/getid3": "^1.9",
         "bolandish/instagram-grabber": "^1.0",
-        "paquettg/php-html-parser": "^1.7"
+        "paquettg/php-html-parser": "^1.7",
+        "monolog/monolog": "^1.21"
     }
 }
