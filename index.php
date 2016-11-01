@@ -28,7 +28,7 @@ $update = json_decode(file_get_contents('php://input'));
 function listbarnameha($kanal)
 {
     $dom = new Dom;
-    $dom->load('http://www.tvyayinakisi.com/tv-8');
+    $dom->load('http://www.tvyayinakisi.com/'.$kanal);
     $html = $dom->outerHtml;
     $roztime = $dom->find('span[class=date]')[0];
     $btimes = $dom->find('div[class=two columns time]');
