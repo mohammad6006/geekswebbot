@@ -125,6 +125,13 @@ try {
 
         ]);
     }
+    elseif (strpos(strtolower($update->message->text), '/kanal') == 0 ) {
+        $kanalname = explode(' ', $update->message->text);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $kanalname[0].'-'.$kanalname[1]
+        ]);
+    }
     // elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
     //     // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
@@ -190,23 +197,23 @@ try {
             ]);
 
     }
-    else if($update->message->text == '/latest')
-    {
-            Feed::$cacheDir     = __DIR__ . '/cache';
-            Feed::$cacheExpire  = '5 hours';
-            $rss        = Feed::loadRss($url);
-            $items      = $rss->item;
-            $lastitem   = $items[0];
-            $lastlink   = $lastitem->link;
-            $lasttitle  = $lastitem->title;
-            $message = $lasttitle . " \n ". $lastlink;
-            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-            $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
-                    'text' => $message
-                ]);
+    // else if($update->message->text == '/latest')
+    // {
+    //         Feed::$cacheDir     = __DIR__ . '/cache';
+    //         Feed::$cacheExpire  = '5 hours';
+    //         $rss        = Feed::loadRss($url);
+    //         $items      = $rss->item;
+    //         $lastitem   = $items[0];
+    //         $lastlink   = $lastitem->link;
+    //         $lasttitle  = $lastitem->title;
+    //         $message = $lasttitle . " \n ". $lastlink;
+    //         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //         $response = $client->sendMessage([
+    //                 'chat_id' => $update->message->chat->id,
+    //                 'text' => $message
+    //             ]);
 
-    }
+    // }
     elseif ($update->message->reply_to_message) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
