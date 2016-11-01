@@ -52,31 +52,31 @@ try {
 
     if($update->message->text == '/contact')
     {
-        $tttt = tezfanc();
+        // $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $tttt
+            'text' => 'کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید '
         ]);
     }
-    elseif ($update->message->text == '/tv8') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        // $dom = new Dom;
-        // $dom->load('http://www.tvyayinakisi.com/tv-8');
-        // $html = $dom->outerHtml;
-        // $roztime = $dom->find('span[class=date]')[0];
-        // $btimes = $dom->find('div[class=two columns time]');
-        // $progtitles = $dom->find('div[class=ten columns]');
-        // $arri = '';
-        // foreach ($btimes as $key => $btime) {
-        //     $arri .= $btime->text.":".$progtitles[$key]->text."\n";
-        // }
-        $arri = listbarnameha();
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$arri."آدرس کانال تلگرام » @TurkTv \n گزارش خطا: @alo_survivor"
-        ]);
-    }
+    // elseif ($update->message->text == '/tv8') {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //     // $dom = new Dom;
+    //     // $dom->load('http://www.tvyayinakisi.com/tv-8');
+    //     // $html = $dom->outerHtml;
+    //     // $roztime = $dom->find('span[class=date]')[0];
+    //     // $btimes = $dom->find('div[class=two columns time]');
+    //     // $progtitles = $dom->find('div[class=ten columns]');
+    //     // $arri = '';
+    //     // foreach ($btimes as $key => $btime) {
+    //     //     $arri .= $btime->text.":".$progtitles[$key]->text."\n";
+    //     // }
+    //     $arri = listbarnameha();
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => "برنامه های کانال TV8 \n تاریخ امروز \n".$arri."آدرس کانال تلگرام » @TurkTv \n گزارش خطا: @alo_survivor"
+    //     ]);
+    // }
     // elseif ($update->message->text == '/vidiol') {
     //     $url = 'https://raw.githubusercontent.com/mohammad6006/geekswebbot/master/sample1mb.mp4';
     //         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
@@ -86,45 +86,45 @@ try {
     //             'caption'=>'test'
     //             ]);
     // }
-    elseif ($update->message->text == '/grab') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
-        $media = Bolandish\Instagram::getMediaByHashtag("palang", 6);
-        foreach($media as $value){
-          if ($value->dimensions->width === $value->dimensions->height){
-                $url = trim(strtok($value->display_src, '?')); 
-                $response = $client->sendPhoto([
-                    'chat_id'=> $update->message->chat->id,
-                    'photo'=>fopen($url,'r'),
-                    'caption'=>substr($value->caption, 0,190)
-                    ]);
-          }
-        }
-    }
-    elseif (isset($update->callback_query)) {
-        $response = $client->answerCallbackQuery([
-            'callback_query_id' => $update->callback_query->id,
-            'text' => 'call back query '
-        ]);
-    }
-    elseif ($update->message->text == '/caltest') {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => 'contact us ',
-            'reply_markup' => json_encode([
-                'inline_keyboard' => [
-                        [
-                            ['text' => '+plus','callback_data'=>'1'],
-                            ['text'=> '-min','callback_data'=>'2']
-                        ],
-                        [
-                            ['text'=>'reset','callback_data'=>'0']
-                        ]
-                    ]
-                ])
+    // elseif ($update->message->text == '/grab') {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+    //     $media = Bolandish\Instagram::getMediaByHashtag("palang", 6);
+    //     foreach($media as $value){
+    //       if ($value->dimensions->width === $value->dimensions->height){
+    //             $url = trim(strtok($value->display_src, '?')); 
+    //             $response = $client->sendPhoto([
+    //                 'chat_id'=> $update->message->chat->id,
+    //                 'photo'=>fopen($url,'r'),
+    //                 'caption'=>substr($value->caption, 0,190)
+    //                 ]);
+    //       }
+    //     }
+    // }
+    // elseif (isset($update->callback_query)) {
+    //     $response = $client->answerCallbackQuery([
+    //         'callback_query_id' => $update->callback_query->id,
+    //         'text' => 'call back query '
+    //     ]);
+    // }
+    // elseif ($update->message->text == '/caltest') {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => 'contact us ',
+    //         'reply_markup' => json_encode([
+    //             'inline_keyboard' => [
+    //                     [
+    //                         ['text' => '+plus','callback_data'=>'1'],
+    //                         ['text'=> '-min','callback_data'=>'2']
+    //                     ],
+    //                     [
+    //                         ['text'=>'reset','callback_data'=>'0']
+    //                     ]
+    //                 ]
+    //             ])
 
-        ]);
-    }
+    //     ]);
+    // }
     elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $kanalname = explode('-', $update->message->text);
@@ -146,6 +146,15 @@ try {
                 break;
             case 'TRT1':
                 $kanaln = 'trt-1';
+                break;
+            case '7':
+                $kanaln = 'kanal-7';
+                break;
+            case 'Tv2':
+                $kanaln = 'tv2';
+                break;
+            case 'FOX':
+                $kanaln = 'fox';
                 break;
             
             default:
@@ -171,7 +180,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "کانال دلخواه خود را از لیست زیر انتخاب کنید:",
+            'text' => "کانال دلخواه خود را از لیست زیر انتخاب کنید /n در صورتی که کانال مورد نظر شما در لیست موجود نمیباشد گزینه دیگر کانالها را انتخاب کنید.",
             'reply_markup' => json_encode([
                     'keyboard'=> [
                         ['/kanal-Tv8','/kanal-StarTv','/kanal-D'],
@@ -205,27 +214,27 @@ try {
     //     //   }
     //     // }
     // }
-    elseif($update->message->text == '/help')
-    {
-        $tried = $update->callback_query->data+1;
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text'=>"اولین تلاش \n زمان :\n ".date('d M y -  h:i:s'),
-    'reply_markup'=>json_encode([
-        'inline_keyboard'=>[
-            [
-                ['text'=>'yahoo','callback_data'=>"$tried"],
-                ['text'=>'msn','url'=>'http://msn.com']
-            ],
-            [
-                ['text'=>'google','url'=>'http://google.com']
-            ]
-        ]
-    ])
-            ]);
+    // elseif($update->message->text == '/help')
+    // {
+    //     $tried = $update->callback_query->data+1;
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text'=>"اولین تلاش \n زمان :\n ".date('d M y -  h:i:s'),
+    // 'reply_markup'=>json_encode([
+    //     'inline_keyboard'=>[
+    //         [
+    //             ['text'=>'yahoo','callback_data'=>"$tried"],
+    //             ['text'=>'msn','url'=>'http://msn.com']
+    //         ],
+    //         [
+    //             ['text'=>'google','url'=>'http://google.com']
+    //         ]
+    //     ]
+    // ])
+    //         ]);
 
-    }
+    // }
     // else if($update->message->text == '/latest')
     // {
     //         Feed::$cacheDir     = __DIR__ . '/cache';
@@ -243,70 +252,70 @@ try {
     //             ]);
 
     // }
-    elseif ($update->message->reply_to_message) {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
-        ]);
-    }
-    elseif ($update->message->document) {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->getFile([
-                'file_id'=> $update->message->document->file_id
-            ]);
-        $response = $client->sendDocument([
-            'chat_id'=> $update->message->chat->id,
-            'document'=>$update->message->document->file_id,
-            'caption'=>'@TurkTv'
-            ]);
-    }
-    elseif ($update->message->photo) {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
-        $response = $client->getFile([
-                'file_id'=> $update->message->photo[0]->file_id
-            ]);
-        $response = $client->sendPhoto([
-            'chat_id'=> $update->message->chat->id,
-            'photo'=>$update->message->photo[0]->file_id,
-            'caption'=>'@TurkTv'
-            ]);
-    }
-    elseif ($update->message->entities[0]->type == 'url') {
-        $url = $update->message->text;
-        $clasih = new InstagramDownload($url);
-        $url = $clasih->downloadUrl();
-        $type1 = $clasih->type();
-        if ($type1 == 'image') {
-            $url = trim(strtok($url, '?'));
-            if ($url != '') {
-                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
-                $response = $client->sendPhoto([
-                    'chat_id'=> $update->message->chat->id,
-                    'photo'=>fopen($url,'r'),
-                    'caption'=>'test'
-                    ]);
-            }else{
-                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-                $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
-                    'text' => 'olmadi - not found'
-                ]);
-            }
-        }elseif ($type1 == 'video') {
-            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
-            $response = $client->sendVideo([
-                'chat_id'=> $update->message->chat->id,
-                'video'=>fopen($url,'r'),
-                'caption'=>'test'
-                ]);
-        }else{
-            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => 'olmadi'
-            ]);
-        }
+    // elseif ($update->message->reply_to_message) {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => "پیامهای خود در رابطه با کانال و برنامه نظرسنجی به این اکانت بفرستید: @alo_survivor"
+    //     ]);
+    // }
+    // elseif ($update->message->document) {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //     $response = $client->getFile([
+    //             'file_id'=> $update->message->document->file_id
+    //         ]);
+    //     $response = $client->sendDocument([
+    //         'chat_id'=> $update->message->chat->id,
+    //         'document'=>$update->message->document->file_id,
+    //         'caption'=>'@TurkTv'
+    //         ]);
+    // }
+    // elseif ($update->message->photo) {
+    //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+    //     $response = $client->getFile([
+    //             'file_id'=> $update->message->photo[0]->file_id
+    //         ]);
+    //     $response = $client->sendPhoto([
+    //         'chat_id'=> $update->message->chat->id,
+    //         'photo'=>$update->message->photo[0]->file_id,
+    //         'caption'=>'@TurkTv'
+    //         ]);
+    // }
+    // elseif ($update->message->entities[0]->type == 'url') {
+    //     $url = $update->message->text;
+    //     $clasih = new InstagramDownload($url);
+    //     $url = $clasih->downloadUrl();
+    //     $type1 = $clasih->type();
+    //     if ($type1 == 'image') {
+    //         $url = trim(strtok($url, '?'));
+    //         if ($url != '') {
+    //             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+    //             $response = $client->sendPhoto([
+    //                 'chat_id'=> $update->message->chat->id,
+    //                 'photo'=>fopen($url,'r'),
+    //                 'caption'=>'test'
+    //                 ]);
+    //         }else{
+    //             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //             $response = $client->sendMessage([
+    //                 'chat_id' => $update->message->chat->id,
+    //                 'text' => 'olmadi - not found'
+    //             ]);
+    //         }
+    //     }elseif ($type1 == 'video') {
+    //         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
+    //         $response = $client->sendVideo([
+    //             'chat_id'=> $update->message->chat->id,
+    //             'video'=>fopen($url,'r'),
+    //             'caption'=>'test'
+    //             ]);
+    //     }else{
+    //         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+    //         $response = $client->sendMessage([
+    //             'chat_id' => $update->message->chat->id,
+    //             'text' => 'olmadi'
+    //         ]);
+    //     }
         // print_r($response);
         // $ch = curl_init('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png');
         // $fp = fopen('flower.png', 'wb');
@@ -330,26 +339,26 @@ try {
         //     'photo'=>file_get_contents('https://d3k90kvix375hb.cloudfront.net/assets/home/hero/startup-10d700b2164d8d9ceb3934c15f01277c7a4bb2ce9d9c1d14d0bd00d680debafc.png'),
         //     'caption'=>'@TurkTv111'
         //     ]);
-    }
+    // }
     else
     {
         $daryafti = 'Not detect';
         $daryafti = $update->message->text;
-        switch ($daryafti) {
-            case 'فروردین':
-                $daryafti = 'koc';
-                break;
-            case 'اردیهشت':
-                $daryafti = 'terazi';
-                break;
-            default:
-                $daryafti = 'yaft nashod';
-                break;
-        }
+        // switch ($daryafti) {
+        //     case 'فروردین':
+        //         $daryafti = 'koc';
+        //         break;
+        //     case 'اردیهشت':
+        //         $daryafti = 'terazi';
+        //         break;
+        //     default:
+        //         $daryafti = 'yaft nashod';
+        //         break;
+        // }
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $daryafti
+            'text' => 'دستور ارسالی شما در این ربات تعریف نشده است برای ارسال گزارش مشکل خود به اکانت @alo_survivor پیام خود را ارسال کنید'
             ]);
     }
 
