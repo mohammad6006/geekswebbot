@@ -125,7 +125,7 @@ try {
 
         ]);
     }
-    elseif (strpos(strtolower($update->message->text), '/kanal') == 0 ) {
+    elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
         $kanalname = explode(' ', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
