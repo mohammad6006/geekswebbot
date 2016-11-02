@@ -353,17 +353,6 @@ try {
         $logger->addInfo('namoshakhas:'.$update->message->text.'-'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         $daryafti = 'Not detect';
         $daryafti = $update->message->text;
-        // switch ($daryafti) {
-        //     case 'فروردین':
-        //         $daryafti = 'koc';
-        //         break;
-        //     case 'اردیهشت':
-        //         $daryafti = 'terazi';
-        //         break;
-        //     default:
-        //         $daryafti = 'yaft nashod';
-        //         break;
-        // }
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
@@ -372,6 +361,7 @@ try {
     }
 
 } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
+        $logger->addInfo('catch error:'.$e->getMessage().' - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
 
     //echo error message ot log it
     //echo $e->getMessage();
