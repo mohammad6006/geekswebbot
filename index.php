@@ -360,7 +360,7 @@ try {
             ]);
     }
 
-} catch (Zelenin\Telegram\Bot\NotOkException $e) {
+} catch (Zelenin\Telegram\Bot\Exception\NotOkException $e) {
         $logger->addInfo('catch error:'.$e->getMessage().' - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
 
     //echo error message ot log it
