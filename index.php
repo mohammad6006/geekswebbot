@@ -29,6 +29,12 @@ $update = json_decode(file_get_contents('php://input'));
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
 
+function zamanmahali($zaman)
+{
+    $zaman1 = strtotime($zaman) - strtotime('00:30');
+    return date('H:i',$zaman1);
+}
+
 function listbarnameha($kanal)
 {
     $dom = new Dom;
@@ -39,7 +45,7 @@ function listbarnameha($kanal)
     $progtitles = $dom->find('div[class=ten columns]');
     $arri = '';
     foreach ($btimes as $key => $btime) {
-        $arri .= $btime->text.":".$progtitles[$key]->text."\n";
+        $arri .= zamanmahali($btime->text).":".$progtitles[$key]->text."\n";
     }
     return $arri;
 }
