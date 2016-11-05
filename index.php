@@ -43,11 +43,11 @@ function listbarnameha($kanal)
     $roztime = $dom->find('span[class=date]')[0];
     $btimes = $dom->find('div[class=two columns time]');
     $progtitles = $dom->find('div[class=ten columns]');
-    $arri = '';
+    $arri = "لیست برنامه های امروز {$kanal} \n زمان برنامه ها به وقت ایران میباشد \n";
     foreach ($btimes as $key => $btime) {
         $arri .= zamanmahali($btime->text).":".$progtitles[$key]->text."\n";
     }
-    return $arri;
+    return $arri .= "\n آدرس کانال : @TurkTv \n ربات : @TurkTvBot";
 }
 function tezfanc($taz)
 {
