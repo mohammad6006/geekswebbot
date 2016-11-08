@@ -59,8 +59,19 @@ function tezfanc($taz)
     return $taza;
 }
 try {
+    if(isset($update->inline_query))
+    {
+        $logger->addInfo('inline_query - chatid:'.$update->inline_query->id.'-'.$update->inline_query->query);
+        // $response = $client->answerInlineQuery([
+        //     'inline_query_id' => $update->inline_query->id,
+        //     'results' => json_encode([
 
-    if($update->message->text == '/contact')
+
+        //         ])
+        // ]);
+
+    }
+    elseif($update->message->text == '/contact')
     {
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         // $tttt = tezfanc();
