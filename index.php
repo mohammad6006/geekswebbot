@@ -225,7 +225,7 @@ try {
             'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
             ]);
         $response = $client->sendAudio([
-            'chat_id' => $update->message->chat->id,
+            'chat_id' => '@canli',
             'audio' => $update->message->audio->file_id,
             'caption' => '@TurkTv',
             'duration' => $update->message->audio->duration,
