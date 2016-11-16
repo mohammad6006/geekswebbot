@@ -81,6 +81,12 @@ try {
             'text' => "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید "
         ]);
     }
+    elseif ($update->message->text == '/mp3') {
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "var: ".json_encode($update->message)
+        ]);
+    }
     // elseif ($update->message->text == '/tv8') {
     //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     //     // $dom = new Dom;
