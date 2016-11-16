@@ -219,6 +219,12 @@ try {
             ]);
 
     }
+    elseif ($update->message->audio) {
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
+            ]);
+    }
     // elseif (strpos(strtolower($update->message->text),'/instagram') == 0) {
         
     //     // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
