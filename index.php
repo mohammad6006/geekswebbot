@@ -31,7 +31,7 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
 
 function zamanmahali($zaman)
 {
-    $zaman1 = strtotime($zaman) - strtotime('00:30');
+    $zaman1 = strtotime($zaman) + strtotime('01:00');
     return date('H:i',$zaman1);
 }
 
