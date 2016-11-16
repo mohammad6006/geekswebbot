@@ -84,7 +84,7 @@ try {
     elseif ($update->message->text == '/mp3') {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "var: ".var_dump($update->message)
+            'text' => "var: ".json_encode($update->message)
         ]);
     }
     // elseif ($update->message->text == '/tv8') {
