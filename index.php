@@ -103,6 +103,7 @@ try {
                     'one_time_keyboard' => true,
                     'force_reply' => true
                 ])
+        ]);
     }
     // elseif ($update->message->text == '/tv8') {
     //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
