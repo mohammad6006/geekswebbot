@@ -5,5 +5,10 @@ $token = getenv('acstok');
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
 
-$response = $client->getUpdates();
-var_dump($response);
+
+try {
+    var_dump($client->getUpdates());
+    
+} catch (Zelenin\Telegram\Bot\Exception\NotOkException $e) {
+    echo $e->getMessage();
+}
