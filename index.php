@@ -93,18 +93,18 @@ try {
                 ])
         ]);
     }
-    elseif ($update->message->reply_to_message) {
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
-            'parse_mode' => 'HTML',
-            'reply_markup' => json_encode([
-                    'resize_keyboard' => true,
-                    'one_time_keyboard' => true,
-                    'force_reply' => true
-                ])
-        ]);
-    }
+    // elseif ($update->message->reply_to_message) {
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
+    //         'parse_mode' => 'HTML',
+    //         'reply_markup' => json_encode([
+    //                 'resize_keyboard' => true,
+    //                 'one_time_keyboard' => true,
+    //                 'force_reply' => true
+    //             ])
+    //     ]);
+    // }
     // elseif ($update->message->text == '/tv8') {
     //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     //     // $dom = new Dom;
