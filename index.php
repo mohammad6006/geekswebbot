@@ -263,9 +263,9 @@ try {
             'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
             ]);
         $response = $client->sendVideo([
-            'chat_id' => '@canli',
+            'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => "کلیپ فراگمن مربوط به برنامه او سس امشب که یکی از شرکت کنندگان آهنگ این آخرین باره از ابی رو میخونه \n @TurkTv",
+            'caption' => "آهنگ ابی در او سس ترکیه \n فراگمن مربوط به برنامه او سس امشب که یکی از شرکت کنندگان آهنگ این آخرین باره از ابی رو میخونه \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
