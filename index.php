@@ -243,7 +243,7 @@ try {
             ]);
 
     }
-    elseif ($update->message->audio) {
+    elseif ($update->message->audio && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
@@ -257,7 +257,7 @@ try {
             'title' => $update->message->audio->title
             ]);
     }
-    elseif ($update->message->video) {
+    elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
