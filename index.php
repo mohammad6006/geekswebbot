@@ -260,7 +260,7 @@ try {
     elseif ($update->message->video) {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' thumb: '.$update->message->video->thumb.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
+            'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
             ]);
         $response = $client->sendVideo([
             'chat_id' => '@canli',
