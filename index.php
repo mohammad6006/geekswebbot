@@ -265,7 +265,7 @@ try {
         $response = $client->sendVideo([
             'chat_id' => '@canli',
             'video' => $update->message->video->file_id,
-            'caption' => '@TurkTv',
+            'caption' => "کلیپ فراگمن مربوط به برنامه او سس امشب که یکی از شرکت کنندگان آهنگ این آخرین باره از ابی رو میخونه \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
