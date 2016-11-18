@@ -265,7 +265,7 @@ try {
         $response = $client->sendVideo([
             'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => "آهنگ ابی در او سس ترکیه \n فراگمن مربوط به برنامه او سس امشب که یکی از شرکت کنندگان آهنگ این آخرین باره از ابی رو میخونه \n @TurkTv",
+            'caption' => "یکی از کاربران به @alo_survivor پیام دادن و حدس زدن کلیپ امشب مربوط به رضا کشور پرست هست که چند سال قبل شرکت کردن . این یکی از کلیپهاش هست \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
