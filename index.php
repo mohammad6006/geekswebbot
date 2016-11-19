@@ -249,7 +249,7 @@ try {
             'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
             ]);
         $response = $client->sendAudio([
-            'chat_id' => '@canli',
+            'chat_id' => '@turktv',
             'audio' => $update->message->audio->file_id,
             'caption' => '@TurkTv',
             'duration' => $update->message->audio->duration,
@@ -265,7 +265,7 @@ try {
         $response = $client->sendVideo([
             'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => "یکی از کاربران به @alo_survivor پیام دادن و حدس زدن کلیپ امشب مربوط به رضا کشور پرست هست که چند سال قبل شرکت کردن . این یکی از کلیپهاش هست \n @TurkTv",
+            'caption' => "اجرای کامل پرفورمنس رضا کشورپرست در برنامه او سس ترکیه که دیشب پخش شد به همراه نظر داوران آهنگ فارسی و ترکی و رقص \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
