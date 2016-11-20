@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da92e78055c39a50aacf32345d99866d",
-    "content-hash": "eb5ad76c6d4d08ad3b5dc0e7b62d3bad",
+    "hash": "e81dd146d2fc7c4204e81de589a61743",
+    "content-hash": "2467056e5958b6a7898b1515805ed8f0",
     "packages": [
         {
             "name": "bolandish/instagram-grabber",
@@ -78,6 +78,46 @@
                 "rss"
             ],
             "time": "2015-07-02 11:54:05"
+        },
+        {
+            "name": "fpdo/fluentpdo",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fpdo/fluentpdo.git",
+                "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/fa0df68d098a1ebb1b0461e4750ef2749869219c",
+                "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "FluentPDO/FluentPDO.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0",
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Marek Lichtner",
+                    "homepage": "http://licht.sk/"
+                }
+            ],
+            "description": "FluentPDO is small PHP library for rapid query building. Killer feature is smart join builder which generates joins automatically.",
+            "homepage": "https://github.com/fpdo/fluentpdo",
+            "keywords": [
+                "database",
+                "dbal",
+                "pdo"
+            ],
+            "time": "2016-07-08 13:40:45"
         },
         {
             "name": "guzzlehttp/guzzle",

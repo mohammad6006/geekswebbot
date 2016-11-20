@@ -24,6 +24,7 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 $token = getenv('acstok');
+$dbopts = parse_url(getenv('DATABASE_URL'));
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
 $logger = new Logger('my_logger');
@@ -265,7 +266,7 @@ try {
         $response = $client->sendVideo([
             'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => "اجرای کامل پرفورمنس رضا کشورپرست در برنامه او سس ترکیه که دیشب پخش شد به همراه نظر داوران آهنگ فارسی و ترکی و رقص \n @TurkTv",
+            'caption' => " \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
