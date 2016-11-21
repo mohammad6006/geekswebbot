@@ -11,7 +11,7 @@ $fpdo = new FluentPDO($pdo);
 
 $query = $fpdo->from('messages');
 foreach ($query as $row) {
-    echo "$row[daryaft]\n";
+    echo "$row[user_id] \n $row[chat_id] \n $row[message_id] \n $row[daryaft] \n $row[ersal] \n";
 }
 
 // $query = $fpdo->from('messages')->where('user_id', 123);
