@@ -252,10 +252,10 @@ try {
         $response = $client->sendAudio([
             'chat_id' => '@turktv',
             'audio' => $update->message->audio->file_id,
-            'caption' => '@TurkTv',
+            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
             'duration' => $update->message->audio->duration,
-            'performer' => $update->message->audio->performer,
-            'title' => $update->message->audio->title
+            'performer' => '@TurkTv-Kalben',
+            'title' => 'Haydi Söyle'
             ]);
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
