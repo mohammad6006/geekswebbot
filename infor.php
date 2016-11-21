@@ -2,13 +2,5 @@
 require 'vendor/autoload.php';
 
 $token = getenv('acstok');
-$client = Zelenin\Telegram\Bot\ApiFactory::create($token);
-$update = json_decode(file_get_contents('php://input'));
-
-
-try {
-    var_dump($client->getUpdates());
-    
-} catch (Zelenin\Telegram\Bot\Exception\NotOkException $e) {
-    echo $e->getMessage();
-}
+$dbopts = parse_url(getenv('DATABASE_URL'));
+echo $dbopts["user"];
