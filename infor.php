@@ -11,7 +11,7 @@ $fpdo = new FluentPDO($pdo);
 
 
 $values = array('user_id' => '123', 'chat_id' => '321', 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
-    $query = $fpdo->insertInto('messages')->values(values);    
+    $query = $fpdo->insertInto('messages')->values($values);    
     $insert = $query->execute();
 
     var_dump($insert);
