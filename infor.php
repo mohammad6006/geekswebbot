@@ -9,7 +9,7 @@ $pw = $dbopts["pass"];
 $pdo = new PDO($dsn, $user, $pw);
 $fpdo = new FluentPDO($pdo);
 
-$query = $fpdo->from('messages')->where('id', 1);
+$query = $fpdo->from('messages')->where('user_id', 123);
 // $values = array('user_id' => '123', 'chat_id' => '321', 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
 //     $query = $fpdo->insertInto('messages')->values($values);    
 //     $insert = $query->execute();
