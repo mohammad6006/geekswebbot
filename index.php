@@ -27,6 +27,11 @@ $token = getenv('acstok');
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
+$dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
+$user = $dbopts["user"];
+$pw = $dbopts["pass"];
+$pdo = new PDO($dsn, $user, $pw);
+$fpdo = new FluentPDO($pdo);
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
 
@@ -249,14 +254,22 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
             ]);
-        $response = $client->sendAudio([
-            'chat_id' => '@turktv',
-            'audio' => $update->message->audio->file_id,
-            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-            'duration' => $update->message->audio->duration,
-            'performer' => '@TurkTv-Kalben',
-            'title' => 'Haydi Söyle'
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'userid:'.$update->message->chat->id.'message_id:'.$update->message->message_id.''
             ]);
+
+$values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
+    $query = $fpdo->insertInto('messages')->values($values);    
+    $insert = $query->execute();
+        // $response = $client->sendAudio([
+        //     'chat_id' => '@turktv',
+        //     'audio' => $update->message->audio->file_id,
+        //     'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+        //     'duration' => $update->message->audio->duration,
+        //     'performer' => '@TurkTv-Kalben',
+        //     'title' => 'Haydi Söyle'
+        //     ]);
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendMessage([
