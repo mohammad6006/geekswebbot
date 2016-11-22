@@ -256,7 +256,7 @@ try {
             ]);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => 'userid:'.$update->message->chat->id.'message_id:'.$update->message->message_id.''
+            'text' => 'userid:'.$update->message->chat->id.'message_id:'.$update->message->message_id
             ]);
 
 $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
