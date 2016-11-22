@@ -209,7 +209,9 @@ try {
             case 'FOX':
                 $kanaln = 'fox';
                 break;
-            
+            case 'CartoonNetwork':
+                $kanaln = 'cartoon-network';
+                break;
             default:
                 $kanaln = "not found";
                 break;
@@ -241,7 +243,7 @@ try {
                         ['/kanal-Tv8','/kanal-StarTv','/kanal-D'],
                         ['/kanal-ShowTv','/kanal-ATV','/kanal-TRT1'],
                         ['/kanal-7','/kanal-Tv2','/kanal-FOX'],
-                        ['/kanal-دیگر کانالها'],
+                        ['/kanal-دیگر کانالها','/kanal-CartoonNetwork'],
                     ],
                     'resize_keyboard' => true,
                     'one_time_keyboard' => true
