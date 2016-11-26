@@ -236,7 +236,7 @@ try {
         $query = $fpdo->from('messages')->where('user_id = ?',$update->message->from->id);
         if (count($query)) {
            $logger->addInfo('megdar vojod darad');
-        }ekse{
+        }else{
            $logger->addInfo('megdar mojod nemibashad');
         }
         // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
