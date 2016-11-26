@@ -235,14 +235,13 @@ try {
         $logger->addInfo('start:'.$update->message->message_id.'-'.$update->message->date.'-'.$update->message->text.'-'.$update->message->from->id.'-'.$update->message->from->first_name.'-'.$update->message->from->username);
         $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
         if ($query) {
-           $logger->addInfo(json_encode($query));
+           $logger->addInfo('karbar gablan sabt shode ast.');
+           // $logger->addInfo(json_encode($query));
         }else{
-           $logger->addInfo('megdar mojod nemibashad');
+            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'start', 'ersal' => 'start');       
+            $query = $fpdo->insertInto('messages')->values($values);    
+            $insert = $query->execute();
         }
-        // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
-        // $query = $fpdo->insertInto('messages')->values($values);    
-        // $insert = $query->execute();
-
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
