@@ -180,7 +180,7 @@ try {
     elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $kanalname = explode('-', $update->message->text);
-        $logger->addInfo('search - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username.'-search:'.$kanalname[1]);
+        $logger->addInfo('kanal:'.json_encode($update->message));
         switch ($kanalname[1]) {
             case 'Tv8':
                 $kanaln = 'tv-8';
@@ -232,7 +232,7 @@ try {
     }
     else if($update->message->text == '/start')
     {
-        $logger->addInfo('start - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
+        $logger->addInfo('start:'.json_encode($update->message));
 
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
