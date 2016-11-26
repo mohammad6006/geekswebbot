@@ -235,7 +235,7 @@ try {
         $logger->addInfo('start:'.$update->message->message_id.'-'.$update->message->date.'-'.$update->message->text.'-'.$update->message->from->id.'-'.$update->message->from->first_name.'-'.$update->message->from->username);
         $query = $fpdo->from('messages')->where('user_id',$update->message->from->id);
         if (count($query)) {
-           $logger->addInfo(json_encode($query));
+           $logger->addInfo($query);
         }else{
            $logger->addInfo('megdar mojod nemibashad');
         }
