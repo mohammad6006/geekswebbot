@@ -234,10 +234,10 @@ try {
     {
         $logger->addInfo('start:'.$update->message->message_id.'-'.$update->message->date.'-'.$update->message->text.'-'.$update->message->from->id.'-'.$update->message->from->first_name.'-'.$update->message->from->username);
         $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetchAll();
-        if (count($query)) {
-           $logger->addInfo(count($query));
-        }else{
+        if (empty($query)) {
            $logger->addInfo('megdar mojod nemibashad');
+        }else{
+           $logger->addInfo(count($query));
         }
         // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
         // $query = $fpdo->insertInto('messages')->values($values);    
