@@ -232,7 +232,10 @@ try {
     }
     else if($update->message->text == '/start')
     {
-        $logger->addInfo('start:'.json_encode($update->message));
+        $logger->addInfo('start:'.$update->message->message_id);
+        // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
+        // $query = $fpdo->insertInto('messages')->values($values);    
+        // $insert = $query->execute();
 
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
