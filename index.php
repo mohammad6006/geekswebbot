@@ -233,9 +233,9 @@ try {
     else if($update->message->text == '/start')
     {
         $logger->addInfo('start:'.$update->message->message_id.'-'.$update->message->date.'-'.$update->message->text.'-'.$update->message->from->id.'-'.$update->message->from->first_name.'-'.$update->message->from->username);
-        $query = $fpdo->from('messages')->where('user_id = ?',$update->message->from->id)->execute();
+        $query = $fpdo->from('messages')->where('user_id',$update->message->from->id);
         if (count($query)) {
-           $logger->addInfo('megdar vojod darad');
+           $logger->addInfo(json_decode($query));
         }else{
            $logger->addInfo('megdar mojod nemibashad');
         }
