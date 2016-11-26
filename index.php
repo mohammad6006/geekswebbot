@@ -232,7 +232,7 @@ try {
     }
     else if($update->message->text == '/start')
     {
-        $logger->addInfo('start:'.$update->message->message_id);
+        $logger->addInfo('start:'.$update->message->message_id.'-'.$update->message->date.'-'.$update->message->text.'-'.$update->message->from->id.'-'.$update->message->from->first_name.'-'.$update->message->from->username);
         // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
         // $query = $fpdo->insertInto('messages')->values($values);    
         // $insert = $query->execute();
