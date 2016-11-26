@@ -238,6 +238,7 @@ try {
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => "کانال دلخواه خود را از لیست زیر انتخاب کنید \n در صورتی که کانال مورد نظر شما در لیست موجود نمیباشد گزینه دیگر کانالها را انتخاب کنید.",
+            'reply_to_message_id' => $update->message->message_id,
             'reply_markup' => json_encode([
                     'keyboard'=> [
                         ['/kanal-Tv8','/kanal-StarTv','/kanal-D'],
