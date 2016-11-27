@@ -187,7 +187,7 @@ try {
     //     ]);
     // }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
-        $mpfile = explode('-', $update->message->text);
+        $mpfile = explode(' ', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4]
