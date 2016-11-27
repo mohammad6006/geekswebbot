@@ -192,13 +192,13 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4]
         ]);
-        $response = $client->sendAudio([
-            'chat_id' => $update->message->chat->id,
-            'audio' => fopen($mpfile[1],'r'),
-            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-            'performer' => '@TurkTv-Kalben',
-            'title' => 'Haydi Söyle'
-            ]);
+        // $response = $client->sendAudio([
+        //     'chat_id' => $update->message->chat->id,
+        //     'audio' => fopen($mpfile[1],'r'),
+        //     'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+        //     'performer' => '@TurkTv-Kalben',
+        //     'title' => 'Haydi Söyle'
+        //     ]);
     }
     elseif (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
