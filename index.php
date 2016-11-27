@@ -87,27 +87,27 @@ try {
             'text' => "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید "
         ]);
     }
-    elseif ($update->message->text == '/mp3') {
-        $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
-        if ($query) {
-            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');
-            $query = $fpdo->update('messages')->set($values)->where('id',$query[id])->execute();    
+    // elseif ($update->message->text == '/mp3') {
+    //     $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
+    //     if ($query) {
+    //         $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');
+    //         $query = $fpdo->update('messages')->set($values)->where('id',$query[id])->execute();    
 
-        }else{
-            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');       
-            $query = $fpdo->insertInto('messages')->values($values)->execute();    
-        }
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
-            'parse_mode' => 'HTML',
-            'reply_markup' => json_encode([
-                    'resize_keyboard' => true,
-                    'one_time_keyboard' => true,
-                    'force_reply' => true
-                ])
-        ]);
-    }
+    //     }else{
+    //         $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');       
+    //         $query = $fpdo->insertInto('messages')->values($values)->execute();    
+    //     }
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
+    //         'parse_mode' => 'HTML',
+    //         'reply_markup' => json_encode([
+    //                 'resize_keyboard' => true,
+    //                 'one_time_keyboard' => true,
+    //                 'force_reply' => true
+    //             ])
+    //     ]);
+    // }
     // elseif ($update->message->reply_to_message) {
     //     $response = $client->sendMessage([
     //         'chat_id' => $update->message->chat->id,
@@ -186,7 +186,14 @@ try {
 
     //     ]);
     // }
-    elseif (strpos(strtolower($update->message->text), '/kanal') !== false ) {
+    elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
+        $mpfile = explode('-', $update->message->text);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4]
+        ]);
+    }
+    elseif (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $kanalname = explode('-', $update->message->text);
         $logger->addInfo('kanal:'.json_encode($update->message));
