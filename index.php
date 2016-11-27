@@ -88,6 +88,15 @@ try {
         ]);
     }
     elseif ($update->message->text == '/mp3') {
+        $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
+        if ($query) {
+            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');
+            $query = $fpdo->update('messages')->set($values)->where('id',$query[id])->execute();    
+
+        }else{
+            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => 'mp3', 'ersal' => 'khali');       
+            $query = $fpdo->insertInto('messages')->values($values)->execute();    
+        }
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
