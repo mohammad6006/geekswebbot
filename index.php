@@ -313,7 +313,7 @@ $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->m
         $response = $client->sendVideo([
             'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => "کلیپ اجرای کمد پیمانی در برنامه او سس ترکیه امشب با کیفیت بالا \n @TurkTv",
+            'caption' => " \n @TurkTv",
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
