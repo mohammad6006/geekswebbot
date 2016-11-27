@@ -194,7 +194,7 @@ try {
         ]);
         $response = $client->sendAudio([
             'chat_id' => $update->message->chat->id,
-            'audio' => $mpfile[1],
+            'audio' => fopen($mpfile[1],'r'),
             'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
             'performer' => '@TurkTv-Kalben',
             'title' => 'Haydi Söyle'
