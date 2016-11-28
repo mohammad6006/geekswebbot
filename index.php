@@ -191,28 +191,17 @@ try {
         $mpfile = explode(';', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4]
+            'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4].$mpfile[5]
         ]);
-        $filimiz = fopen($mpfile[1], 'r');
-        if ($filimiz) {
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => 'mesag:'.$filimiz
-            ]);
-        }else{
-            $response = $client->sendMessage([
-                'chat_id' => $update->message->chat->id,
-                'text' => "نات فاند "
-            ]);
-        }
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
-        $response = $client->sendAudio([
-            'chat_id' => $update->message->chat->id,
-            'audio' => fopen($mpfile[1],'r'),
-            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-            'performer' => '@TurkTv-Kalben',
-            'title' => 'Haydi Söyle'
-            ]);
+        // /mp3;url.mp3;title;performer;caption;chatid
+        // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
+        // $response = $client->sendAudio([
+        //     'chat_id' => $update->message->chat->id,
+        //     'audio' => fopen($mpfile[1],'r'),
+        //     'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+        //     'performer' => '@TurkTv-Kalben',
+        //     'title' => 'Haydi Söyle'
+        //     ]);
     }
     elseif (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
