@@ -196,7 +196,7 @@ try {
         if ($filimiz) {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => json_encode($filimiz)
+                'text' => 'mesag:'.$filimiz
             ]);
         }else{
             $response = $client->sendMessage([
