@@ -108,74 +108,18 @@ try {
     //             ])
     //     ]);
     // }
-    elseif ($update->message->reply_to_message) {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        if (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
-            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-            $kanalname = explode('-', $update->message->text);
-            $logger->addInfo('kanal:'.json_encode($update->message));
-            switch ($kanalname[1]) {
-                case 'Tv8':
-                    $kanaln = 'tv-8';
-                    break;
-                case 'StarTv':
-                    $kanaln = 'star-tv';
-                    break;
-                case 'D':
-                    $kanaln = 'kanal-d-tv';
-                    break;
-                case 'ShowTv':
-                    $kanaln = 'show-tv';
-                    break;
-                case 'ATV':
-                    $kanaln = 'atv';
-                    break;
-                case 'TRT1':
-                    $kanaln = 'trt-1';
-                    break;
-                case '7':
-                    $kanaln = 'kanal-7';
-                    break;
-                case 'Tv2':
-                    $kanaln = 'tv2';
-                    break;
-                case 'FOX':
-                    $kanaln = 'fox';
-                    break;
-                case 'CartoonNetwork':
-                    $kanaln = 'cartoon-network';
-                    break;
-                default:
-                    $kanaln = "not found";
-                    break;
-            }
-            if ($kanaln == "not found") {
-                $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
-                    'text' => 'در حال حاضر فقط کانالهای پرطرفدار به لیست اضافه شده است. اگر کانال مورد علاقه شما در این لیست موجود نیست  از طریق اکانت @alo_survivor نام کانال را برای ما ارسال کنید تا به این لیست اضافه کنیم'
-                ]);
-            } else {
-                $arri = listbarnameha($kanaln);
-                $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
-                    'text' => $arri
-                ]);
-            }
-            
-        }
-
-
-        // $response = $client->sendMessage([
-        //     'chat_id' => $update->message->chat->id,
-        //     'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
-        //     'parse_mode' => 'HTML',
-        //     'reply_markup' => json_encode([
-        //             'resize_keyboard' => true,
-        //             'one_time_keyboard' => true,
-        //             'force_reply' => true
-        //         ])
-        // ]);
-    }
+    // elseif ($update->message->reply_to_message) {
+    //     $response = $client->sendMessage([
+    //         'chat_id' => $update->message->chat->id,
+    //         'text' => "<b>adres ra vared konid:</b> ".json_encode($update->message),
+    //         'parse_mode' => 'HTML',
+    //         'reply_markup' => json_encode([
+    //                 'resize_keyboard' => true,
+    //                 'one_time_keyboard' => true,
+    //                 'force_reply' => true
+    //             ])
+    //     ]);
+    // }
     // elseif ($update->message->text == '/tv8') {
     //     $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
     //     // $dom = new Dom;
@@ -247,12 +191,7 @@ try {
         $mpfile = explode(';', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4].$mpfile[5],
-            'reply_markup' => json_encode([
-                    'resize_keyboard' => true,
-                    'one_time_keyboard' => true,
-                    'force_reply' => true
-                ])
+            'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4].$mpfile[5]
         ]);
         // /mp3;url.mp3;title;performer;caption;chatid
         // $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
@@ -263,6 +202,59 @@ try {
         //     'performer' => '@TurkTv-Kalben',
         //     'title' => 'Haydi Söyle'
         //     ]);
+    }
+    elseif (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $kanalname = explode('-', $update->message->text);
+        $logger->addInfo('kanal:'.json_encode($update->message));
+        switch ($kanalname[1]) {
+            case 'Tv8':
+                $kanaln = 'tv-8';
+                break;
+            case 'StarTv':
+                $kanaln = 'star-tv';
+                break;
+            case 'D':
+                $kanaln = 'kanal-d-tv';
+                break;
+            case 'ShowTv':
+                $kanaln = 'show-tv';
+                break;
+            case 'ATV':
+                $kanaln = 'atv';
+                break;
+            case 'TRT1':
+                $kanaln = 'trt-1';
+                break;
+            case '7':
+                $kanaln = 'kanal-7';
+                break;
+            case 'Tv2':
+                $kanaln = 'tv2';
+                break;
+            case 'FOX':
+                $kanaln = 'fox';
+                break;
+            case 'CartoonNetwork':
+                $kanaln = 'cartoon-network';
+                break;
+            default:
+                $kanaln = "not found";
+                break;
+        }
+        if ($kanaln == "not found") {
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => 'در حال حاضر فقط کانالهای پرطرفدار به لیست اضافه شده است. اگر کانال مورد علاقه شما در این لیست موجود نیست  از طریق اکانت @alo_survivor نام کانال را برای ما ارسال کنید تا به این لیست اضافه کنیم'
+            ]);
+        } else {
+            $arri = listbarnameha($kanaln);
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => $arri
+            ]);
+        }
+        
     }
     else if($update->message->text == '/start')
     {
