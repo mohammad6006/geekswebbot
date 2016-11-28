@@ -192,6 +192,18 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => $mpfile[1].$mpfile[2].$mpfile[3].$mpfile[4]
         ]);
+        $filimiz = fopen($mpfile[1], 'r');
+        if ($filimiz) {
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => json_encode($filimiz)
+            ]);
+        }else{
+            $response = $client->sendMessage([
+                'chat_id' => $update->message->chat->id,
+                'text' => "نات فاند "
+            ]);
+        }
         // $response = $client->sendAudio([
         //     'chat_id' => $update->message->chat->id,
         //     'audio' => fopen($mpfile[1],'r'),
