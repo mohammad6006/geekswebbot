@@ -187,6 +187,7 @@ try {
     //     ]);
     // }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $mpfile = explode(';', $update->message->text);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
@@ -204,13 +205,14 @@ try {
                 'text' => "نات فاند "
             ]);
         }
-        // $response = $client->sendAudio([
-        //     'chat_id' => $update->message->chat->id,
-        //     'audio' => fopen($mpfile[1],'r'),
-        //     'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-        //     'performer' => '@TurkTv-Kalben',
-        //     'title' => 'Haydi Söyle'
-        //     ]);
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
+        $response = $client->sendAudio([
+            'chat_id' => $update->message->chat->id,
+            'audio' => fopen($mpfile[1],'r'),
+            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+            'performer' => '@TurkTv-Kalben',
+            'title' => 'Haydi Söyle'
+            ]);
     }
     elseif (strpos(strtolower($update->message->text), '/kanal') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
