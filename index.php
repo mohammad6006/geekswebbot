@@ -69,7 +69,7 @@ function simplemessage($chatid,$text,$parsem='')
     $response = $client->sendMessage([
         'chat_id' => $chatid,
         'text' => $text,
-        'parse_mode' => 
+        'parse_mode' => 'HTML'
     ]);
 }
 try {
