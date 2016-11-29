@@ -299,16 +299,12 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
             ]);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => 'userid:'.$update->message->chat->id.'message_id:'.$update->message->message_id
-            ]);
         $response = $client->sendAudio([
             'chat_id' => $update->message->chat->id,
             'audio' => $update->message->audio->file_id,
             'caption' => $update->message->audio->title."\n @TurkTv",
             'duration' => $update->message->audio->duration,
-            'performer' => '@TurkTv-',
+            'performer' => '@TurkTv',
             'title' => $update->message->audio->title
             ]);
 
