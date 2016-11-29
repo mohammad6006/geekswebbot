@@ -302,10 +302,10 @@ try {
         $response = $client->sendAudio([
             'chat_id' => $update->message->chat->id,
             'audio' => $update->message->audio->file_id,
+            'performer' => "@TurkTv",
+            'title' => $update->message->audio->title,
             'caption' => $update->message->audio->title."\n @TurkTv",
-            'duration' => $update->message->audio->duration,
-            'performer' => '@TurkTv',
-            'title' => $update->message->audio->title
+            'duration' => $update->message->audio->duration
             ]);
 
 // $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
