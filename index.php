@@ -64,15 +64,12 @@ function tezfanc($taz)
     }
     return $taza;
 }
-function simplemessage($chatid,$text,$parsem='HTML')
+function simplemessage($chatid,$text,$parsem='')
 {
-    $response = $client->sendChatAction(['chat_id' => $chatid, 'action' => 'typing']);
     $response = $client->sendMessage([
         'chat_id' => $chatid,
         'text' => $text,
-        'parse_mode' => $parsem,
-        'disable_web_page_preview' => true,
-        'disable_notification' => true
+        'parse_mode' => 
     ]);
 }
 try {
@@ -91,8 +88,12 @@ try {
     elseif($update->message->text == '/contact')
     {
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
-        $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        simplemessage($update->message->chat->id,$text);
+        // $tttt = tezfanc();
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید "
+        ]);
     }
     // elseif ($update->message->text == '/mp3') {
     //     $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
