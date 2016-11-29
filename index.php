@@ -303,18 +303,18 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => 'userid:'.$update->message->chat->id.'message_id:'.$update->message->message_id
             ]);
+        $response = $client->sendAudio([
+            'chat_id' => $update->message->chat->id,
+            'audio' => $update->message->audio->file_id,
+            'caption' => $update->message->audio->title."\n @TurkTv",
+            'duration' => $update->message->audio->duration,
+            'performer' => '@TurkTv-',
+            'title' => $update->message->audio->title
+            ]);
 
-$values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
-    $query = $fpdo->insertInto('messages')->values($values);    
-    $insert = $query->execute();
-        // $response = $client->sendAudio([
-        //     'chat_id' => '@turktv',
-        //     'audio' => $update->message->audio->file_id,
-        //     'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-        //     'duration' => $update->message->audio->duration,
-        //     'performer' => '@TurkTv-Kalben',
-        //     'title' => 'Haydi Söyle'
-        //     ]);
+// $values = array('user_id' => $update->message->chat->id, 'chat_id' => $update->message->chat->id, 'message_id' => '456', 'daryaft' => 'abc', 'ersal' => 'def');       
+//     $query = $fpdo->insertInto('messages')->values($values);    
+//     $insert = $query->execute();
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendMessage([
