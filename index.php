@@ -92,7 +92,7 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
-        $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
+        $text = "testing testing";
         $response = simplemessage($update->message->chat->id,$text);
     }
     // elseif ($update->message->text == '/mp3') {
