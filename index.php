@@ -68,7 +68,7 @@ function simplemessage($chatid,$text)
 {
     global $client;
     try {
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendChatAction(['chat_id' => $chatid, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $chatid,
             'text' => $text,
@@ -92,7 +92,7 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
-        $text = "testing testing";
+        $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
         $response = simplemessage($update->message->chat->id,$text);
     }
     // elseif ($update->message->text == '/mp3') {
