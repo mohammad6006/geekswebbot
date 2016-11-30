@@ -64,14 +64,14 @@ function tezfanc($taz)
     }
     return $taza;
 }
-function simplemessage($chatid)
+function simplemessage($chatid,$text)
 {
     global $client;
     try {
         $chati = $chatid;
         $response = $client->sendMessage([
             'chat_id' => $chati,
-            'text' => 'testtesttest',
+            'text' => $text,
         ]); 
     return $response;       
     } catch (Exception $e) {
@@ -94,8 +94,8 @@ try {
     elseif($update->message->text == '/contact')
     {
         $chatid = $update->message->chat->id;
-        $text = 'test';
-        $response = simplemessage($chatid);
+        $text = 'testing';
+        $response = simplemessage($chatid,$text);
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         // $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
