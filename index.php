@@ -71,7 +71,8 @@ function simplemessage($chatid,$text,$parsem='')
             'chat_id' => $chatid,
             'text' => $text,
             'parse_mode' => 'HTML',
-        ]);        
+        ]); 
+        return $response;       
     } catch (Exception $e) {
         
     }
