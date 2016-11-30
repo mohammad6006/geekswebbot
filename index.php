@@ -66,6 +66,7 @@ function tezfanc($taz)
 }
 function simplemessage($chatid)
 {
+    global $client;
     try {
         $chati = $chatid;
         $response = $client->sendMessage([
