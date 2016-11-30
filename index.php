@@ -64,16 +64,15 @@ function tezfanc($taz)
     }
     return $taza;
 }
-try {
 function simplemessage($chatid,$text,$parsem='')
 {
     $response = $client->sendMessage([
         'chat_id' => $chatid,
         'text' => $text,
-        'parse_mode' => 'HTML',
-        'text'=> 'matne testi'
-    ]);        
+        'parse_mode' => 'HTML'
+    ]);
 }
+try {
     if(isset($update->inline_query))
     {
         $logger->addInfo('inline_query - chatid:'.$update->inline_query->id.'-'.$update->inline_query->query);
@@ -88,7 +87,6 @@ function simplemessage($chatid,$text,$parsem='')
     }
     elseif($update->message->text == '/contact')
     {
-        simplemessage();
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         // $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
