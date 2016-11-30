@@ -75,7 +75,6 @@ function simplemessage($chatid,$text)
         ]); 
     return $response;       
     } catch (Exception $e) {
-        $logger->addInfo(json_encode($e));
     }
 }
 try {
