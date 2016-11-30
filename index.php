@@ -68,9 +68,9 @@ function simplemessage($chatid,$text)
 {
     global $client;
     try {
-        $chati = $chatid;
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
-            'chat_id' => $chati,
+            'chat_id' => $chatid,
             'text' => $text,
         ]); 
     return $response;       
@@ -93,16 +93,8 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
-        $chatid = $update->message->chat->id;
-        $text = 'testing';
-        $response = simplemessage($chatid,$text);
-        $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
-        // $tttt = tezfanc();
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
-        $response = $client->sendMessage([
-            'chat_id' => $update->message->chat->id,
-            'text' => "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید "
-        ]);
+        $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
+        $response = simplemessage($update->message->chat->id,$text);
     }
     // elseif ($update->message->text == '/mp3') {
     //     $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
