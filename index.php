@@ -65,7 +65,7 @@ function tezfanc($taz)
     return $taza;
 }
 try {
-function simplemessage($chatid,$text,$parsem='')
+function simplemessage($chatid,$text)
 {
     $response = $client->sendMessage([
         'chat_id' => $chatid,
@@ -90,7 +90,7 @@ function simplemessage($chatid,$text,$parsem='')
     {
         $chatid = $update->message->chat->id;
         $text = 'test';
-        simplemessage($chatid,$text);
+        // simplemessage($chatid,$text);
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         // $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
