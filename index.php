@@ -64,16 +64,20 @@ function tezfanc($taz)
     }
     return $taza;
 }
-try {
-function simplemessage($chatid,$text)
+function simplemessage($chatid)
 {
-    $response = $client->sendMessage([
-        'chat_id' => $chatid,
-        'text' => $text,
-        'parse_mode' => 'HTML',
-    ]); 
+    try {
+        $chati = $chatid;
+        $response = $client->sendMessage([
+            'chat_id' => $chati,
+            'text' => 'testtesttest',
+        ]); 
     return $response;       
+    } catch (Exception $e) {
+        $logger->addInfo(json_encode($e));
+    }
 }
+try {
     if(isset($update->inline_query))
     {
         $logger->addInfo('inline_query - chatid:'.$update->inline_query->id.'-'.$update->inline_query->query);
@@ -90,7 +94,7 @@ function simplemessage($chatid,$text)
     {
         $chatid = $update->message->chat->id;
         $text = 'test';
-        // simplemessage($chatid,$text);
+        $response = simplemessage($chatid);
         $logger->addInfo('contact - chatid:'.$update->message->chat->id.'-'.$update->message->chat->first_name.'-'.$update->message->chat->username);
         // $tttt = tezfanc();
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
