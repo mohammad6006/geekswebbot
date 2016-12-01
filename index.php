@@ -75,8 +75,16 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "/dizi_kiralikask : <b>Kiralık_Aşk</b> \n /dizi_AskLaftan :<b>Aşk Laftan Anlamaz</b> \n /dizi_icerde : <b>İçerde</b> \n /dizi_KaraSevda :<b>Kara Sevda</b>",
-            'parse_mode' => 'HTML'
+            'text' => 'نام سریال مورد نظر خود را انتخاب کنید:',
+            'reply_markup' => json_encode([
+                'inline_keyboard' => [
+                        ['text'=>'/dizi1'],
+                        ['text'=>'/dizi2']
+                    ]
+
+                ])
+            // 'text' => "/dizi_kiralikask : <b>Kiralık_Aşk</b> \n /dizi_AskLaftan :<b>Aşk Laftan Anlamaz</b> \n /dizi_icerde : <b>İçerde</b> \n /dizi_KaraSevda :<b>Kara Sevda</b>",
+            // 'parse_mode' => 'HTML'
             ]);
         // $mpfile = explode(';', $update->message->text);
         // $response = $client->sendMessage([
