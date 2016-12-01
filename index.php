@@ -79,11 +79,11 @@ try {
             'reply_markup' => json_encode([
                 'inline_keyboard' => [
                         [
-                            ['text' => '+plus','callback_data'=>'1'],
-                            ['text'=> '-min','callback_data'=>'2']
+                            ['text' => '+plus'],
+                            ['text'=> '-min']
                         ],
                         [
-                            ['text'=>'reset','callback_data'=>'0']
+                            ['text'=>'reset']
                         ]
                     ]
                 ])
