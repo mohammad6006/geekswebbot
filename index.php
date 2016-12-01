@@ -71,6 +71,33 @@ try {
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
         $response = simpleTextSend($update->message->chat->id,$text);
     }
+    elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'نام سریال مورد نظر خود را انتخاب کنید:',
+            'reply_markup' => json_encode([
+                'inline_keyboard' => [
+                        [
+                            ['text' => 'Kiralık Aşk','callback_data'=>'dizi_kiralikask']
+                        ],
+                        [
+                            ['text'=>'Aşk Laftan Anlamaz','callback_data'=>'dizi_AskLaftan']
+                        ],
+                        [
+                            ['text' => 'İçerde','callback_data'=>'dizi_icerde']
+                        ],
+                        [
+                            ['text'=>'Kara Sevda','callback_data'=>'dizi_KaraSevda']
+                        ]
+                    ]
+                ])
+            ]);
+    }
+    elseif (isset($update->callback_query)) {
+        $text = "dasdasdasdas";
+        simpleTextSend($update->callback_query->message->chat->id,$text);
+    }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
