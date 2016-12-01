@@ -75,7 +75,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => '<a href="/dizi">inline URL</a>',
+            'text' => '/dizi',
             'parse_mode' => 'HTML'
             ]);
         // $mpfile = explode(';', $update->message->text);
