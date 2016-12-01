@@ -83,9 +83,9 @@ try {
                     ]
 
                 ])
+            ]);
             // 'text' => "/dizi_kiralikask : <b>Kiralık_Aşk</b> \n /dizi_AskLaftan :<b>Aşk Laftan Anlamaz</b> \n /dizi_icerde : <b>İçerde</b> \n /dizi_KaraSevda :<b>Kara Sevda</b>",
             // 'parse_mode' => 'HTML'
-            ]);
         // $mpfile = explode(';', $update->message->text);
         // $response = $client->sendMessage([
         //     'chat_id' => $update->message->chat->id,
