@@ -75,7 +75,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
-            'text' => "/dizi_Kiralık_Aşk \n /dizi_Aşk_Laftan_Anlamaz \n /dizi_İçerde \n /dizi_Kara_Sevda",
+            'text' => "/dizi_kiralikask : <b>Kiralık_Aşk</b> \n /dizi_AskLaftan :<b>Aşk Laftan Anlamaz</b> \n /dizi_icerde : <b>İçerde</b> \n /dizi_KaraSevda :<b>Kara Sevda</b>",
             'parse_mode' => 'HTML'
             ]);
         // $mpfile = explode(';', $update->message->text);
