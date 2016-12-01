@@ -78,10 +78,14 @@ try {
             'text' => 'نام سریال مورد نظر خود را انتخاب کنید:',
             'reply_markup' => json_encode([
                 'inline_keyboard' => [
-                        ['text'=>'/dizi1'],
-                        ['text'=>'/dizi2']
+                        [
+                            ['text' => '+plus','callback_data'=>'1'],
+                            ['text'=> '-min','callback_data'=>'2']
+                        ],
+                        [
+                            ['text'=>'reset','callback_data'=>'0']
+                        ]
                     ]
-
                 ])
             ]);
             // 'text' => "/dizi_kiralikask : <b>Kiralık_Aşk</b> \n /dizi_AskLaftan :<b>Aşk Laftan Anlamaz</b> \n /dizi_icerde : <b>İçerde</b> \n /dizi_KaraSevda :<b>Kara Sevda</b>",
