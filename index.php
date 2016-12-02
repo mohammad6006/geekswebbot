@@ -95,8 +95,6 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
-        $text = "dasdasdasdas";
-        simpleTextSend($update->callback_query->message->chat->id,$text);
     }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
