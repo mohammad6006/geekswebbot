@@ -79,6 +79,9 @@ try {
             'reply_markup' => json_encode([
                 'inline_keyboard' => [
                         [
+                            ['text' => 'Anne','callback_data'=>'dizi_anne']
+                        ],
+                        [
                             ['text' => 'Kiralık Aşk','callback_data'=>'dizi_kiralikask']
                         ],
                         [
@@ -95,7 +98,8 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
-        simpleTextSend($update->callback_query->message->chat->id,$update->callback_query->data);
+        $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 5);
+        simpleTextSend($update->callback_query->message->chat->id,json_encode($diziinsta));
     }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
