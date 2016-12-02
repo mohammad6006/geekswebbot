@@ -98,7 +98,7 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
-        $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 5);
+        $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         simpleTextSend($update->callback_query->message->chat->id,json_encode($diziinsta));
     }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
