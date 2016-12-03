@@ -173,11 +173,27 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            $url = fopen($tem, 'r');
-            while (!feof($url)) {
-                simpleTextSend($update->callback_query->message->chat->id,fgets($url));
-            }
-            fclose($url);
+
+$remote = fopen($tem, 'r');
+    $local = fopen('testing', 'w');
+    $read_bytes = 0;
+    while(!feof($remote)) {
+      $buffer = fread($remote, 2048);
+      fwrite($local, $buffer);
+      $read_bytes += 2048;
+      $progress = min(100, 100 * $read_bytes / 4564);
+  simpleTextSend($update->callback_query->message->chat->id,json_encode(array("progress"=>$progress))); 
+    }
+   fclose($remote);
+   fclose($local);
+
+
+
+            // $url = fopen($tem, 'r');
+            // while (!feof($url)) {
+            //     simpleTextSend($update->callback_query->message->chat->id,fgets($url));
+            // }
+            // fclose($url);
 
             // $response = $client->sendAudio([
             //     'chat_id' => $update->callback_query->message->chat->id,
