@@ -174,6 +174,10 @@ try {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
             $url = fopen($tem, 'r');
+            while (!feof($url)) {
+                simpleTextSend($update->callback_query->message->chat->id,fgets($url));
+            }
+            fclose($url);
 
             // $response = $client->sendAudio([
             //     'chat_id' => $update->callback_query->message->chat->id,
@@ -182,7 +186,7 @@ try {
             //     'title' => 'ttiitle',
             //     'caption' => 'ttiitle'
             //     ]);
-            simpleTextSend($update->callback_query->message->chat->id,json_encode($url));
+            // simpleTextSend($update->callback_query->message->chat->id,json_encode($url));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
