@@ -180,7 +180,7 @@ try {
                 'title' => 'ttiitle',
                 'caption' => 'ttiitle'
                 ]);
-
+            sleep(30);
             simpleTextSend($update->callback_query->message->chat->id,json_encode($response));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
