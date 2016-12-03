@@ -67,6 +67,7 @@ try {
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
+        simpleTextSend($update->message->chat->id,json_encode($update->message));
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
         if ($query) {
@@ -130,6 +131,7 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
+        simpleTextSend($update->callback_query->message->chat->id,json_encode($update->callback_query));
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic') {
             $query = $fpdo->from('messages')->where('user_id',$update->from->id)->fetch();
