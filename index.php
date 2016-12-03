@@ -134,22 +134,24 @@ try {
         if ($dastor == 'urltoinstapic') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
 
-            $clasih = new InstagramDownload($query[daryaft]);
+            $url = $query[daryaft];
+
+            $clasih = new InstagramDownload($url);
             $url = $clasih->downloadUrl();
             $type1 = $clasih->type();
             if ($type1 == 'image') {
                 $url = trim(strtok($url, '?'));
                 if ($url != '') {
-                    $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+                    $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_photo']);
                     $response = $client->sendPhoto([
-                        'chat_id'=> $update->message->chat->id,
+                        'chat_id'=> $update->callback_query->message->chat->id,
                         'photo'=>fopen($url,'r'),
                         'caption'=>'test'
                         ]);
                 }else{
-                    $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+                    $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'typing']);
                     $response = $client->sendMessage([
-                        'chat_id' => $update->message->chat->id,
+                        'chat_id' => $update->callback_query->message->chat->id,
                         'text' => 'olmadi - not found'
                     ]);
                 }
