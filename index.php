@@ -68,22 +68,31 @@ try {
     }
     elseif ($update->message->entities[0]->type == 'url') {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
+        if ($query) {
+            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => $update->message->text, 'ersal' => 'khali');
+            $query = $fpdo->update('messages')->set($values)->where('id',$query[id])->execute();    
+
+        }else{
+            $values = array('user_id' => $update->message->from->id, 'chat_id' => $update->message->chat->id, 'message_id' => $update->message->message_id, 'daryaft' => $update->message->text, 'ersal' => 'khali');       
+            $query = $fpdo->insertInto('messages')->values($values)->execute();    
+        }
         $response = $client->sendMessage([
             'chat_id' => $update->message->chat->id,
             'text' => 'از این آدرس چه میخواهید؟',
             'reply_markup' => json_encode([
                 'inline_keyboard' => [
                         [
-                            ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic;'.$update->message->text]
+                            ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic']
                         ],
                         [
-                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo;'.$update->message->text]
+                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo']
                         ],
                         [
-                            ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio;'.$update->message->text]
+                            ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio']
                         ],
                         [
-                            ['text' => 'تبدیل این آدرس به ویدئو','callback_data'=>'urltovideo;'.$update->message->text]
+                            ['text' => 'تبدیل این آدرس به ویدئو','callback_data'=>'urltovideo']
                         ]
                     ]
                 ])
