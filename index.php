@@ -181,7 +181,7 @@ $remote = fopen($tem, 'r');
       $buffer = fread($remote, 2048);
       fwrite($local, $buffer);
       $read_bytes += 2048;
-      $progress = min(100, 100 * $read_bytes / 4564);
+      $progress = min(100, 100 * $read_bytes / 1953000);
   simpleTextSend($update->callback_query->message->chat->id,json_encode(array("progress"=>$progress))); 
     }
    fclose($remote);
