@@ -86,7 +86,7 @@ try {
                             ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic']
                         ],
                         [
-                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo']
+                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinstavideo']
                         ],
                         [
                             ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio']
@@ -131,7 +131,7 @@ try {
     }
     elseif (isset($update->callback_query)) {
         $dastor = $update->callback_query->data;
-        if ($dastor == 'urltoinstapic') {
+        if ($dastor == 'urltoinstapic' || $dastor == 'urltoinstavideo') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
 
             $url = $query[daryaft];
@@ -149,23 +149,25 @@ try {
                         'caption'=>'test'
                         ]);
                 }else{
-                    $text = "به نظر میرسد تصویر انتخابی شما از یک پروفایل مخقی می باشد \n تنها تصاویری قابل دانلو میباشد که برای دیدن آن نیازی به فالو کردن نمیباشد!";
+                    $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                     simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
             }elseif ($type1 == 'video') {
                 $url = trim(strtok($url, '?'));
-                $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_video']);
-                $response = $client->sendVideo([
-                    'chat_id'=> $update->callback_query->message->chat->id,
-                    'video'=>fopen($url,'r'),
-                    'caption'=>'test'
-                    ]);
+                if ($url != '') {
+                    $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_video']);
+                    $response = $client->sendVideo([
+                        'chat_id'=> $update->callback_query->message->chat->id,
+                        'video'=>fopen($url,'r'),
+                        'caption'=>'test'
+                        ]);
+                }else{
+                    $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
+                    simpleTextSend($update->callback_query->message->chat->id,$text);
+                }
             }else{
-                $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'typing']);
-                $response = $client->sendMessage([
-                    'chat_id' => $update->callback_query->message->chat->id,
-                    'text' => 'olmadi'
-                ]);
+                $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
+                simpleTextSend($update->callback_query->message->chat->id,$text);
             }
 
 
