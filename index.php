@@ -74,16 +74,16 @@ try {
             'reply_markup' => json_encode([
                 'inline_keyboard' => [
                         [
-                            ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic']
+                            ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic;'.$update->message->text]
                         ],
                         [
-                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo']
+                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo;'.$update->message->text]
                         ],
                         [
-                            ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio']
+                            ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio;'.$update->message->text]
                         ],
                         [
-                            ['text' => 'تبدیل این آدرس به ویدئو','callback_data'=>'urltovideo']
+                            ['text' => 'تبدیل این آدرس به ویدئو','callback_data'=>'urltovideo;'.$update->message->text]
                         ]
                     ]
                 ])
