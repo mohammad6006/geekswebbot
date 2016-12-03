@@ -132,7 +132,7 @@ try {
     elseif (isset($update->callback_query)) {
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic') {
-            $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
+            $query = $fpdo->from('messages')->where('user_id',$update->from->id)->fetch();
             simpleTextSend($update->callback_query->message->chat->id,$query[daryaft]);
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
