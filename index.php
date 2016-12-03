@@ -133,7 +133,7 @@ try {
     elseif (isset($update->callback_query)) {
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic') {
-            simpleTextSend($update->callback_query->message->chat->id,json_encode($update->callback_query));
+            simpleTextSend($update->callback_query->message->chat->id,$update->callback_query->from->id);
             $query = $fpdo->from('messages')->where('user_id','66828424')->fetch();
             simpleTextSend($update->callback_query->message->chat->id,json_encode($query));
         }
