@@ -67,7 +67,6 @@ try {
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
-        simpleTextSend($update->message->chat->id,json_encode($update->message));
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
         $query = $fpdo->from('messages')->where('user_id',$update->message->from->id)->fetch();
         if ($query) {
@@ -133,9 +132,43 @@ try {
     elseif (isset($update->callback_query)) {
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic') {
-            simpleTextSend($update->callback_query->message->chat->id,$update->callback_query->from->id);
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
-            simpleTextSend($update->callback_query->message->chat->id,$query[daryaft]);
+
+            $clasih = new InstagramDownload($query[daryaft]);
+            $url = $clasih->downloadUrl();
+            $type1 = $clasih->type();
+            if ($type1 == 'image') {
+                $url = trim(strtok($url, '?'));
+                if ($url != '') {
+                    $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_photo']);
+                    $response = $client->sendPhoto([
+                        'chat_id'=> $update->message->chat->id,
+                        'photo'=>fopen($url,'r'),
+                        'caption'=>'test'
+                        ]);
+                }else{
+                    $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+                    $response = $client->sendMessage([
+                        'chat_id' => $update->message->chat->id,
+                        'text' => 'olmadi - not found'
+                    ]);
+                }
+            }elseif ($type1 == 'video') {
+                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
+                $response = $client->sendVideo([
+                    'chat_id'=> $update->message->chat->id,
+                    'video'=>fopen($url,'r'),
+                    'caption'=>'test'
+                    ]);
+            }else{
+                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+                $response = $client->sendMessage([
+                    'chat_id' => $update->message->chat->id,
+                    'text' => 'olmadi'
+                ]);
+            }
+
+
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
