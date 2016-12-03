@@ -130,8 +130,11 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
+        $dastor = $update->callback_query->data;
+        if ($dastor == 'urltoinstapic') {
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($update->callback_query));
+        }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
-        simpleTextSend($update->callback_query->message->chat->id,json_encode($update->callback_query));
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 
     }
