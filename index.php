@@ -345,7 +345,7 @@ try {
         $response = $client->sendVideo([
             'chat_id' => '@turktv',
             'video' => $update->message->video->file_id,
-            'caption' => " \n @TurkTv",
+            'caption' => $update->message->caption,
             'duration' => $update->message->video->duration,
             'width' => $update->message->video->width,
             'height' => $update->message->video->height
