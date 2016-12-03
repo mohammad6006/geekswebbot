@@ -133,7 +133,7 @@ try {
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic') {
             $query = $fpdo->from('messages')->where('user_id',$update->from->id)->fetch();
-            simpleTextSend($update->callback_query->message->chat->id,$query[daryaft]);
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($query));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
