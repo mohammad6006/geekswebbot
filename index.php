@@ -153,6 +153,7 @@ try {
                     simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
             }elseif ($type1 == 'video') {
+                $url = trim(strtok($url, '?'));
                 $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_video']);
                 $response = $client->sendVideo([
                     'chat_id'=> $update->callback_query->message->chat->id,
