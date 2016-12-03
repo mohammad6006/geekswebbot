@@ -172,7 +172,8 @@ try {
 
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
-            $url = fopen($query[daryaft], 'r');
+            $tem = $query[daryaft];
+            $url = fopen($tem, 'r');
 
             // $response = $client->sendAudio([
             //     'chat_id' => $update->callback_query->message->chat->id,
