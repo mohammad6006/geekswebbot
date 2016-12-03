@@ -149,23 +149,20 @@ try {
                         'caption'=>'test'
                         ]);
                 }else{
-                    $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'typing']);
-                    $response = $client->sendMessage([
-                        'chat_id' => $update->callback_query->message->chat->id,
-                        'text' => 'olmadi - not found'
-                    ]);
+                    $text = "به نظر میرسد تصویر انتخابی شما از یک پروفایل مخقی می باشد \n تنها تصاویری قابل دانلو میباشد که برای دیدن آن نیازی به فالو کردن نمیباشد!";
+                    simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
             }elseif ($type1 == 'video') {
-                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_video']);
+                $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_video']);
                 $response = $client->sendVideo([
-                    'chat_id'=> $update->message->chat->id,
+                    'chat_id'=> $update->callback_query->message->chat->id,
                     'video'=>fopen($url,'r'),
                     'caption'=>'test'
                     ]);
             }else{
-                $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+                $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'typing']);
                 $response = $client->sendMessage([
-                    'chat_id' => $update->message->chat->id,
+                    'chat_id' => $update->callback_query->message->chat->id,
                     'text' => 'olmadi'
                 ]);
             }
