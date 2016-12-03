@@ -66,6 +66,29 @@ try {
     {
 
     }
+    elseif ($update->message->entities[0]->type == 'url') {
+        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'از این آدرس چه میخواهید؟',
+            'reply_markup' => json_encode([
+                'inline_keyboard' => [
+                        [
+                            ['text' => 'دانلود این تصویر از اینستاگرام','callback_data'=>'urltoinstapic']
+                        ],
+                        [
+                            ['text' => 'دانلود این ویدئو از اینستاگرام','callback_data'=>'urltoinctavideo']
+                        ],
+                        [
+                            ['text'=>'تبدیل این ادرس به موزیک','callback_data'=>'urltoaudio']
+                        ],
+                        [
+                            ['text' => 'تبدیل این آدرس به ویدئو','callback_data'=>'urltovideo']
+                        ]
+                    ]
+                ])
+            ]);
+    }
     elseif($update->message->text == '/contact')
     {
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
@@ -98,8 +121,10 @@ try {
             ]);
     }
     elseif (isset($update->callback_query)) {
-        $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
-        simpleTextSend($update->callback_query->message->chat->id,json_encode($diziinsta));
+        // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
+        simpleTextSend($update->callback_query->message->chat->id,json_encode($update->callback_query));
+        // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
+
     }
     elseif (strpos(strtolower($update->message->text), '/mp3') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
