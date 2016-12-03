@@ -133,7 +133,6 @@ try {
         $dastor = $update->callback_query->data;
         if ($dastor == 'urltoinstapic' || $dastor == 'urltoinstavideo') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
-
             $url = $query[daryaft];
 
             $clasih = new InstagramDownload($url);
@@ -171,6 +170,18 @@ try {
             }
 
 
+        }elseif ($dastor == 'urltoaudio') {
+            $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
+            $url = $query[daryaft];
+            $response = $client->sendAudio([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'audio' => fopen($url,'r'),
+                'performer' => '@TurkTv',
+                'title' => 'ttiitle',
+                'caption' => 'ttiitle'
+                ]);
+
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($response));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
