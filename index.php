@@ -175,10 +175,10 @@ try {
             $tem = $query[daryaft];
 $path = "https://wordpress.org/plugins/about/readme.txt";
   $ch = curl_init($path);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Length: '.filesize($path)));
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Length: '.4564));
   curl_setopt($ch, CURLOPT_PUT, true);
   curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
-  curl_setopt($ch, CURLOPT_INFILESIZE, filesize($path));
+  curl_setopt($ch, CURLOPT_INFILESIZE, 4564);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0); 
   curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
 simpleTextSend($update->callback_query->message->chat->id,curl_exec($ch)); 
