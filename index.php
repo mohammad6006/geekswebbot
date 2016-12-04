@@ -173,7 +173,7 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            if (file_exists('samplefile.mp3')) {
+            if (file_exists("./samplefile.mp3")) {
                 simpleTextSend($update->callback_query->message->chat->id,'var');
             }else{
                 simpleTextSend($update->callback_query->message->chat->id,'olmadi');
