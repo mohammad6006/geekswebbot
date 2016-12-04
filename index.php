@@ -173,60 +173,11 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-// if ($fh = fopen($tem, "r")) {
-//     simpleTextSend($update->callback_query->message->chat->id,$fh); 
-//     fclose($fh);
-// }else{
-//     simpleTextSend($update->callback_query->message->chat->id,'olmadi'); 
-// }//   $ch = curl_init($tem);
-//   curl_setopt($ch, CURLOPT_HTTPHEADER, array());
-//   curl_setopt($ch, CURLOPT_PUT, true);
-//   curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
-//   curl_setopt($ch, CURLOPT_INFILESIZE, 4564);
-//   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0); 
-//   curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
-// simpleTextSend($update->callback_query->message->chat->id,curl_exec($ch)); 
-
-    // for ($i = 1; $i <= 10; $i++) {
-    //   $ch = curl_init();
-    //   curl_setopt($ch,CURLOPT_URL,"https://wordpress.org/plugins/about/readme.txt");
-
-    //   if(curl_exec($ch)){ // ?? - if request and data are completely received
-    //     continue; // ?? - go to the next loop
-    //   }
-    //     simpleTextSend($update->callback_query->message->chat->id,'eshih'); 
-    //   // DONT go to the next loop until the above data is complete or returns true
-    // }
-
-// $remote = fopen($tem, 'r');
-//     $local = fopen('testing', 'w');
-//     $read_bytes = 0;
-//     while(!feof($remote)) {
-//       $buffer = fread($remote, 2048);
-//       fwrite($local, $buffer);
-//       $read_bytes += 2048;
-//       $progress = min(100, 100 * $read_bytes / 1953000);
-//   simpleTextSend($update->callback_query->message->chat->id,json_encode(array("progress"=>$progress))); 
-//     }
-//    fclose($remote);
-//    fclose($local);
-
-
-
-            // $url = fopen($tem, 'r');
-            // while (!feof($url)) {
-            //     simpleTextSend($update->callback_query->message->chat->id,fgets($url));
-            // }
-            // fclose($url);
-
-            // $response = $client->sendAudio([
-            //     'chat_id' => $update->callback_query->message->chat->id,
-            //     'audio' => $url,
-            //     'performer' => '@TurkTv',
-            //     'title' => 'ttiitle',
-            //     'caption' => 'ttiitle'
-            //     ]);
-            // simpleTextSend($update->callback_query->message->chat->id,json_encode($url));
+            if (file_exists('samplefile.mp3')) {
+                simpleTextSend($update->callback_query->message->chat->id,'var');
+            }else{
+                simpleTextSend($update->callback_query->message->chat->id,'olmadi');
+            }
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
