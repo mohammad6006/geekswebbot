@@ -180,8 +180,9 @@ try {
 
       if(curl_exec($ch)){ // ?? - if request and data are completely received
         continue; // ?? - go to the next loop
-        simpleTextSend($update->callback_query->message->chat->id,json_encode($ch)); 
+        simpleTextSend($update->callback_query->message->chat->id,'ichari'); 
       }
+        simpleTextSend($update->callback_query->message->chat->id,'eshih'); 
       // DONT go to the next loop until the above data is complete or returns true
     }
 
