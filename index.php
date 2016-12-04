@@ -173,18 +173,26 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
+$path = "https://wordpress.org/plugins/about/readme.txt";
+  $ch = curl_init($path);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Length: '.filesize($path));
+  curl_setopt($ch, CURLOPT_PUT, true);
+  curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
+  curl_setopt($ch, CURLOPT_INFILESIZE, filesize($path));
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0); 
+  curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
+simpleTextSend($update->callback_query->message->chat->id,curl_exec($ch)); 
 
-    for ($i = 1; $i <= 10; $i++) {
-      $ch = curl_init();
-      curl_setopt($ch,CURLOPT_URL,"https://wordpress.org/plugins/about/readme.txt");
+    // for ($i = 1; $i <= 10; $i++) {
+    //   $ch = curl_init();
+    //   curl_setopt($ch,CURLOPT_URL,"https://wordpress.org/plugins/about/readme.txt");
 
-      if(curl_exec($ch)){ // ?? - if request and data are completely received
-        continue; // ?? - go to the next loop
-        simpleTextSend($update->callback_query->message->chat->id,'ichari'); 
-      }
-        simpleTextSend($update->callback_query->message->chat->id,'eshih'); 
-      // DONT go to the next loop until the above data is complete or returns true
-    }
+    //   if(curl_exec($ch)){ // ?? - if request and data are completely received
+    //     continue; // ?? - go to the next loop
+    //   }
+    //     simpleTextSend($update->callback_query->message->chat->id,'eshih'); 
+    //   // DONT go to the next loop until the above data is complete or returns true
+    // }
 
 // $remote = fopen($tem, 'r');
 //     $local = fopen('testing', 'w');
