@@ -173,14 +173,19 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-  $ch = curl_init($tem);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array());
-  curl_setopt($ch, CURLOPT_PUT, true);
-  curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
-  curl_setopt($ch, CURLOPT_INFILESIZE, 4564);
-  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0); 
-  curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
-simpleTextSend($update->callback_query->message->chat->id,curl_exec($ch)); 
+if ($fh = fopen($tem, "r")) {
+    simpleTextSend($update->callback_query->message->chat->id,$fh); 
+    fclose($fh);
+}else{
+    simpleTextSend($update->callback_query->message->chat->id,'olmadi'); 
+}//   $ch = curl_init($tem);
+//   curl_setopt($ch, CURLOPT_HTTPHEADER, array());
+//   curl_setopt($ch, CURLOPT_PUT, true);
+//   curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
+//   curl_setopt($ch, CURLOPT_INFILESIZE, 4564);
+//   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0); 
+//   curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
+// simpleTextSend($update->callback_query->message->chat->id,curl_exec($ch)); 
 
     // for ($i = 1; $i <= 10; $i++) {
     //   $ch = curl_init();
