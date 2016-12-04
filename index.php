@@ -175,7 +175,7 @@ try {
             $tem = $query[daryaft];
 $path = "https://wordpress.org/plugins/about/readme.txt";
   $ch = curl_init($path);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Length: '.4564));
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array());
   curl_setopt($ch, CURLOPT_PUT, true);
   curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
   curl_setopt($ch, CURLOPT_INFILESIZE, 4564);
