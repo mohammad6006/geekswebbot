@@ -174,6 +174,17 @@ try {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
 
+    for ($i = 1; $i <= 10; $i++) {
+      $ch = curl_init();
+      curl_setopt($ch,CURLOPT_URL,"https://wordpress.org/plugins/about/readme.txt");
+
+      if(curl_exec($ch)){ // ?? - if request and data are completely received
+        continue; // ?? - go to the next loop
+        simpleTextSend($update->callback_query->message->chat->id,json_encode($ch)); 
+      }
+      // DONT go to the next loop until the above data is complete or returns true
+    }
+
 // $remote = fopen($tem, 'r');
 //     $local = fopen('testing', 'w');
 //     $read_bytes = 0;
