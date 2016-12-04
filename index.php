@@ -173,8 +173,7 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-$path = "https://wordpress.org/plugins/about/readme.txt";
-  $ch = curl_init($path);
+  $ch = curl_init($tem);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array());
   curl_setopt($ch, CURLOPT_PUT, true);
   curl_setopt($ch, CURLOPT_INFILE, fopen($path, 'r'));
