@@ -61,6 +61,48 @@ function simpleTextSend($chatid,$text)
     }
 }
 
+function UrlGetContentsCurl(){
+  // parse the argument passed and set default values
+  $arg_names    = array('url', 'timeout', 'getContent', 'offset', 'maxLen');
+  $arg_passed   = func_get_args();
+  $arg_nb       = count($arg_passed);
+  if (!$arg_nb){
+    echo 'At least one argument is needed for this function';
+    return false;
+  }
+  $arg = array (
+    'url'       => null,
+    'timeout'   => ini_get('max_execution_time'),
+    'getContent'=> true,
+    'offset'    => 0,
+    'maxLen'    => null
+  );
+  foreach ($arg_passed as $k=>$v){
+    $arg[$arg_names[$k]] = $v;
+  }
+
+  // CURL connection and result
+  $ch = curl_init($arg['url']);
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
+  curl_setopt($ch, CURLOPT_RESUME_FROM, $arg['offset']);
+  curl_setopt($ch, CURLOPT_TIMEOUT, $arg['timeout']);
+  $result  = curl_exec($ch);
+  $elapsed = curl_getinfo ($ch, CURLINFO_TOTAL_TIME);
+  $CurlErr = curl_error($ch);
+  curl_close($ch);
+  if ($CurlErr) {
+    echo $CurlErr;
+    return false;
+  }elseif ($arg['getContent']){
+    return $arg['maxLen']
+      ? substr($result, 0, $arg['maxLen'])
+      : $result;
+  }
+  return $elapsed;
+}
+
 try {
     if(isset($update->inline_query))
     {
@@ -173,19 +215,21 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            file_put_contents("Tmpfile.mp3", fopen($tem, 'r'));
+            $timeout = 5;
+            simpleTextSend($update->callback_query->message->chat->id,UrlGetContentsCurl($tem,$timeout));
+            // file_put_contents("Tmpfile.mp3", fopen($tem, 'r'));
 
-            if (file_exists("./Tmpfile.mp3")) {
-                $response = $client->sendAudio([
-                    'chat_id' => $update->callback_query->message->chat->id,
-                    'audio' => fopen("./Tmpfile.mp3",'r'),
-                    'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-                    'performer' => '@TurkTv-Kalben',
-                    'title' => 'Haydi Söyle'
-                    ]);
-            }else{
-                simpleTextSend($update->callback_query->message->chat->id,'olmadi');
-            }
+            // if (file_exists("./Tmpfile.mp3")) {
+            //     $response = $client->sendAudio([
+            //         'chat_id' => $update->callback_query->message->chat->id,
+            //         'audio' => fopen("./Tmpfile.mp3",'r'),
+            //         'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+            //         'performer' => '@TurkTv-Kalben',
+            //         'title' => 'Haydi Söyle'
+            //         ]);
+            // }else{
+            //     simpleTextSend($update->callback_query->message->chat->id,'olmadi');
+            // }
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
