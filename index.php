@@ -215,21 +215,7 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            $timeout = 5;
-            simpleTextSend($update->callback_query->message->chat->id,UrlGetContentsCurl($tem,$timeout));
-            // file_put_contents("Tmpfile.mp3", fopen($tem, 'r'));
-
-            // if (file_exists("./Tmpfile.mp3")) {
-            //     $response = $client->sendAudio([
-            //         'chat_id' => $update->callback_query->message->chat->id,
-            //         'audio' => fopen("./Tmpfile.mp3",'r'),
-            //         'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-            //         'performer' => '@TurkTv-Kalben',
-            //         'title' => 'Haydi Söyle'
-            //         ]);
-            // }else{
-            //     simpleTextSend($update->callback_query->message->chat->id,'olmadi');
-            // }
+            // simpleTextSend($update->callback_query->message->chat->id,UrlGetContentsCurl($tem,$timeout));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
