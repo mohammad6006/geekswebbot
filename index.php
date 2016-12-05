@@ -61,48 +61,6 @@ function simpleTextSend($chatid,$text)
     }
 }
 
-function UrlGetContentsCurl(){
-  // parse the argument passed and set default values
-  $arg_names    = array('url', 'timeout', 'getContent', 'offset', 'maxLen');
-  $arg_passed   = func_get_args();
-  $arg_nb       = count($arg_passed);
-  if (!$arg_nb){
-    echo 'At least one argument is needed for this function';
-    return false;
-  }
-  $arg = array (
-    'url'       => null,
-    'timeout'   => ini_get('max_execution_time'),
-    'getContent'=> true,
-    'offset'    => 0,
-    'maxLen'    => null
-  );
-  foreach ($arg_passed as $k=>$v){
-    $arg[$arg_names[$k]] = $v;
-  }
-
-  // CURL connection and result
-  $ch = curl_init($arg['url']);
-  curl_setopt($ch, CURLOPT_HEADER, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
-  curl_setopt($ch, CURLOPT_RESUME_FROM, $arg['offset']);
-  curl_setopt($ch, CURLOPT_TIMEOUT, $arg['timeout']);
-  $result  = curl_exec($ch);
-  $elapsed = curl_getinfo ($ch, CURLINFO_TOTAL_TIME);
-  $CurlErr = curl_error($ch);
-  curl_close($ch);
-  if ($CurlErr) {
-    echo $CurlErr;
-    return false;
-  }elseif ($arg['getContent']){
-    return $arg['maxLen']
-      ? substr($result, 0, $arg['maxLen'])
-      : $result;
-  }
-  return $elapsed;
-}
-
 try {
     if(isset($update->inline_query))
     {
@@ -215,7 +173,19 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            // simpleTextSend($update->callback_query->message->chat->id,UrlGetContentsCurl($tem,$timeout));
+set_time_limit(0); // unlimited max execution time
+$options = array(
+  CURLOPT_FILE    => './Cover2.jpg',
+  CURLOPT_TIMEOUT =>  28800, // set this to 8 hours so we dont timeout on big files
+  CURLOPT_URL     => 'http://s2.server-dl.asia/ali/music/Torki/Rafet%20El%20Roman/[2013]%20Rafet%20El%20Roman%20-%20Yadigar/Cover/Cover2.jpg',
+);
+
+$ch = curl_init();
+curl_setopt_array($ch, $options);
+curl_exec($ch);
+curl_close($ch);
+
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($ch));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
