@@ -177,6 +177,7 @@ try {
 set_time_limit(0); // unlimited max execution time
 $options = array(
   CURLOPT_FILE    => $fh,
+  CURLOPT_CONNECTTIMEOUT => 15,
   CURLOPT_TIMEOUT =>  28800, // set this to 8 hours so we dont timeout on big files
   CURLOPT_URL     => 'http://s2.server-dl.asia/ali/music/Torki/Adnan%20Firat/[2010]%20Adnan%20Firat%20-%20Dereng/08.%20Adnan%20Firat%20-%20Strana%20Azadiye%20%20Ozgurluk%20Turkusu.mp3',
 );
