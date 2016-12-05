@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e81dd146d2fc7c4204e81de589a61743",
-    "content-hash": "2467056e5958b6a7898b1515805ed8f0",
+    "hash": "d29c904495b718968d6949c6d91e7311",
+    "content-hash": "5c7bc018d129ab88947f2addc34966df",
     "packages": [
         {
             "name": "bolandish/instagram-grabber",
@@ -36,6 +36,58 @@
             ],
             "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken",
             "time": "2016-11-24 15:59:13"
+        },
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "327f2db5767ceb8a19d51785e1b60e86674a6a2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/327f2db5767ceb8a19d51785e1b60e86674a6a2e",
+                "reference": "327f2db5767ceb8a19d51785e1b60e86674a6a2e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "time": "2016-10-27 22:02:47"
         },
         {
             "name": "dg/rss-php",

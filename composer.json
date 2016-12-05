@@ -7,6 +7,7 @@
         "bolandish/instagram-grabber": "^1.0",
         "paquettg/php-html-parser": "^1.7",
         "monolog/monolog": "^1.21",
-        "fpdo/fluentpdo": "^1.1"
+        "fpdo/fluentpdo": "^1.1",
+        "cloudinary/cloudinary_php": "^1.4"
     }
 }
