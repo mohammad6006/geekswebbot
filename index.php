@@ -22,6 +22,9 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
+$ssii = \Cloudinary\Uploader::upload("http://www.joshuacasper.com/contents/uploads/joshua-casper-samples-free.jpg");
+
+
 function zamanmahali($zaman)
 {
     $zaman1 = strtotime($zaman) + strtotime('00:30');
@@ -106,7 +109,7 @@ try {
     elseif($update->message->text == '/contact')
     {
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        $response = simpleTextSend($update->message->chat->id,$text);
+        $response = simpleTextSend($update->message->chat->id,$ssii);
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
