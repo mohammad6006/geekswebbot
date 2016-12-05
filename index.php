@@ -16,6 +16,11 @@ $pdo = new PDO($dsn, $user, $pw);
 $fpdo = new FluentPDO($pdo);
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
+\Cloudinary::config(array( 
+  "cloud_name" => "drnd9jbicz", 
+  "api_key" => "621626275129456", 
+  "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
+));
 
 function zamanmahali($zaman)
 {
