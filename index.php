@@ -173,9 +173,10 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
+            $fh = fopen('./Cover2.jpg', 'w');
 set_time_limit(0); // unlimited max execution time
 $options = array(
-  CURLOPT_FILE    => './Cover2.jpg',
+  CURLOPT_FILE    => $fh,
   CURLOPT_TIMEOUT =>  28800, // set this to 8 hours so we dont timeout on big files
   CURLOPT_URL     => 'http://s2.server-dl.asia/ali/music/Torki/Rafet%20El%20Roman/[2013]%20Rafet%20El%20Roman%20-%20Yadigar/Cover/Cover2.jpg',
 );
@@ -184,6 +185,8 @@ $ch = curl_init();
 curl_setopt_array($ch, $options);
 curl_exec($ch);
 curl_close($ch);
+            fclose($fh);
+
 
             simpleTextSend($update->callback_query->message->chat->id,json_encode($ch));
         }
