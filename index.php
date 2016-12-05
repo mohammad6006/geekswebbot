@@ -22,7 +22,6 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
-$ssii = \Cloudinary\Uploader::upload("http://s2.server-dl.asia/ali/music/Torki/Ahmet%20Kaya/Ahmet%20Kaya%20-%202003%20Dinle%20Sevgili%20Ulkem%20I/07%20-%20AYRILIGIN%20HEDIYESI%20%7B%20Yavuz%20Bingol%20%7D.mp3", array("resource_type" => "auto","timeout" => 60));
 
 
 function zamanmahali($zaman)
@@ -109,7 +108,7 @@ try {
     elseif($update->message->text == '/contact')
     {
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        $response = simpleTextSend($update->message->chat->id,json_encode($ssii));
+        $response = simpleTextSend($update->message->chat->id,$text);
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
@@ -181,23 +180,9 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-            $fh = fopen('./tezz2.mp3', 'w');
-set_time_limit(0); // unlimited max execution time
-$options = array(
-  CURLOPT_FILE    => $fh,
-  CURLOPT_CONNECTTIMEOUT => 15,
-  CURLOPT_TIMEOUT =>  28800, // set this to 8 hours so we dont timeout on big files
-  CURLOPT_URL     => 'http://s2.server-dl.asia/ali/music/Torki/Adnan%20Firat/[2010]%20Adnan%20Firat%20-%20Dereng/09.%20Adnan%20Firat%20-%20Ez%20U%20Tu%20%20Ben%20Sen.mp3',
-);
+        $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60));
 
-$ch = curl_init();
-curl_setopt_array($ch, $options);
-$hasanjan = curl_exec($ch);
-curl_close($ch);
-            fclose($fh);
-
-
-            simpleTextSend($update->callback_query->message->chat->id,$hasanjan);
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($ssii));
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
