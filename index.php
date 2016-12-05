@@ -22,7 +22,7 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
-$ssii = \Cloudinary\Uploader::upload("http://www.joshuacasper.com/contents/uploads/joshua-casper-samples-free.jpg");
+$ssii = \Cloudinary\Uploader::upload("http://www.leica-microsystems.com/fileadmin/_processed_/csm_Sample_Preparation_Fig_1_2_05_9980c91b97.gif");
 
 
 function zamanmahali($zaman)
