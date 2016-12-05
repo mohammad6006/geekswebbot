@@ -109,7 +109,7 @@ try {
     elseif($update->message->text == '/contact')
     {
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        $response = simpleTextSend($update->message->chat->id,$ssii);
+        $response = simpleTextSend($update->message->chat->id,json_encode($ssii));
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
