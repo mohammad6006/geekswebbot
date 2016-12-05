@@ -22,7 +22,7 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
-$ssii = \Cloudinary\Uploader::upload("http://s2.server-dl.asia/ali/music/Torki/Adnan%20Firat/[2010]%20Adnan%20Firat%20-%20Dereng/09.%20Adnan%20Firat%20-%20Ez%20U%20Tu%20%20Ben%20Sen.mp3", array("resource_type" => "raw"));
+$ssii = \Cloudinary\Uploader::upload_large("http://s2.server-dl.asia/ali/music/Torki/Adnan%20Firat/[2010]%20Adnan%20Firat%20-%20Dereng/09.%20Adnan%20Firat%20-%20Ez%20U%20Tu%20%20Ben%20Sen.mp3", array("resource_type" => "auto"));
 
 
 function zamanmahali($zaman)
