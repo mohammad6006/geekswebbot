@@ -180,17 +180,15 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-        $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60));
+        // $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60));
 
             // simpleTextSend($update->callback_query->message->chat->id,json_encode($ssii));
         $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
         $response = $client->sendAudio([
             'chat_id' => $update->callback_query->message->chat->id,
-            'audio' => $ssii->secure_url,
-            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
-            'performer' => '@TurkTv-Kalben',
-            'title' => 'Haydi Söyle'
-            ]);  
+            'audio' => 'https://res.cloudinary.com/drnd9jbicz/video/upload/v1480969813/wy8doxxkgg20agmmszxl.mp3'
+            ]);
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
