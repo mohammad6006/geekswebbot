@@ -186,7 +186,7 @@ try {
         $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
         $response = $client->sendAudio([
             'chat_id' => $update->callback_query->message->chat->id,
-            'audio' => 'http://s2.server-dl.asia/ali/music/Torki/Ebru%20Gundes/[2014]%20Ebru%20Gundes%20-%20Araftayim/07.%20Bir%20DevirBitti.mp3'
+            'audio' => 'https://res.cloudinary.com/drnd9jbicz/video/upload/v1480970950/pvi7edtgqci4jf2e2z0v.mp3'
             ]);
             simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }
