@@ -186,7 +186,10 @@ try {
             $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
             $response = $client->sendAudio([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'audio' => $ssii[secure_url]
+                'audio' => $ssii[secure_url],
+                'title' => '@TurkTv-test',
+                'caption' => 'dasdasd',
+                'performer' => 'dasdasdas'
                 ]);
                 simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }
