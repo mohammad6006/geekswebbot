@@ -320,7 +320,7 @@ try {
             'chat_id' => $update->message->chat->id,
             'performer' => "@TurkTv",
             'audio' => $update->message->audio->file_id,
-            'title' => $update->message->audio->title,
+            'title' => 'aasdasd',
             'caption' => $update->message->audio->title."\n @TurkTv",
             'duration' => $update->message->audio->duration
             ]);
