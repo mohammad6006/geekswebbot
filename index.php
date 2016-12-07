@@ -180,7 +180,7 @@ try {
         }elseif ($dastor == 'urltoaudio') {
             $query = $fpdo->from('messages')->where('user_id',$update->callback_query->from->id)->fetch();
             $tem = $query[daryaft];
-        $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60));
+        $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60,"audio_codec" => "mp3"));
 
             simpleTextSend($update->callback_query->message->chat->id,$ssii[secure_url]);
             $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
