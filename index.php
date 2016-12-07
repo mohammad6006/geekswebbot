@@ -324,6 +324,8 @@ try {
             'title' => 'aasdasd'
             ]);
 
+        simpleTextSend($update->message->chat->id,json_encode($response));
+
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendMessage([
