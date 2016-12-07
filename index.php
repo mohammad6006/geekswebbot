@@ -312,18 +312,25 @@ try {
 
     }
     elseif ($update->message->audio && ($update->message->chat->username == 'Mohammad6006')) {
-        $response = $client->sendMessage([
+                $response = $client->sendAudio([
             'chat_id' => $update->message->chat->id,
-            'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
+            'audio' => fopen('samplefile.mp3','r'),
+            'caption' => "Haydi Söyle \n Kalben \n @TurkTv",
+            'performer' => '@TurkTv-Kalben',
+            'title' => 'Haydi Söyle'
             ]);
-        $response = $client->sendAudio([
-            'chat_id' => $update->message->chat->id,
-            'performer' => "@TurkTv",
-            'audio' => $update->message->audio->file_id,
-            'title' => 'aasdasd',
-            'caption' => $update->message->audio->title."\n @TurkTv",
-            'duration' => $update->message->audio->duration
-            ]);
+        // $response = $client->sendMessage([
+        //     'chat_id' => $update->message->chat->id,
+        //     'text' => 'fileid:'.$update->message->audio->file_id.' duration: '.$update->message->audio->duration.' performer: '.$update->message->audio->performer.' title: '.$update->message->audio->title.' mime_type: '.$update->message->audio->mime_type.' file_size: '.$update->message->audio->file_size
+        //     ]);
+        // $response = $client->sendAudio([
+        //     'chat_id' => $update->message->chat->id,
+        //     'performer' => "@TurkTv",
+        //     'audio' => $update->message->audio->file_id,
+        //     'title' => 'aasdasd',
+        //     'caption' => $update->message->audio->title."\n @TurkTv",
+        //     'duration' => $update->message->audio->duration
+        //     ]);
 
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
