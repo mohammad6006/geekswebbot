@@ -75,6 +75,14 @@ try {
     }
     elseif ($update->message->reply_to_message && $update->message->reply_to_message->audio) {
         simpleTextSend($update->message->chat->id,json_encode($update->message));
+        $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
+        $response = $client->sendAudio([
+            'chat_id' => $update->message->chat->id,
+            'audio' => $update->message->reply_to_message->audio->file_id,
+            'performer' => '@TurkTv-test',
+            'caption' => $update->message->text
+            ]);
+
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
