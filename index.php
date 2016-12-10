@@ -73,8 +73,8 @@ try {
     {
 
     }
-    elseif ($update->message->reply_to_message && $update->message->audio) {
-        simpleTextSend($update->message->chat->id,'test');
+    elseif ($update->message->reply_to_message) {
+        simpleTextSend($update->message->chat->id,$update->message);
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
