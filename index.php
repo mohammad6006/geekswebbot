@@ -42,7 +42,7 @@ function listbarnameha($kanal)
     foreach ($btimes as $key => $btime) {
         $arri .= zamanmahali($btime->text).":".$progtitles[$key]->text."\n";
     }
-    return $arri .= "\n آدرس کانال : @TurkTv \n ربات : @TurkTvBot";
+    return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
 }
 function tezfanc($taz)
 {
@@ -71,6 +71,10 @@ function simpleTextSend($chatid,$text)
 try {
     if(isset($update->inline_query))
     {
+
+    }
+    elseif ($update->message->reply_to_message && $update->message->audio) {
+        simpleTextSend($update->message->chat->id,'test');
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
