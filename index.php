@@ -73,7 +73,7 @@ try {
     {
 
     }
-    elseif ($update->message->reply_to_message) {
+    elseif ($update->message->reply_to_message && $update->message->reply_to_message->audio) {
         simpleTextSend($update->message->chat->id,json_encode($update->message));
 
     }
