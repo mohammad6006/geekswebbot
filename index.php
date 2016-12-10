@@ -194,7 +194,7 @@ try {
             $tem = $query[daryaft];
         $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60,"audio_codec" => "mp3"));
 
-            simpleTextSend($update->callback_query->message->chat->id,$ssii[secure_url]);
+            simpleTextSend($update->callback_query->message->chat->id,json_encode($ssii));
             $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
             $response = $client->sendAudio([
                 'chat_id' => $update->callback_query->message->chat->id,
