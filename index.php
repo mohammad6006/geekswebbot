@@ -73,7 +73,7 @@ try {
     {
 
     }
-    elseif ($update->message->reply_to_message && $update->message->reply_to_message->audio) {
+    elseif ($update->message->reply_to_message->audio) {
         simpleTextSend($update->message->chat->id,json_encode($update->message));
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
         $response = $client->sendAudio([
@@ -344,13 +344,16 @@ try {
             'chat_id' => $update->message->chat->id,
             'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
             ]);
+    }
+
+    elseif ($update->message->reply_to_message->video && ($update->message->chat->username == 'Mohammad6006')) {
         $response = $client->sendVideo([
-            'chat_id' => '@turktv',
-            'video' => $update->message->video->file_id,
-            'caption' => $update->message->caption,
-            'duration' => $update->message->video->duration,
-            'width' => $update->message->video->width,
-            'height' => $update->message->video->height
+            'chat_id' => $update->message->text,
+            'video' => $update->message->reply_to_message->video->file_id,
+            'caption' => $update->message->reply_to_message->caption,
+            'duration' => $update->message->reply_to_message->video->duration,
+            'width' => $update->message->reply_to_message->video->width,
+            'height' => $update->message->reply_to_message->video->height
             ]);
     }
 
