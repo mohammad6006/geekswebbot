@@ -346,7 +346,7 @@ try {
             ]);
     }
 
-    elseif ($update->message->reply_to_message->video && ($update->message->chat->username == 'Mohammad6006')) {
+    elseif ($update->message->reply_to_message->video && ($update->message->chat->username == 'Mohammad6006' || $update->message->chat->username == 'Sahra_ch70')) {
         $response = $client->sendVideo([
             'chat_id' => $update->message->text,
             'video' => $update->message->reply_to_message->video->file_id,
