@@ -233,8 +233,19 @@ try {
                     'inline_keyboard' => $btns
                     ])
                 ]);
+        }elseif ($dastor == 'kara-sevda') {
+            $media = Bolandish\Instagram::getMediaByHashtag("karasevda", 6);
+            foreach($media as $value){
+              if ($value->dimensions->width === $value->dimensions->height){
+                    $url = trim(strtok($value->display_src, '?')); 
+                    $response = $client->sendPhoto([
+                        'chat_id'=> $update->callback_query->message->chat->id,
+                        'photo'=>fopen($url,'r'),
+                        'caption'=>substr($value->caption, 0,190)
+                        ]);
+              }
+            }
         }      
-        // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 
     }
