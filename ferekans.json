@@ -101,7 +101,18 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"name":"Kara Sevda"
+			},
+			{
+				"name":"kiralik ask"
+			},
+			{
+				"name":"anne"
+			}
+		]
 	},
 	"fox":{
 		"normal":{

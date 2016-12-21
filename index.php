@@ -221,10 +221,14 @@ try {
             ]);
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode(';', $dastor);
-            simpleTextSend($update->callback_query->message->chat->id,$dizin[1]);
+            $vvv = array();
+            foreach ($json_o->{'star-tv'}->dizi as $value) {
+                $vvv .= $value->name;
+            }
+            simpleTextSend($update->callback_query->message->chat->id,$vvv);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'text' => 'سریال های مربوط به شبکه '.$dizin[1],
+                'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                             [
