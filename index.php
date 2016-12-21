@@ -220,11 +220,11 @@ try {
                 'text' => 'فرکانس با موفقیت ارسال شد '
             ]);
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
-            $dizin = explode('_', $dastor);
+            $dizin = explode(';', $dastor);
             simpleTextSend($update->callback_query->message->chat->id,$dizin[1]);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'text' => 'نام سریال مورد نظر خود را انتخاب کنید:',
+                'text' => 'سریال های مربوط به شبکه '.$dizin[1],
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                             [
