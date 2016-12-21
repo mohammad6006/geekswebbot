@@ -215,6 +215,10 @@ try {
             $kanaln = explode(';', $dastor);
             $ferekanstv = 'فرکانس شبکه '.$json_o->{$kanaln[1]}->normal->name."در مسیر ترکست 42درجه شرقی \n رسیور عادی \n Frekans: ".$json_o->{$kanaln[1]}->normal->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->normal->polariz."\n SR: ".$json_o->{$kanaln[1]}->normal->SR."\n FEC: ".$json_o->{$kanaln[1]}->normal->FEC."\n TIP: ".$json_o->{$kanaln[1]}->normal->TIP."\n ______ \n رسیورهای اچ دی \n ".$json_o->{$kanaln[1]}->hd->name." \n Frekans: ".$json_o->{$kanaln[1]}->hd->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->hd->polariz."\n SR: ".$json_o->{$kanaln[1]}->hd->SR."\n FEC: ".$json_o->{$kanaln[1]}->hd->FEC."\n TIP: ".$json_o->{$kanaln[1]}->hd->TIP."\n ______ \n فرکانس بین الملل \n".$json_o->{$kanaln[1]}->int->name." \n Frekans: ".$json_o->{$kanaln[1]}->int->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->int->polariz."\n SR: ".$json_o->{$kanaln[1]}->int->SR."\n FEC: ".$json_o->{$kanaln[1]}->int->FEC."\n TIP: ".$json_o->{$kanaln[1]}->int->TIP;
             simpleTextSend($update->callback_query->message->chat->id,$ferekanstv);
+            $response = $client->answerCallbackQuery([
+                'callback_query_id' => $update->callback_query->id,
+                'text' => 'فرکانس با موفقیت ارسال شد '
+            ]);
         }      
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
