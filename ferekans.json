@@ -23,7 +23,25 @@
 			"SR":"27500",
 			"FEC":"5/6",
 			"TIP":"SD"
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"show-tv":{
 		"normal":{
@@ -49,7 +67,25 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"atv":{
 		"normal":{
@@ -75,7 +111,25 @@
 			"SR":"4800",
 			"FEC":"5/6",
 			"TIP":"SD"
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"star-tv":{
 		"normal":{
@@ -105,15 +159,19 @@
 		"dizi":[
 			{
 				"text":"Kara Sevda",
-				"callback_data":"dasdas"
+				"callback_data":"kara-sevda"
 			},
 			{
-				"text":"kiralik ask",
-				"callback_data":"dasdas"
+				"text":"Anne",
+				"callback_data":"anne"
 			},
 			{
-				"text":"anne",
-				"callback_data":"dasdas"
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
 			}
 		]
 	},
@@ -141,7 +199,25 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"kanal-d-tv":{
 		"normal":{
@@ -167,7 +243,33 @@
 			"SR":"27500",
 			"FEC":"5/6",
 			"TIP":"SD"
-		}
+		},
+		"dizi":[
+			{
+				"text":"Vatanım Sensin",
+				"callback_data":"vatanim-sensin"
+			},
+			{
+				"text":"Altınsoylar",
+				"callback_data":"altinsoylar"
+			},
+			{
+				"text":"Poyraz Karayel",
+				"callback_data":"poyraz-karayel"
+			},
+			{
+				"text":"Bodrum Masalı",
+				"callback_data":"bodrum-masali"
+			},
+			{
+				"text":"Hayat Şarkısı",
+				"callback_data":"hayat-sarkisi"
+			},
+			{
+				"text":"Arka Sokaklar",
+				"callback_data":"arka-sokaklar"
+			}
+		]
 	},
 	"trt-1":{
 		"normal":{
@@ -193,7 +295,25 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"kanal-7":{
 		"normal":{
@@ -219,7 +339,25 @@
 			"SR":"7200",
 			"FEC":"5/6",
 			"TIP":"SD"
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"tv2":{
 		"normal":{
@@ -245,7 +383,25 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	},
 	"CartoonNetwork":{
 		"normal":{
@@ -271,6 +427,24 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		}
+		},
+		"dizi":[
+			{
+				"text":"Kara Sevda",
+				"callback_data":"kara-sevda"
+			},
+			{
+				"text":"Anne",
+				"callback_data":"anne"
+			},
+			{
+				"text":"Paramparça",
+				"callback_data":"paramparca"
+			},
+			{
+				"text":"Hayat Bazen Tatlıdır",
+				"callback_data":"hayat-bazen-tatlidir"
+			}
+		]
 	}
 }

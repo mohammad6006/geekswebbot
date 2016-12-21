@@ -222,7 +222,7 @@ try {
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
-            foreach ($json_o->{'star-tv'}->dizi as $value) {
+            foreach ($json_o->{$dizin[1]}->dizi as $value) {
                     array_push($btns, [(array)$value]);
                 }
             simpleTextSend($update->callback_query->message->chat->id,$vvv);
