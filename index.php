@@ -74,15 +74,21 @@ try {
 
     }
     elseif ($update->message->reply_to_message->audio) {
-        simpleTextSend($update->message->chat->id,json_encode($update->message));
-        $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
-        $response = $client->sendAudio([
-            'chat_id' => $update->message->chat->id,
-            'audio' => $update->message->reply_to_message->audio->file_id,
-            'performer' => '@TurkTv-test',
-            'caption' => $update->message->text
-            ]);
-
+        if ($update->message->text == '@turktv' && $update->message->chat->username == 'Mohammad6006') {
+            $response = $client->sendAudio([
+                'chat_id' => '@turktv',
+                'audio' => $update->message->reply_to_message->audio->file_id
+                ]);
+        }else{
+            simpleTextSend($update->message->chat->id,json_encode($update->message));
+            $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
+            $response = $client->sendAudio([
+                'chat_id' => $update->message->chat->id,
+                'audio' => $update->message->reply_to_message->audio->file_id,
+                'performer' => '@TurkTv-test',
+                'caption' => $update->message->text
+                ]);            
+        }
 
     }
     elseif ($update->message->entities[0]->type == 'url') {
