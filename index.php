@@ -192,10 +192,6 @@ try {
                     $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                     simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
-            }elseif(strpos(strtolower($update->message->text), 'ferekans-') === 0){
-
-
-                simpleTextSend($update->callback_query->message->chat->id,'$json_a');
             }else{
                 $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                 simpleTextSend($update->callback_query->message->chat->id,$text);
@@ -217,8 +213,10 @@ try {
                 'performer' => 'dasdasdas'
                 ]);
                 simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
-        }
-        // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
+        }elseif(strpos(strtolower($update->message->text), 'ferekans-') === 0){
+                    simpleTextSend($update->callback_query->message->chat->id,$json_a);
+        }      
+                      // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 
     }
