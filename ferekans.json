@@ -1,0 +1,14 @@
+{
+	'tv8':{
+		ferekans:'12346',
+		polarize:'H',
+		SR:'9600',
+		FEC: '3/4'
+	},
+	'tv8.5':{
+		ferekans:'12346',
+		polarize:'H',
+		SR:'9600',
+		FEC: '3/4'
+	}
+}

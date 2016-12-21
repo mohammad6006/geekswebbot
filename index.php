@@ -22,6 +22,9 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
+$fekeransfile = file_get_contents("./ferekans.json");
+$json_a = json_decode($fekeransfile, true);
+
 
 
 function zamanmahali($zaman)
@@ -190,8 +193,8 @@ try {
                     simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
             }elseif(strpos(strtolower($update->message->text), 'ferekans-') === 0){
-                $text = 'halidi';
-                simpleTextSend($update->callback_query->message->chat->id,$text)
+
+                simpleTextSend($update->callback_query->message->chat->id,$json_a);
             }else{
                 $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                 simpleTextSend($update->callback_query->message->chat->id,$text);
