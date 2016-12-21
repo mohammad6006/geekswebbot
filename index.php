@@ -221,7 +221,7 @@ try {
             ]);
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode(';', $dastor);
-            $vvv = array();
+            $vvv = [];
             foreach ($json_o->{'star-tv'}->dizi as $value) {
                 $vvv .= $value->name;
             }
