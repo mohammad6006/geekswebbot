@@ -189,6 +189,9 @@ try {
                     $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                     simpleTextSend($update->callback_query->message->chat->id,$text);
                 }
+            }elseif(strpos(strtolower($update->message->text), 'ferekans-') === 0){
+                $text = 'halidi';
+                simpleTextSend($update->callback_query->message->chat->id,$text)
             }else{
                 $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                 simpleTextSend($update->callback_query->message->chat->id,$text);
@@ -298,7 +301,7 @@ try {
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                             [
-                                ['text' => 'دریافت فرکانس شبکه','callback_data'=>'chanferekans']
+                                ['text' => 'دریافت فرکانس شبکه','callback_data'=>'ferekans-'.$kanaln]
                             ]
                         ]
                     ])
