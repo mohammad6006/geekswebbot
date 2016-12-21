@@ -219,6 +219,9 @@ try {
                 'callback_query_id' => $update->callback_query->id,
                 'text' => 'فرکانس با موفقیت ارسال شد '
             ]);
+        }elseif (strpos(strtolower($dastor), 'dizi_') === 0) {
+            $dizin = explode('_', $dastor);
+            simpleTextSend($update->callback_query->message->chat->id,$dizin[1]);
         }      
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
