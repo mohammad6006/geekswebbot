@@ -216,7 +216,7 @@ try {
         }elseif(strpos(strtolower($dastor), 'ferekans-') === 0){
 $string='{"name":"John Adams"}';
 $json_o=json_decode($string);
-                    simpleTextSend($update->callback_query->message->chat->id,$json_a->name);
+                    simpleTextSend($update->callback_query->message->chat->id,$json_o->name);
         }      
                       // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
