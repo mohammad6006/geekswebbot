@@ -213,7 +213,8 @@ try {
                 simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }elseif(strpos(strtolower($dastor), 'ferekans;') === 0){
             $kanaln = explode(';', $dastor);
-            simpleTextSend($update->callback_query->message->chat->id,$json_o->{$kanaln[1]}->normal->ferekans);
+            $ferekanstv = 'فرکانس شبکه '.$json_o->{$kanaln[1]}->normal->name."\n فرکانس:".$json_o->{$kanaln[1]}->normal->ferekans."\n".$json_o->{$kanaln[1]}->normal->polariz."\n".$json_o->{$kanaln[1]}->normal->SR;
+            simpleTextSend($update->callback_query->message->chat->id,$ferekanstv);
         }      
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
