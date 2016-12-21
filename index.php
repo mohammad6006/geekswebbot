@@ -223,8 +223,6 @@ try {
             $dizin = explode(';', $dastor);
             $btns = [];
             foreach ($json_o->{'star-tv'}->dizi as $value) {
-                $value->url = 'test';
-                $value->text = $value->name;
                     array_push($btns, [(array)$value]);
                 }
             simpleTextSend($update->callback_query->message->chat->id,$vvv);

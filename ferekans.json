@@ -104,13 +104,16 @@
 		},
 		"dizi":[
 			{
-				"name":"Kara Sevda"
+				"text":"Kara Sevda",
+				"callback_data":"dasdas"
 			},
 			{
-				"name":"kiralik ask"
+				"text":"kiralik ask",
+				"callback_data":"dasdas"
 			},
 			{
-				"name":"anne"
+				"text":"anne",
+				"callback_data":"dasdas"
 			}
 		]
 	},
