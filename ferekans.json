@@ -1,5 +1,5 @@
 {
-	"tv8":{
+	"tv-8":{
 		"normal":{
 			"name":"Tv8",
 			"ferekans":"12346",
@@ -25,7 +25,7 @@
 			"TIP":"SD"
 		}
 	},
-	"showtv":{
+	"show-tv":{
 		"normal":{
 			"name":"SHOW TV",
 			"ferekans":"12219",
@@ -77,7 +77,7 @@
 			"TIP":"SD"
 		}
 	},
-	"startv":{
+	"star-tv":{
 		"normal":{
 			"name":"STAR TV",
 			"ferekans":"12015",
@@ -103,7 +103,7 @@
 			"TIP":""
 		}
 	},
-	"foxtv":{
+	"fox":{
 		"normal":{
 			"name":"FOX TV",
 			"ferekans":"12336",

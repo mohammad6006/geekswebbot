@@ -21,6 +21,9 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_key" => "621626275129456", 
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
+$fekeransfile = file_get_contents("./ferekans.json");
+$json_o=json_decode($fekeransfile);
+
 
 function zamanmahali($zaman)
 {
@@ -208,12 +211,11 @@ try {
                 'performer' => 'dasdasdas'
                 ]);
                 simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
-        }elseif(strpos(strtolower($dastor), 'ferekans-') === 0){
-            $fekeransfile = file_get_contents("./ferekans.json");
-            $json_o=json_decode($fekeransfile);
-            simpleTextSend($update->callback_query->message->chat->id,$json_o->tv8->normal->ferekans);
+        }elseif(strpos(strtolower($dastor), 'ferekans;') === 0){
+            $kanaln = explode(';', $dastor);
+            simpleTextSend($update->callback_query->message->chat->id,$json_o->$kanaln[1]->normal->ferekans);
         }      
-                      // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
+        // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 
     }
@@ -300,7 +302,7 @@ try {
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                             [
-                                ['text' => 'دریافت فرکانس شبکه','callback_data'=>'ferekans-'.$kanaln]
+                                ['text' => 'دریافت فرکانس شبکه','callback_data'=>'ferekans;'.$kanaln]
                             ]
                         ]
                     ])
