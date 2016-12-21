@@ -194,7 +194,8 @@ try {
                 }
             }elseif(strpos(strtolower($update->message->text), 'ferekans-') === 0){
 
-                simpleTextSend($update->callback_query->message->chat->id,$json_a);
+
+                simpleTextSend($update->callback_query->message->chat->id,'$json_a');
             }else{
                 $text = "در حال حاضر قابلیت دانلود برای پروفایل های عمومی امکانپذیر می باشد \n @TurkTv \n @TurkTvBot";
                 simpleTextSend($update->callback_query->message->chat->id,$text);
