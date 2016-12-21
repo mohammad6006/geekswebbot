@@ -43,7 +43,7 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"",
+			"name":"موجود نیست",
 			"ferekans":"",
 			"polariz":"",
 			"SR":"",
@@ -95,7 +95,7 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"",
+			"name":"موجود نیست",
 			"ferekans":"",
 			"polariz":"",
 			"SR":"",
@@ -121,8 +121,138 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"Tv8",
-			"ferekans":"12346",
+			"name":"موجود نیست",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"kanal-d-tv":{
+		"normal":{
+			"name":"KANAL D",
+			"ferekans":"11977",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"KANAL D HD",
+			"ferekans":"12245",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"trt-1":{
+		"normal":{
+			"name":"TRT 1",
+			"ferekans":"11958",
+			"polariz":"V",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"SHOW HD",
+			"ferekans":"12209",
+			"polariz":"H",
+			"SR":"10000",
+			"FEC":"3/4",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"kanal-7":{
+		"normal":{
+			"name":"KANAL 7",
+			"ferekans":"12095",
+			"polariz":"H",
+			"SR":"4800",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"KANAL 7 HD",
+			"ferekans":"12103",
+			"polariz":"H",
+			"SR":"8333",
+			"FEC":"2/3",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"KANAL 7 AVRUPA",
+			"ferekans":"12238",
+			"polariz":"V",
+			"SR":"7200",
+			"FEC":"5/6",
+			"TIP":"SD"
+		}
+	},
+	"tv2":{
+		"normal":{
+			"name":"STAR TV",
+			"ferekans":"12015",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"STAR TV HD",
+			"ferekans":"12015",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"CartoonNetwork":{
+		"normal":{
+			"name":"CARTON NETWORK",
+			"ferekans":"11977",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"ثبت نشده",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		},
+		"int":{
+			"name":"ثبت نشده",
+			"ferekans":"",
 			"polariz":"",
 			"SR":"",
 			"FEC":"",
