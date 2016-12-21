@@ -219,9 +219,32 @@ try {
                 'callback_query_id' => $update->callback_query->id,
                 'text' => 'فرکانس با موفقیت ارسال شد '
             ]);
-        }elseif (strpos(strtolower($dastor), 'dizi_') === 0) {
+        }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode('_', $dastor);
             simpleTextSend($update->callback_query->message->chat->id,$dizin[1]);
+            $response = $client->sendMessage([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'text' => 'نام سریال مورد نظر خود را انتخاب کنید:',
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                            [
+                                ['text' => 'Anne','callback_data'=>'dizi_anne']
+                            ],
+                            [
+                                ['text' => 'Kiralık Aşk','callback_data'=>'dizi_kiralikask']
+                            ],
+                            [
+                                ['text'=>'Aşk Laftan Anlamaz','callback_data'=>'dizi_AskLaftan']
+                            ],
+                            [
+                                ['text' => 'İçerde','callback_data'=>'dizi_icerde']
+                            ],
+                            [
+                                ['text'=>'Kara Sevda','callback_data'=>'dizi_KaraSevda']
+                            ]
+                        ]
+                    ])
+                ]);
         }      
         // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
@@ -311,6 +334,9 @@ try {
                     'inline_keyboard' => [
                             [
                                 ['text' => 'دریافت فرکانس شبکه','callback_data'=>'ferekans;'.$kanaln]
+                            ],
+                            [
+                                ['text' => 'سریالهای این شبکه','callback_data' => 'dizi;'.$kanaln]
                             ]
                         ]
                     ])
