@@ -294,7 +294,15 @@ try {
             $arri = listbarnameha($kanaln);
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => $arri
+                'text' => $arri,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                            [
+                                ['text' => 'دریافت فرکانس شبکه','callback_data'=>'chanferekans']
+                            ]
+                        ]
+                    ])
+
             ]);
         }
         
