@@ -147,7 +147,7 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"",
+			"name":"موجود نیست",
 			"ferekans":"",
 			"polariz":"",
 			"SR":"",
@@ -173,7 +173,7 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"",
+			"name":"موجود نیست",
 			"ferekans":"",
 			"polariz":"",
 			"SR":"",
@@ -209,23 +209,23 @@
 	},
 	"tv2":{
 		"normal":{
-			"name":"STAR TV",
-			"ferekans":"12015",
-			"polariz":"H",
+			"name":"TEVE2",
+			"ferekans":"12034",
+			"polariz":"V",
 			"SR":"27500",
 			"FEC":"5/6",
 			"TIP":"SD"
 		},
 		"hd":{
-			"name":"STAR TV HD",
-			"ferekans":"12015",
+			"name":"TEVE2 HD",
+			"ferekans":"12245",
 			"polariz":"H",
 			"SR":"27500",
 			"FEC":"5/6",
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"",
+			"name":"موجود نیست",
 			"ferekans":"",
 			"polariz":"",
 			"SR":"",
