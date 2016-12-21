@@ -22,11 +22,6 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
   "api_secret" => "cPm98hx-4z3V8CSB7vcVOslB1zM" 
 ));
 
-$fekeransfile = file_get_contents("./ferekans.json");
-$json_a = json_decode($fekeransfile, true);
-
-
-
 function zamanmahali($zaman)
 {
     $zaman1 = strtotime($zaman) + strtotime('00:30');
@@ -214,13 +209,9 @@ try {
                 ]);
                 simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }elseif(strpos(strtolower($dastor), 'ferekans-') === 0){
-$string='{
-                     "name":{"first":"John","last":"Adams"},
-                     "age":"40"
-                   }';
-
-$json_o=json_decode($string);
-                    simpleTextSend($update->callback_query->message->chat->id,$json_o->name->first);
+            $fekeransfile = file_get_contents("./ferekans.json");
+            $json_o=json_decode($fekeransfile);
+            simpleTextSend($update->callback_query->message->chat->id,$json_o->tv8->normal->ferekans);
         }      
                       // $diziinsta = Bolandish\Instagram::getMediaByHashtag("karasevda", 2);
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);

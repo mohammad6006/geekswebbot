@@ -1,8 +1,132 @@
-[
-	{
-		"ferekans":"12346",
-		"polarize":"H",
-		"SR":"9600",
-		"FEC": "3/4"			
+{
+	"tv8":{
+		"normal":{
+			"name":"Tv8",
+			"ferekans":"12346",
+			"polariz":"H",
+			"SR":"9600",
+			"FEC":"3/4",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"Tv8 HD",
+			"ferekans":"12356",
+			"polariz":"H",
+			"SR":"7100",
+			"FEC":"2/3",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"Tv8 Int",
+			"ferekans":"12034",
+			"polariz":"V",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		}
+	},
+	"showtv":{
+		"normal":{
+			"name":"SHOW TV",
+			"ferekans":"12219",
+			"polariz":"H",
+			"SR":"6500",
+			"FEC":"3/4",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"SHOW HD",
+			"ferekans":"12209",
+			"polariz":"H",
+			"SR":"10000",
+			"FEC":"3/4",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"atv":{
+		"normal":{
+			"name":"ATV",
+			"ferekans":"12054",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"ATV HD",
+			"ferekans":"12054",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"ATV AVRUPA",
+			"ferekans":"11883",
+			"polariz":"V",
+			"SR":"4800",
+			"FEC":"5/6",
+			"TIP":"SD"
+		}
+	},
+	"startv":{
+		"normal":{
+			"name":"STAR TV",
+			"ferekans":"12015",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"STAR TV HD",
+			"ferekans":"12015",
+			"polariz":"H",
+			"SR":"27500",
+			"FEC":"5/6",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"",
+			"ferekans":"",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
+	},
+	"foxtv":{
+		"normal":{
+			"name":"FOX TV",
+			"ferekans":"12336",
+			"polariz":"H",
+			"SR":"5520",
+			"FEC":"3/4",
+			"TIP":"SD"
+		},
+		"hd":{
+			"name":"FOX TV HD",
+			"ferekans":"12329",
+			"polariz":"H",
+			"SR":"6666",
+			"FEC":"2/3",
+			"TIP":"HD"
+		},
+		"int":{
+			"name":"Tv8",
+			"ferekans":"12346",
+			"polariz":"",
+			"SR":"",
+			"FEC":"",
+			"TIP":""
+		}
 	}
-]
+}
