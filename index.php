@@ -221,32 +221,18 @@ try {
             ]);
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode(';', $dastor);
-            $vvv = [];
+            $btns = [];
             foreach ($json_o->{'star-tv'}->dizi as $value) {
-                $vvv .= $value->name;
-            }
+                $value->url = 'test';
+                $value->text = $value->name;
+                    array_push($btns, [(array)$value]);
+                }
             simpleTextSend($update->callback_query->message->chat->id,$vvv);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
                 'reply_markup' => json_encode([
-                    'inline_keyboard' => [
-                            [
-                                ['text' => 'Anne','callback_data'=>'dizi_anne']
-                            ],
-                            [
-                                ['text' => 'Kiralık Aşk','callback_data'=>'dizi_kiralikask']
-                            ],
-                            [
-                                ['text'=>'Aşk Laftan Anlamaz','callback_data'=>'dizi_AskLaftan']
-                            ],
-                            [
-                                ['text' => 'İçerde','callback_data'=>'dizi_icerde']
-                            ],
-                            [
-                                ['text'=>'Kara Sevda','callback_data'=>'dizi_KaraSevda']
-                            ]
-                        ]
+                    'inline_keyboard' => $btns
                     ])
                 ]);
         }      
