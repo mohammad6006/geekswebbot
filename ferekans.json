@@ -25,21 +25,23 @@
 			"TIP":"SD"
 		},
 		"dizi":[
+		],
+		"program":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"İşte Benim Stilim",
+				"callback_data":"istebenimstilim"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
+				"text":"Göz6",
+				"callback_data":"goz6"
 			},
 			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
+				"text":"3 Adam",
+				"callback_data":"3adam"
 			},
 			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"O Ses Türkiye",
+				"callback_data":"osesturkiye"
 			}
 		]
 	},
@@ -70,20 +72,12 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"İçerde",
+				"callback_data":"icerde"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
-			},
-			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
-			},
-			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"Cesur Yürek",
+				"callback_data":"cesur-yurek"
 			}
 		]
 	},
@@ -114,20 +108,20 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"kırgın çiçekler",
+				"callback_data":"kirgin-cicekler"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
+				"text":"Eşkıya Dünyaya Hükümdar Olmaz",
+				"callback_data":"eskiya-dunyaya-hukumdar-olmaz"
 			},
 			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
+				"text":"Seviyor Sevmiyor",
+				"callback_data":"seviyor-sevmiyor"
 			},
 			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"Yeter",
+				"callback_data":"yeter"
 			}
 		]
 	},
@@ -172,7 +166,12 @@
 			{
 				"text":"Hayat Bazen Tatlıdır",
 				"callback_data":"hayat-bazen-tatlidir"
-			}
+			},
+            {
+                "text":"Cesur ve Güzel",
+				"callback_data":"cesur-ve-guzel"
+            }
+
 		]
 	},
 	"fox":{
@@ -202,20 +201,20 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"No: 309",
+				"callback_data":"no309"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
+				"text":"O Hayat Benim",
+				"callback_data":"ohayatbenim"
 			},
 			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
+				"text":"Bana Sevmeyi Anlat",
+				"callback_data":"banasevmeyianlat"
 			},
 			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"Umuda Kelepçe Vurulmaz",
+				"callback_data":"umudakelepcevurulmaz"
 			}
 		]
 	},
@@ -298,20 +297,20 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"Diriliş: Ertuğrul",
+				"callback_data":"dirilis-ertugrul"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
+				"text":"Yüzyıllık Mühür",
+				"callback_data":"yuzyillik-muhur"
 			},
 			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
+				"text":"Baba Candır",
+				"callback_data":"baba-candir"
 			},
 			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"Hangimiz Sevmedik",
+				"callback_data":"hangimiz-sevmedik"
 			}
 		]
 	},
@@ -342,21 +341,25 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
+				"text":"Bir Garip Aşk",
+				"callback_data":"bir-garip-ask"
 			},
 			{
-				"text":"Anne",
-				"callback_data":"anne"
+				"text":"Elif",
+				"callback_data":"elif"
 			},
 			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
+				"text":"Deli Divane",
+				"callback_data":"deli-divane"
 			},
 			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
-			}
+				"text":"Sensiz Olmaz",
+				"callback_data":"sensiz-olmaz"
+			},
+            {            
+				"text":"Benimsin",
+				"callback_data":"benimsin"
+            }
 		]
 	},
 	"tv2":{
@@ -386,20 +389,8 @@
 		},
 		"dizi":[
 			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
-			},
-			{
-				"text":"Anne",
-				"callback_data":"anne"
-			},
-			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
-			},
-			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
+				"text":"İntikam Ateşi",
+				"callback_data":"intikam-atesi"
 			}
 		]
 	},
@@ -427,24 +418,6 @@
 			"SR":"",
 			"FEC":"",
 			"TIP":""
-		},
-		"dizi":[
-			{
-				"text":"Kara Sevda",
-				"callback_data":"kara-sevda"
-			},
-			{
-				"text":"Anne",
-				"callback_data":"anne"
-			},
-			{
-				"text":"Paramparça",
-				"callback_data":"paramparca"
-			},
-			{
-				"text":"Hayat Bazen Tatlıdır",
-				"callback_data":"hayat-bazen-tatlidir"
-			}
-		]
+		}
 	}
 }
