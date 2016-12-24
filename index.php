@@ -205,10 +205,7 @@ try {
             $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
             $response = $client->sendAudio([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'audio' => $ssii[secure_url],
-                'title' => '@TurkTv-test',
-                'caption' => 'dasdasd',
-                'performer' => 'dasdasdas'
+                'audio' => $ssii[secure_url]
                 ]);
                 // simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }elseif(strpos(strtolower($dastor), 'ferekans;') === 0){
