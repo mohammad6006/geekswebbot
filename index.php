@@ -411,7 +411,7 @@ try {
             $response = $client->sendVideo([
                 'chat_id' => $update->message->reply_to_message->chat->id,
                 'video' => $update->message->reply_to_message->video->file_id,
-                'caption' => $update->message->reply_to_message->caption,
+                'caption' => $update->message->text,
                 'duration' => $update->message->reply_to_message->video->duration,
                 'width' => $update->message->reply_to_message->video->width,
                 'height' => $update->message->reply_to_message->video->height
