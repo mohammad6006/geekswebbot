@@ -78,15 +78,15 @@ try {
         if ($update->message->text == '@turktv' && $update->message->chat->username == 'Mohammad6006') {
             $response = $client->sendAudio([
                 'chat_id' => '@turktv',
-                'audio' => $update->message->reply_to_message->audio->file_id
+                'audio' => $update->message->reply_to_message->audio->file_id,
+                'caption' => $update->message->reply_to_message->caption
                 ]);
         }else{
-            simpleTextSend($update->message->chat->id,json_encode($update->message));
+            // simpleTextSend($update->message->chat->id,json_encode($update->message));
             $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'upload_audio']);
             $response = $client->sendAudio([
                 'chat_id' => $update->message->chat->id,
                 'audio' => $update->message->reply_to_message->audio->file_id,
-                'performer' => '@TurkTv-test',
                 'caption' => $update->message->text
                 ]);            
         }
@@ -201,7 +201,7 @@ try {
             $tem = $query[daryaft];
         $ssii = \Cloudinary\Uploader::upload($tem, array("resource_type" => "auto","timeout" => 60,"audio_codec" => "mp3"));
 
-            simpleTextSend($update->callback_query->message->chat->id,json_encode($ssii));
+            // simpleTextSend($update->callback_query->message->chat->id,json_encode($ssii));
             $response = $client->sendChatAction(['chat_id' => $update->callback_query->message->chat->id, 'action' => 'upload_audio']);
             $response = $client->sendAudio([
                 'chat_id' => $update->callback_query->message->chat->id,
@@ -210,7 +210,7 @@ try {
                 'caption' => 'dasdasd',
                 'performer' => 'dasdasdas'
                 ]);
-                simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
+                // simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
         }elseif(strpos(strtolower($dastor), 'ferekans;') === 0){
             $kanaln = explode(';', $dastor);
             $ferekanstv = 'فرکانس شبکه '.$json_o->{$kanaln[1]}->normal->name."در مسیر ترکست 42درجه شرقی \n رسیور عادی \n Frekans: ".$json_o->{$kanaln[1]}->normal->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->normal->polariz."\n SR: ".$json_o->{$kanaln[1]}->normal->SR."\n FEC: ".$json_o->{$kanaln[1]}->normal->FEC."\n TIP: ".$json_o->{$kanaln[1]}->normal->TIP."\n ______ \n رسیورهای اچ دی \n ".$json_o->{$kanaln[1]}->hd->name." \n Frekans: ".$json_o->{$kanaln[1]}->hd->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->hd->polariz."\n SR: ".$json_o->{$kanaln[1]}->hd->SR."\n FEC: ".$json_o->{$kanaln[1]}->hd->FEC."\n TIP: ".$json_o->{$kanaln[1]}->hd->TIP."\n ______ \n فرکانس بین الملل \n".$json_o->{$kanaln[1]}->int->name." \n Frekans: ".$json_o->{$kanaln[1]}->int->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->int->polariz."\n SR: ".$json_o->{$kanaln[1]}->int->SR."\n FEC: ".$json_o->{$kanaln[1]}->int->FEC."\n TIP: ".$json_o->{$kanaln[1]}->int->TIP."\n آدرس کانال : @TurkTv \n کانال ویدئو : @Canli \n ربات کمکی : @TurkTvBot \n اگر اشکالی در این ربات مشاهده کردید یا درخواستی داشتید به این اکانت اطلاع بدید : @alo_survivor";
@@ -387,7 +387,7 @@ try {
             'title' => 'aasdasd'
             ]);
 
-        simpleTextSend($update->message->chat->id,json_encode($response));
+        // simpleTextSend($update->message->chat->id,json_encode($response));
 
     }
     elseif ($update->message->video && ($update->message->chat->username == 'Mohammad6006')) {
@@ -398,14 +398,25 @@ try {
     }
 
     elseif ($update->message->reply_to_message->video && ($update->message->chat->username == 'Mohammad6006' || $update->message->chat->username == 'Sahra_ch70')) {
-        $response = $client->sendVideo([
-            'chat_id' => $update->message->text,
-            'video' => $update->message->reply_to_message->video->file_id,
-            'caption' => $update->message->reply_to_message->caption,
-            'duration' => $update->message->reply_to_message->video->duration,
-            'width' => $update->message->reply_to_message->video->width,
-            'height' => $update->message->reply_to_message->video->height
-            ]);
+        if ($update->message->text == '@turktv' || $update->message->text == '@canli') {
+            $response = $client->sendVideo([
+                'chat_id' => $update->message->text,
+                'video' => $update->message->reply_to_message->video->file_id,
+                'caption' => $update->message->reply_to_message->caption,
+                'duration' => $update->message->reply_to_message->video->duration,
+                'width' => $update->message->reply_to_message->video->width,
+                'height' => $update->message->reply_to_message->video->height
+                ]);            
+        }else{
+            $response = $client->sendVideo([
+                'chat_id' => $update->message->text,
+                'video' => $update->message->reply_to_message->video->file_id,
+                'caption' => $update->message->reply_to_message->caption,
+                'duration' => $update->message->reply_to_message->video->duration,
+                'width' => $update->message->reply_to_message->video->width,
+                'height' => $update->message->reply_to_message->video->height
+                ]);            
+        }
     }
 
     else
