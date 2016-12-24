@@ -381,10 +381,7 @@ try {
             ]);
         $response = $client->sendAudio([
             'chat_id' => $update->message->chat->id,
-            'audio' => $update->message->audio->file_id,
-            'caption' => "dasdasfdsf @TurkTv",
-            'performer' => "@TurkTv",
-            'title' => 'aasdasd'
+            'audio' => $update->message->audio->file_id
             ]);
 
         // simpleTextSend($update->message->chat->id,json_encode($response));
