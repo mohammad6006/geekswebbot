@@ -409,7 +409,7 @@ try {
                 ]);            
         }else{
             $response = $client->sendVideo([
-                'chat_id' => $update->message->text,
+                'chat_id' => $update->message->reply_to_message->chat->id,
                 'video' => $update->message->reply_to_message->video->file_id,
                 'caption' => $update->message->reply_to_message->caption,
                 'duration' => $update->message->reply_to_message->video->duration,
