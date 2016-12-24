@@ -245,6 +245,9 @@ try {
                         ]);
               }
             }
+        }else{
+            $text = 'در حال تکمیل این قسمت هستیم لطفا بعدا امتحان کنید در صورت بروز اشکال به @alo_survivor اطلاع بدید';
+            simpleTextSend($update->callback_query->message->chat->id,$text);
         }      
         // Bolandish\Instagram::getMediaAfterByUserID(460563723, 1060728019300790746, 10);
 
