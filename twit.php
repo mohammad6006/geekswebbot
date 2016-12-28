@@ -12,4 +12,5 @@ $quu = array(
   "count"=>2
 );
 $results = $connection->get('search/tweets', $quu);
-var_dump($results);
+// var_dump($results);
+echo json_encode($results);
