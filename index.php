@@ -135,7 +135,7 @@ try {
     elseif($update->message->text == '/contact')
     {
         $quu = array(
-          "q" => "#karasevda",
+          "q" => "%23karasevda",
           "result_type"=> "recent",
           "count"=>5
         );
