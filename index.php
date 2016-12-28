@@ -135,9 +135,9 @@ try {
     elseif($update->message->text == '/contact')
     {
         $quu = array(
-          "q" => "%23karasevda",
+          "q" => "karasevda",
           "result_type"=> "recent",
-          "count"=>5
+          "count"=>2
         );
         $results = $connection->get('search/tweets', $quu);
         
