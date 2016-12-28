@@ -4,8 +4,15 @@ require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Abraham\TwitterOAuth\TwitterOAuth;
+define('CONSUMER_KEY', 'uA85crJv3zgAICaIcK9Cj4U5m');
+define('CONSUMER_SECRET', 'yIniiFc0Vq9qhXyswVP0iNeqAM9CVyRpDmM3yYJNvxfD48NBgA');
+define('ACCESS_TOKEN', '88899173-OMipak5KjBUXQu8i49G7dxOWt12Lv68bE8yccnGAn');
+define('ACCESS_TOKEN_SECRET', 'qbLTgO0dNs4Eixqzl983qbLf75UQgc5UK4tBbwqsQKpFv');
+
 
 $token = getenv('acstok');
+
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $client = Zelenin\Telegram\Bot\ApiFactory::create($token);
 $update = json_decode(file_get_contents('php://input'));
@@ -16,6 +23,7 @@ $pdo = new PDO($dsn, $user, $pw);
 $fpdo = new FluentPDO($pdo);
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
+$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
 \Cloudinary::config(array( 
   "cloud_name" => "drnd9jbicz", 
   "api_key" => "621626275129456", 
@@ -126,8 +134,15 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
+        $quu = array(
+          "q" => "#karasevda",
+          "result_type"=> "recent",
+          "count"=>5
+        );
+        $results = $connection->get('search/tweets', $quu);
+        
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        $response = simpleTextSend($update->message->chat->id,$text);
+        $response = simpleTextSend($update->message->chat->id,json_encode($results));
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);

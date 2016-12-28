@@ -38,6 +38,10 @@ class ComposerStaticInit95419506929a0927fedda1e6652c31ff
         array (
             'Bolandish\\' => 10,
         ),
+        'A' => 
+        array (
+            'Abraham\\TwitterOAuth\\' => 21,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -72,6 +76,10 @@ class ComposerStaticInit95419506929a0927fedda1e6652c31ff
         'Bolandish\\' => 
         array (
             0 => __DIR__ . '/..' . '/bolandish/instagram-grabber/src',
+        ),
+        'Abraham\\TwitterOAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/abraham/twitteroauth/src',
         ),
     );
 
