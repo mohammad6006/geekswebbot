@@ -24,7 +24,6 @@ $fpdo = new FluentPDO($pdo);
 $logger = new Logger('my_logger');
 $logger->pushHandler(new StreamHandler(__DIR__.'/testlog1.log', Logger::DEBUG));
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
-$content = $connection->get("account/verify_credentials");
 
 \Cloudinary::config(array( 
   "cloud_name" => "drnd9jbicz", 
