@@ -7,4 +7,4 @@ define('ACCESS_TOKEN', '88899173-OMipak5KjBUXQu8i49G7dxOWt12Lv68bE8yccnGAn');
 define('ACCESS_TOKEN_SECRET', 'qbLTgO0dNs4Eixqzl983qbLf75UQgc5UK4tBbwqsQKpFv');
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
 $content = $connection->get("account/verify_credentials");
-dd($content);
+print_r($content);
