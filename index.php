@@ -135,17 +135,18 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
-        // $quu = array(
-        //   "q" => "karasevda",
-        //   "result_type"=> "recent",
-        //   "count"=>2
-        // );
-        // $results = $connection->get('search/tweets', $quu);
-       $statuses = $connection->get("search/tweets", ["q" => "twitterapi"]);
+        $quu = array(
+          "q" => "#karasevda",
+          "result_type"=> "recent",
+          "count"=>4
+        );
+        $results = $connection->get('search/tweets', $quu);
+        foreach ($results->statuses as $twit) {
+            $response = simpleTextSend($update->message->chat->id,$twit->text);
+        }
  
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
-        $response = simpleTextSend($update->message->chat->id,json_encode($statuses));
-        $response = simpleTextSend($update->message->chat->id,'json_encode($statuses)');
+        $response = simpleTextSend($update->message->chat->id,$text);
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
