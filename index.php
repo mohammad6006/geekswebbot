@@ -249,6 +249,20 @@ try {
                     'inline_keyboard' => $btns
                     ])
                 ]);
+        }elseif (strpos(strtolower($dastor), 'program;') === 0) {
+            $dizin = explode(';', $dastor);
+            $btns = [];
+            foreach ($json_o->{$dizin[1]}->program as $value) {
+                    array_push($btns, [(array)$value]);
+                }
+            simpleTextSend($update->callback_query->message->chat->id,$vvv);
+            $response = $client->sendMessage([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => $btns
+                    ])
+                ]);
         }elseif ($dastor == 'kara-sevda') {
             $media = Bolandish\Instagram::getMediaByHashtag("karasevda", 6);
             foreach($media as $value){
@@ -355,6 +369,9 @@ try {
                             ],
                             [
                                 ['text' => 'سریالهای این شبکه','callback_data' => 'dizi;'.$kanaln]
+                            ],
+                            [
+                                ['text' => 'برنامه های این شبکه','callback_data' => 'program;'.$kanaln]
                             ]
                         ]
                     ])

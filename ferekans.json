@@ -28,6 +28,10 @@
 		],
 		"program":[
 			{
+				"text":"Survivor",
+				"callback_data":"survivor"
+			},
+			{
 				"text":"İşte Benim Stilim",
 				"callback_data":"istebenimstilim"
 			},
