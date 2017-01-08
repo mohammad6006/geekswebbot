@@ -143,12 +143,12 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"موجود نیست",
-			"ferekans":"",
-			"polariz":"",
-			"SR":"",
-			"FEC":"",
-			"TIP":""
+			"name":"EURO STAR",
+			"ferekans":"10985",
+			"polariz":"H",
+			"SR":"4800",
+			"FEC":"3/4",
+			"TIP":"SD"
 		},
 		"dizi":[
 			{
@@ -288,10 +288,10 @@
 			"TIP":"HD"
 		},
 		"int":{
-			"name":"موجود نیست",
-			"ferekans":"",
-			"polariz":"",
-			"SR":"",
+			"name":"TRT 1 HD Avrupa",
+			"ferekans":"11054",
+			"polariz":"V",
+			"SR":"30000",
 			"FEC":"",
 			"TIP":""
 		},
