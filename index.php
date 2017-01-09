@@ -255,7 +255,7 @@ try {
         }elseif (strpos(strtolower($dastor), 'surv;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
-            foreach ($json_surv->unluler as $value) {
+            foreach ($json_surv->{$dizin[1]} as $value) {
                     array_push($btns, [array("text"=>$value->name,"callback_data"=>$value->slug)]);
                 }
             $response = $client->sendMessage([
