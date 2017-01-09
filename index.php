@@ -276,7 +276,6 @@ try {
             foreach ($json_o->{$dizin[1]}->dizi as $value) {
                     array_push($btns, [(array)$value]);
                 }
-            simpleTextSend($update->callback_query->message->chat->id,$vvv);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
@@ -293,9 +292,14 @@ try {
             }
             foreach ($json_surv->$pre as $value) {
                 if ($value->slug == $dizin[1]) {
-                    $vvv = $value->biotr;
+                    $name = $value->name;
+                    $instagram = $value->instagram;
+                    $image = $value->image;
+                    $biotr = $value->biotr;
+                    $biofa = $value->biofa;
                 }
             }
+            $vvv = $name."\n".$image."\n".$biotr."\n".$biofa;
             simpleTextSend($update->callback_query->message->chat->id,$vvv);
         }elseif (strpos(strtolower($dastor), 'program;') === 0) {
             $dizin = explode(';', $dastor);
@@ -303,7 +307,6 @@ try {
             foreach ($json_o->{$dizin[1]}->program as $value) {
                     array_push($btns, [(array)$value]);
                 }
-            simpleTextSend($update->callback_query->message->chat->id,$vvv);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => 'برنامه های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
