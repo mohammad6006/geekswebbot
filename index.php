@@ -32,6 +32,8 @@ $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCE
 ));
 $fekeransfile = file_get_contents("./ferekans.json");
 $json_o=json_decode($fekeransfile);
+$survfile = file_get_contents("./survivor.json");
+$json_surv=json_decode($survfile);
 
 
 function zamanmahali($zaman)
@@ -227,6 +229,21 @@ try {
                 'audio' => $ssii[secure_url]
                 ]);
                 // simpleTextSend($update->callback_query->message->chat->id,json_encode($response));  
+        }elseif ($dastor == 'survivor') {
+            $response = $client->sendMessage([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'text' => 'گروه مورد نظر خود را انتخاب کنید:',
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                            [
+                                ['text' => 'Gönüllüler','callback_data'=>'surv;gonulluler']
+                            ],
+                            [
+                                ['text' => 'Ünlüler','callback_data'=>'surv;unluler']
+                            ]
+                        ]
+                    ])
+                ]);
         }elseif(strpos(strtolower($dastor), 'ferekans;') === 0){
             $kanaln = explode(';', $dastor);
             $ferekanstv = 'فرکانس شبکه '.$json_o->{$kanaln[1]}->normal->name."در مسیر ترکست 42درجه شرقی \n رسیور عادی \n Frekans: ".$json_o->{$kanaln[1]}->normal->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->normal->polariz."\n SR: ".$json_o->{$kanaln[1]}->normal->SR."\n FEC: ".$json_o->{$kanaln[1]}->normal->FEC."\n TIP: ".$json_o->{$kanaln[1]}->normal->TIP."\n ______ \n رسیورهای اچ دی \n ".$json_o->{$kanaln[1]}->hd->name." \n Frekans: ".$json_o->{$kanaln[1]}->hd->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->hd->polariz."\n SR: ".$json_o->{$kanaln[1]}->hd->SR."\n FEC: ".$json_o->{$kanaln[1]}->hd->FEC."\n TIP: ".$json_o->{$kanaln[1]}->hd->TIP."\n ______ \n فرکانس بین الملل \n".$json_o->{$kanaln[1]}->int->name." \n Frekans: ".$json_o->{$kanaln[1]}->int->ferekans."\n Polarizasyon: ".$json_o->{$kanaln[1]}->int->polariz."\n SR: ".$json_o->{$kanaln[1]}->int->SR."\n FEC: ".$json_o->{$kanaln[1]}->int->FEC."\n TIP: ".$json_o->{$kanaln[1]}->int->TIP."\n آدرس کانال : @TurkTv \n کانال ویدئو : @Canli \n ربات کمکی : @TurkTvBot \n اگر اشکالی در این ربات مشاهده کردید یا درخواستی داشتید به این اکانت اطلاع بدید : @alo_survivor";
@@ -235,6 +252,19 @@ try {
                 'callback_query_id' => $update->callback_query->id,
                 'text' => 'فرکانس با موفقیت ارسال شد '
             ]);
+        }elseif (strpos(strtolower($dastor), 'surv;') === 0) {
+            $dizin = explode(';', $dastor);
+            $btns = [];
+            foreach ($json_surv->{$dizin[1]}->dizi as $value) {
+                    array_push($btns, [(array)$value]);
+                }
+            $response = $client->sendMessage([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => $btns
+                    ])
+                ]);
         }elseif (strpos(strtolower($dastor), 'dizi;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
@@ -258,7 +288,7 @@ try {
             simpleTextSend($update->callback_query->message->chat->id,$vvv);
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
+                'text' => 'برنامه های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
                 'reply_markup' => json_encode([
                     'inline_keyboard' => $btns
                     ])
