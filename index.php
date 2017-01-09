@@ -299,7 +299,7 @@ try {
                     $biofa = $value->biofa;
                 }
             }
-            $vvv = $name."\n".$image."\n".$biotr."\n".$biofa;
+            $vvv = $name."\n".$biotr."\n".$biofa.'<a href="'.$image.'"></a>';
             simpleTextSend($update->callback_query->message->chat->id,$vvv);
         }elseif (strpos(strtolower($dastor), 'program;') === 0) {
             $dizin = explode(';', $dastor);
