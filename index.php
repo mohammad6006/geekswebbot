@@ -255,8 +255,8 @@ try {
         }elseif (strpos(strtolower($dastor), 'surv;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
-            foreach ($json_surv->{$dizin[1]}->dizi as $value) {
-                    array_push($btns, [(array)$value]);
+            foreach ($json_surv->{$dizin[1]} as $value) {
+                    array_push($btns, [array("text"=>$value->name,"data"=>$value->slug)]);
                 }
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,

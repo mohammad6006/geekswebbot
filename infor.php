@@ -5,6 +5,7 @@ $btns = [];
 foreach($json_surv->unluler as $value) {
      	   array_push($btns, [(array)$value]);
     }
+    unset($btns[])
 print_r($btns);
 // require 'vendor/autoload.php';
 
