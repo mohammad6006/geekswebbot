@@ -5,7 +5,7 @@ $btns = [];
 foreach($json_surv->unluler as $value) {
      	   array_push($btns, [(array)$value]);
     }
-echo $btns;
+print_r($btns);
 // require 'vendor/autoload.php';
 
 // $token = getenv('acstok');
