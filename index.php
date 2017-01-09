@@ -260,7 +260,7 @@ try {
                 }
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'text' => 'سریال های مربوط به شبکه '.$json_o->{$dizin[1]}->normal->name,
+                'text' => 'لیست گروه '.$dizin[1],
                 'reply_markup' => json_encode([
                     'inline_keyboard' => $btns
                     ])
