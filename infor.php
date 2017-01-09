@@ -1,10 +1,10 @@
 <?php
-$fekeransfile = file_get_contents("./ferekans.json");
+$fekeransfile = file_get_contents("./survivor.json");
 $json_o=json_decode($fekeransfile);
 $btns = [];
-foreach ($json_o->atv->dizi as $value) {
-        array_push($btns, [(array)$value]);
-    }
+            foreach ($json_o->unluler as $value) {
+                    array_push($btns, [array("text"=>$value->name,"callback_data"=>$value->slug)]);
+                }
 print_r($btns);
 // require 'vendor/autoload.php';
 
