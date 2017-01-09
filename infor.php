@@ -1,12 +1,13 @@
 <?php
 $survfile = file_get_contents("./survivor.json");
 $json_surv=json_decode($survfile);
-print_r($json_surv);
-$btns = [];
-foreach($json_surv->unluler as $value) {
-        echo $value->slug;
-    }
-print_r($btns);
+var_dump($json_surv);
+// print_r($json_surv);
+// $btns = [];
+// foreach($json_surv->unluler as $value) {
+//         echo $value->slug;
+//     }
+// print_r($btns);
 // require 'vendor/autoload.php';
 
 // $token = getenv('acstok');
