@@ -3,8 +3,8 @@ $survfile = file_get_contents("./survivor.json");
 $json_surv=json_decode($survfile);
 
 $btns = [];
-foreach ($json_surv->unluler as $value) {
-        array_push($btns, [(array)$value]);
+foreach($json_surv->unluler as $value) {
+        echo $value->slug;
     }
 print_r($btns);
 // require 'vendor/autoload.php';
