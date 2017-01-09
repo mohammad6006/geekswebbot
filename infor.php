@@ -3,7 +3,7 @@ $survfile = file_get_contents("./survivor.json");
 $json_surv=json_decode($survfile);
 
 $btns = [];
-foreach ($json_surv->{'unluler'} as $value) {
+foreach ($json_surv->unluler as $value) {
         array_push($btns, [(array)$value]);
     }
 print_r($btns);
