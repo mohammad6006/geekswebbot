@@ -255,8 +255,13 @@ try {
         }elseif (strpos(strtolower($dastor), 'surv;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
+            if ($dizin[1]=='unluler') {
+                $pre = 'unl;';
+            }else{
+                $pre = 'gon;';
+            }
             foreach ($json_surv->{$dizin[1]} as $value) {
-                    array_push($btns, [array("text"=>$value->name,"callback_data"=>$value->slug)]);
+                    array_push($btns, [array("text"=>$value->name,"callback_data"=>$pre.$value->slug)]);
                 }
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
@@ -279,6 +284,19 @@ try {
                     'inline_keyboard' => $btns
                     ])
                 ]);
+        }elseif ((strpos(strtolower($dastor), 'unl;') === 0) || (strpos(strtolower($dastor), 'gon;') === 0)) {
+            $dizin = explode(';', $dastor);
+            if ($dizin[0] == 'unl') {
+                $pre = 'unluler';
+            }else{
+                $pre = 'gonulluler';
+            }
+            foreach ($json_surv->$pre as $value) {
+                if ($value->slug == $dizin[1]) {
+                    $vvv = $value->biotr;
+                }
+            }
+            simpleTextSend($update->callback_query->message->chat->id,$vvv);
         }elseif (strpos(strtolower($dastor), 'program;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
