@@ -335,6 +335,19 @@ try {
                     'inline_keyboard' => $btns
                     ])
                 ]);
+        }elseif (strpos(strtolower($dastor), 'instap;') === 0) {
+            $dizin = explode(';', $dastor);
+            $media = Bolandish\Instagram::getMediaByHashtag($dizin[1], 6);
+            foreach($media as $value){
+              if ($value->dimensions->width === $value->dimensions->height){
+                    $url = trim(strtok($value->display_src, '?')); 
+                    $response = $client->sendPhoto([
+                        'chat_id'=> $update->callback_query->message->chat->id,
+                        'photo'=>fopen($url,'r'),
+                        'caption'=>substr($value->caption, 0,190)
+                        ]);
+              }
+            }
         }elseif ($dastor == 'kara-sevda') {
             $media = Bolandish\Instagram::getMediaByHashtag("karasevda", 6);
             foreach($media as $value){
