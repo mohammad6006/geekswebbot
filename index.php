@@ -257,15 +257,17 @@ try {
             $btns = [];
             if ($dizin[1]=='unluler') {
                 $pre = 'unl;';
+                $imgroup = 'https://img.acunn.com/foto/640x360/uploads/icerikler/2017/01/04/4824154426451085200995586d480d7cc5b.jpg';
             }else{
                 $pre = 'gon;';
+                $imgroup = 'https://img.acunn.com/foto/640x360/uploads/icerikler/2017/01/08/1asdas12da12sd12asd12as1212asd12asdas88292470958715b347c819.jpg';
             }
             foreach ($json_surv->{$dizin[1]} as $value) {
                     array_push($btns, [array("text"=>$value->name,"callback_data"=>$pre.$value->slug)]);
                 }
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
-                'text' => 'لیست گروه '.$dizin[1],
+                'text' => 'لیست گروه '.$dizin[1].'<a href="'.$imgroup.'"> </a>',
                 'reply_markup' => json_encode([
                     'inline_keyboard' => $btns
                     ])
