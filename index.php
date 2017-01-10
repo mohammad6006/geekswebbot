@@ -307,6 +307,7 @@ try {
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => $vvv,
+                'parse_mode'=>'HTML',
                 'reply_markup' => json_encode([
                     'inline_keyboard' => [
                             [
