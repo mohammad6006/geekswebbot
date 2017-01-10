@@ -268,6 +268,7 @@ try {
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => 'لیست گروه '.$dizin[1].'<a href="'.$imgroup.'"> </a>',
+                'parse_mode'=>'HTML',
                 'reply_markup' => json_encode([
                     'inline_keyboard' => $btns
                     ])
