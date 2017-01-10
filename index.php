@@ -300,10 +300,27 @@ try {
                     $image = $value->image;
                     $biotr = $value->biotr;
                     $biofa = $value->biofa;
+                    $slugn = $value->slug;
                 }
             }
             $vvv = $name."\n".$biotr."\n".$biofa.'<a href="'.$image.'"> </a>';
-            simpleTextSend($update->callback_query->message->chat->id,$vvv);
+            $response = $client->sendMessage([
+                'chat_id' => $update->callback_query->message->chat->id,
+                'text' => $vvv,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [
+                            [
+                                ['text' => 'دریافت تصاویر '.$name,'callback_data'=>'instap;'.$instagram]
+                            ],
+                            [
+                                ['text' => 'دریافت فیلم های '.$name,'callback_data'=>'instav;'.$instagram]
+                            ],
+                            [
+                                ['text' => 'آمار و امتیازات '.$name,'callback_data'=>'stat;'.$slugn]
+                            ]
+                        ]
+                    ])
+                ]);
         }elseif (strpos(strtolower($dastor), 'program;') === 0) {
             $dizin = explode(';', $dastor);
             $btns = [];
