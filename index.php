@@ -349,7 +349,7 @@ try {
               }
             }
         }elseif ($dastor == 'kara-sevda') {
-            $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 5);
+            $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 15);
             foreach($media as $value){
                 if ($value->is_video && ($value->likes->count > 10)) {
                     $url = $value->video_url; 
