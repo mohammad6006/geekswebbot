@@ -351,14 +351,14 @@ try {
         }elseif ($dastor == 'kara-sevda') {
             $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 5);
             foreach($media as $value){
-                if ($value->is_video) {
+                if ($value->is_video && ($value->likes->count > 10)) {
                     $url = $value->video_url; 
                     $response = $client->sendVideo([
                         'chat_id'=> $update->callback_query->message->chat->id,
                         'video'=>fopen($url,'r'),
                         'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
                         ]);
-                }else{
+                }elseif($value->likes->count > 10){
                     $url = trim(strtok($value->display_src, '?')); 
                     $response = $client->sendPhoto([
                         'chat_id'=> $update->callback_query->message->chat->id,
@@ -366,6 +366,15 @@ try {
                         'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
                         ]);
                 }
+        // $quu = array(
+        //   "q" => "#karasevda",
+        //   "result_type"=> "recent",
+        //   "count"=>4
+        // );
+        // $results = $connection->get('search/tweets', $quu);
+        // foreach ($results->statuses as $twit) {
+        //     $response = simpleTextSend($update->message->chat->id,$twit->text);
+        // }
             }
         }else{
             $text = 'در حال تکمیل این قسمت هستیم لطفا بعدا امتحان کنید در صورت بروز اشکال به @alo_survivor اطلاع بدید';
