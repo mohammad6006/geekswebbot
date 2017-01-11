@@ -349,7 +349,7 @@ try {
               }
             }
         }elseif ($dastor == 'kara-sevda') {
-            $media = Bolandish\Instagram::getMediaByHashtag("benimkızım", 6);
+            $media = Bolandish\Instagram::getMediaByHashtag("benimkızım", 5);
             foreach($media as $value){
               if ($value->dimensions->width === $value->dimensions->height){
                     $url = trim(strtok($value->display_src, '?')); 
