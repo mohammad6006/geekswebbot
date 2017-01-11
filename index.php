@@ -351,14 +351,21 @@ try {
         }elseif ($dastor == 'kara-sevda') {
             $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 5);
             foreach($media as $value){
-              if ($value->dimensions->width === $value->dimensions->height){
+                if ($value->is_video) {
+                    $url = $value->video_url; 
+                    $response = $client->sendVideo([
+                        'chat_id'=> $update->callback_query->message->chat->id,
+                        'video'=>fopen($url,'r'),
+                        'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
+                        ]);
+                }else{
                     $url = trim(strtok($value->display_src, '?')); 
                     $response = $client->sendPhoto([
                         'chat_id'=> $update->callback_query->message->chat->id,
                         'photo'=>fopen($url,'r'),
                         'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
                         ]);
-              }
+                }
             }
         }else{
             $text = 'در حال تکمیل این قسمت هستیم لطفا بعدا امتحان کنید در صورت بروز اشکال به @alo_survivor اطلاع بدید';
