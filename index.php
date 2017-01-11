@@ -137,15 +137,15 @@ try {
     }
     elseif($update->message->text == '/contact')
     {
-        $quu = array(
-          "q" => "#karasevda",
-          "result_type"=> "recent",
-          "count"=>4
-        );
-        $results = $connection->get('search/tweets', $quu);
-        foreach ($results->statuses as $twit) {
-            $response = simpleTextSend($update->message->chat->id,$twit->text);
-        }
+        // $quu = array(
+        //   "q" => "#karasevda",
+        //   "result_type"=> "recent",
+        //   "count"=>4
+        // );
+        // $results = $connection->get('search/tweets', $quu);
+        // foreach ($results->statuses as $twit) {
+        //     $response = simpleTextSend($update->message->chat->id,$twit->text);
+        // }
  
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
         $response = simpleTextSend($update->message->chat->id,$text);
@@ -349,14 +349,14 @@ try {
               }
             }
         }elseif ($dastor == 'kara-sevda') {
-            $media = Bolandish\Instagram::getMediaByHashtag("karasevda", 6);
+            $media = Bolandish\Instagram::getMediaByHashtag("benimkızım", 6);
             foreach($media as $value){
               if ($value->dimensions->width === $value->dimensions->height){
                     $url = trim(strtok($value->display_src, '?')); 
                     $response = $client->sendPhoto([
                         'chat_id'=> $update->callback_query->message->chat->id,
                         'photo'=>fopen($url,'r'),
-                        'caption'=>substr($value->caption, 0,190)
+                        'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
                         ]);
               }
             }
