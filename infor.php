@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-$media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 3);
+$media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 10);
 echo json_encode($media);
 // foreach($media as $value){
 //   if ($value->dimensions->width === $value->dimensions->height){
