@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 
 $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 3);
-print_r($media);
+var_dump($media);
 // foreach($media as $value){
 //   if ($value->dimensions->width === $value->dimensions->height){
 //         $url = trim(strtok($value->display_src, '?')); 
