@@ -366,15 +366,29 @@ try {
                         'caption'=>"کانال: @TurkTv \n ربات : @TurkTvBot"
                         ]);
                 }
-        // $quu = array(
-        //   "q" => "#karasevda",
-        //   "result_type"=> "recent",
-        //   "count"=>4
-        // );
-        // $results = $connection->get('search/tweets', $quu);
-        // foreach ($results->statuses as $twit) {
-        //     $response = simpleTextSend($update->message->chat->id,$twit->text);
-        // }
+                $response = $client->sendMessage([
+                    'chat_id' => $update->callback_query->message->chat->id,
+                    'text' => 'دوست دارید تصاویر بیشتری دریافت کنید؟',
+                    'reply_markup' => json_encode([
+                        'inline_keyboard' => [
+                                [
+                                    ['text' => 'بله','callback_data'=>'kara-sevda']
+                                ],
+                                [
+                                    ['text'=>'خیر','callback_data'=>'kheir']
+                                ]
+                            ]
+                        ])
+                    ]);
+                // $quu = array(
+                //   "q" => "#benimkızım",
+                //   "result_type"=> "recent",
+                //   "count"=>5
+                // );
+                // $results = $connection->get('search/tweets', $quu);
+                // foreach ($results->statuses as $twit) {
+                //     $response = simpleTextSend($update->callback_query->message->chat->id,$twit->text);
+                // }
             }
         }else{
             $text = 'در حال تکمیل این قسمت هستیم لطفا بعدا امتحان کنید در صورت بروز اشکال به @alo_survivor اطلاع بدید';
