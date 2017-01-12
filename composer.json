@@ -9,6 +9,7 @@
         "monolog/monolog": "^1.21",
         "fpdo/fluentpdo": "^1.1",
         "cloudinary/cloudinary_php": "^1.4",
-        "abraham/twitteroauth": "^0.7.2"
+        "abraham/twitteroauth": "^0.7.2",
+        "vinkla/instagram": "^4.2"
     }
 }

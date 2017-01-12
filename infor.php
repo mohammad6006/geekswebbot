@@ -1,9 +1,13 @@
 <?php
 
 require 'vendor/autoload.php';
+use Vinkla\Instagram\Instagram;
 
-$media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 10);
-echo json_encode($media);
+$instagram = new Instagram();
+$instagram->get('farsi.survivor');
+var_dump($instagram);
+// $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 10);
+// echo json_encode($media);
 // foreach($media as $value){
 //   if ($value->dimensions->width === $value->dimensions->height){
 //         $url = trim(strtok($value->display_src, '?')); 
