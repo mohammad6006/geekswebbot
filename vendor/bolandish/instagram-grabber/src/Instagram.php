@@ -2,6 +2,21 @@
 namespace Bolandish;
 
 class Instagram {
+    /**
+     * @var array
+     */
+    protected static $curlProxy = array();
+
+    public static function setCurlProxy(array $config) {
+        foreach ($config as $k => $v) {
+            if ((in_array($k, array(CURLOPT_HTTPPROXYTUNNEL)) && is_bool($v))
+                || (in_array($k, array(CURLOPT_PROXYAUTH, CURLOPT_PROXYPORT, CURLOPT_PROXYTYPE)) && is_int($v))
+                || (in_array($k, array(CURLOPT_PROXY, CURLOPT_PROXYUSERPWD)) && is_string($v))
+            ) {
+                self::$curlProxy[$k] = $v;
+            }
+        }
+    }
 
     protected static function getContentsFromUrl($parameters) {
         if (!function_exists('curl_init')) {
@@ -13,6 +28,9 @@ class Instagram {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, 'q='.$parameters);
+        foreach (self::$curlProxy as $k => $v) {
+            curl_setopt($ch, $k, $v);
+        }
         $headers = array();
         $headers[] = "Cookie:  csrftoken=$random;";
         $headers[] = "X-Csrftoken: $random";
@@ -51,8 +69,10 @@ class Instagram {
         $media = json_decode(static::getContentsFromUrl($parameters), ($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
-        else
+        elseif (isset($media->media->nodes))
             $media = $media->media->nodes;
+        else
+            $media = array();
         return $media;
     }
 
@@ -71,8 +91,11 @@ class Instagram {
         $media = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
-        else
+        elseif (isset($media->media->nodes))
             $media = $media->media->nodes;
+        else
+            $media = array();
+
         return $media;
     }
 
@@ -93,8 +116,10 @@ class Instagram {
         $media = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $media = $media["media"]["nodes"];
-        else
+        elseif (isset($media->media->nodes))
             $media = $media->media->nodes;
+        else
+            $media = array();
 
         return $media;
     }
@@ -108,8 +133,10 @@ class Instagram {
         $comments = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
-        else
+        elseif (isset($comments->comments->nodes))
             $comments = $comments->comments->nodes;
+        else
+            $comments = array();
         return $comments;
     }
 
@@ -122,8 +149,10 @@ class Instagram {
         $comments = json_decode(static::getContentsFromUrl($parameters),($assoc || $assoc == "array"));
         if($assoc == "array")
             $comments = $comments["comments"]["nodes"];
-        else
+        elseif (isset($comments->comments->nodes))
             $comments = $comments->comments->nodes;
+        else
+            $comments = array();
         return $comments;
     }
 }
