@@ -1,7 +1,6 @@
 <?php
 
 require 'vendor/autoload.php';
-use Vinkla\Instagram\Instagram;
 
 $instagram = new Instagram();
 $instagram->get('farsi.survivor');
