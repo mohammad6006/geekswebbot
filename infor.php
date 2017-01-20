@@ -5,23 +5,27 @@ use Larabros\Elogram\Client;
 $clientId = 'a44d4e709d97471f9c8c5d3112d8d81e';
 $clientSecret = '491b84904cac43529904997b2252ca1f';
 $redirectUrl = 'https://turktv.herokuapp.com/infor.php';
+$accessToken = '2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b';
 
-$client = new Client($clientId, $clientSecret, null, $redirectUrl);
+$client = new Client($clientId, $clientSecret, $accessToken, $redirectUrl);
 
-// Start the session
-session_start();
+$response = $client->request('GET', 'users/self');
+echo json_encode($response->get());
 
-// If we don't have an authorization code then get one
-if (!isset($_GET['code'])) {
-    header('Location: ' . $client->getLoginUrl());
-    exit;
-} else {
-    $token = $client->getAccessToken($_GET['code']);
-    echo json_encode($token); // Save this for future use
-}
+// // Start the session
+// session_start();
 
-// You can now make requests to the API
-$client->users()->search('skrawg');
+// // If we don't have an authorization code then get one
+// if (!isset($_GET['code'])) {
+//     header('Location: ' . $client->getLoginUrl());
+//     exit;
+// } else {
+//     $token = $client->getAccessToken($_GET['code']);
+//     echo json_encode($token); // Save this for future use
+// }
+
+// // You can now make requests to the API
+// $client->users()->search('skrawg');
 
 // $instagram = new Instagram();
 // $instagram->get('farsi.survivor');
