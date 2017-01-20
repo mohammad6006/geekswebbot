@@ -5,7 +5,7 @@ use Larabros\Elogram\Client;
 $clientId = 'a44d4e709d97471f9c8c5d3112d8d81e';
 $clientSecret = '491b84904cac43529904997b2252ca1f';
 $redirectUrl = 'https://turktv.herokuapp.com/infor.php';
-$accessToken = '2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b';
+$accessToken = {"user":{"profile_picture":"https:\/\/scontent.cdninstagram.com\/t51.2885-19\/s150x150\/12545285_1642118132719843_625718016_a.jpg","id":"2662699150","website":"https:\/\/tlgrm.me\/turktv","username":"farsi.survivor","bio":"\u06a9\u0627\u0645\u0644\u062a\u0631\u06cc\u0646 \u0648 \u0628\u0647 \u0631\u0648\u0632\u062a\u0631\u06cc\u0646 \u0635\u0641\u062d\u0647 \u0641\u0627\u0631\u0633\u06cc \u0633\u0648\u0631\u0648\u0627\u06cc\u0648\u0631 2017\n\u0628\u0631\u0646\u0627\u0645\u0647 \u0628\u0627\u0632\u06cc\u0647\u0627 \u062e\u0644\u0627\u0635\u0647 \u0628\u06cc\u0648\u06af\u0631\u0627\u0641\u06cc \u0646\u062a\u06cc\u062c\u0647 \u062c\u0627\u06cc\u0632\u0647 \u0647\u0627 \u06a9\u0644\u06cc\u067e \u0645\u0648\u0632\u06cc\u06a9 \u0648 \u062a\u0631\u062c\u0645\u0647\n\u062d\u062a\u0645\u0627 \u0627\u0632 \u06a9\u0627\u0646\u0627\u0644 \u062a\u0644\u06af\u0631\u0627\u0645\u0645\u0648\u0646 \u062f\u06cc\u062f\u0646 \u06a9\u0646\u06cc\u062f","full_name":"Survivor 2017 \u0633\u0648\u0631\u0648\u0627\u06cc\u0648\u0631 \u0641\u0627\u0631\u0633\u06cc"},"access_token":"2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b","resource_owner_id":"2662699150"};
 
 $client = new Client($clientId, $clientSecret, $accessToken, $redirectUrl);
 
