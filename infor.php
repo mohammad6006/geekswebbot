@@ -1,10 +1,31 @@
 <?php
 
 require 'vendor/autoload.php';
+use Larabros\Elogram\Client;
+$clientId = 'a44d4e709d97471f9c8c5d3112d8d81e';
+$clientSecret = '491b84904cac43529904997b2252ca1f';
+$redirectUrl = 'https://turktv.herokuapp.com';
 
-$instagram = new Instagram();
-$instagram->get('farsi.survivor');
-var_dump($instagram);
+$client = new Client($clientId, $clientSecret, null, $redirectUrl);
+
+// Start the session
+session_start();
+
+// If we don't have an authorization code then get one
+if (!isset($_GET['code'])) {
+    header('Location: ' . $client->getLoginUrl());
+    exit;
+} else {
+    $token = $client->getAccessToken($_GET['code']);
+    echo json_encode($token); // Save this for future use
+}
+
+// You can now make requests to the API
+$client->users()->search('skrawg');
+
+// $instagram = new Instagram();
+// $instagram->get('farsi.survivor');
+// var_dump($instagram);
 // $media = Bolandish\Instagram::getMediaByHashtag("benimkizim", 10);
 // echo json_encode($media);
 // foreach($media as $value){

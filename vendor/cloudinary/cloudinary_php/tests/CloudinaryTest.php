@@ -336,11 +336,12 @@ class CloudinaryTest extends PHPUnit_Framework_TestCase {
       $this->cloudinary_url_assertion("test", array( "width" => "auto:breakpoints_100_1900_20_15", "crop" => 'fill' ), CloudinaryTest::DEFAULT_UPLOAD_PATH . "c_fill,w_auto:breakpoints_100_1900_20_15/test", array ('responsive' => true));
       $this->cloudinary_url_assertion("test", array( "width" => "auto:breakpoints:json", "crop" => 'fill' ), CloudinaryTest::DEFAULT_UPLOAD_PATH . "c_fill,w_auto:breakpoints:json/test", array ('responsive' => true));
   }
-  public function test_original_width_and_height() {
-    $options = array("crop" => "crop", "width"=> "ow", "height"=>"oh");
-    $this->cloudinary_url_assertion("test", $options, CloudinaryTest::DEFAULT_UPLOAD_PATH . "c_crop,h_oh,w_ow/test");
 
+  public function test_initial_width_and_height() {
+    $options = array("crop" => "crop", "width"=> "iw", "height"=>"ih");
+    $this->cloudinary_url_assertion("test", $options, CloudinaryTest::DEFAULT_UPLOAD_PATH . "c_crop,h_ih,w_iw/test");
   }
+
     public function shared_client_hints($options, $message = ''){
         $tag = cl_image_tag('sample.jpg', $options);
         $this->assertEquals("<img src='http://res.cloudinary.com/test/image/upload/c_scale,dpr_auto,w_auto/sample.jpg' />", $tag, $message);
@@ -393,6 +394,11 @@ class CloudinaryTest extends PHPUnit_Framework_TestCase {
     // should support width=auto
     $tag = cl_image_tag("hello", array("dpr"=>"auto", "format"=>"png"));
     $this->assertEquals("<img class='cld-hidpi' data-src='http://res.cloudinary.com/test123/image/upload/dpr_auto/hello.png'/>", $tag);
+  }
+
+  public function test_e_art_incognito() {
+    $tag = cl_image_tag("hello", array("effect"=>"art:incognito", "format"=>"png"));
+    $this->assertEquals("<img src='http://res.cloudinary.com/test123/image/upload/e_art:incognito/hello.png' />", $tag);
   }
 
   public function test_folder_version() {
@@ -501,6 +507,17 @@ class CloudinaryTest extends PHPUnit_Framework_TestCase {
   public function test_url_suffix_for_raw(){
     //should support url_suffix for raw uploads
     $this->cloudinary_url_assertion("test", array("url_suffix"=>"hello", "private_cdn"=>TRUE, "resource_type"=>"raw"), "http://test123-res.cloudinary.com/files/test/hello");
+  }
+
+  public function test_url_suffix_for_private(){
+    //should support url_suffix for private uploads
+    $this->cloudinary_url_assertion("test",
+      array("url_suffix"=>"hello", "private_cdn"=>TRUE, "resource_type"=>"image", "type" => "private"),
+      "http://test123-res.cloudinary.com/private_images/test/hello");
+
+    $this->cloudinary_url_assertion("test",
+      array("url_suffix"=>"hello", "private_cdn"=>TRUE, "format" => "jpg", "resource_type"=>"image", "type" => "private"),
+      "http://test123-res.cloudinary.com/private_images/test/hello.jpg");
   }
 
   public function test_allow_use_root_path_in_shared() {
