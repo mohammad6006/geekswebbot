@@ -5,7 +5,7 @@ use Larabros\Elogram\Client;
 $clientId = 'a44d4e709d97471f9c8c5d3112d8d81e';
 $clientSecret = '491b84904cac43529904997b2252ca1f';
 $redirectUrl = 'https://turktv.herokuapp.com/infor.php';
-$accessToken = "2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b";
+$accessToken = { "access_token": "2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b"};
 
 $client = new Client($clientId, $clientSecret, $accessToken, $redirectUrl);
 
