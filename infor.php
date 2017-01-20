@@ -9,7 +9,7 @@ $accessToken = '2662699150.a44d4e7.f7484a3b890249e0bb71b84c5e31091b';
 
 $client = new Client($clientId, $clientSecret, $accessToken, $redirectUrl);
 
-$response = $client->request('GET', 'users/self');
+$response = $client->tags()->get('nofilter');
 echo json_encode($response->get());
 
 // // Start the session
