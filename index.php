@@ -41,7 +41,20 @@ function zamanmahali($zaman)
     $zaman1 = strtotime($zaman) + strtotime('00:30');
     return date('H:i',$zaman1);
 }
-
+public function digarlistkanal($kanal)
+{
+    $dom = new Dom;
+    $dom->load('https://www.tv360.com.tr/BroadStream-Index');
+    $html = $dom->outerHtml;
+    $day_of_week = date('N', strtotime('Today'));
+    $ptime = $dom->find('div[id=tab-'.$day_of_week.'] div[class=saat] span');
+    $pname = $dom->find('div[id=tab-'.$day_of_week.'] div[class=programadi] span');
+    $arri = "لیست برنامه های امروز {$kanal} \n زمان برنامه ها به وقت ایران میباشد \n";
+    foreach ($ptime as $key => $prog) {
+        $arri .= $prog->text.":".$pname[$key]->text."\n";
+    }
+    return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
+}
 function listbarnameha($kanal)
 {
     $dom = new Dom;
@@ -149,6 +162,11 @@ try {
  
         $text = "کانال تلگرام مرتبط با این ربات : @TurkTV \n در صورتی که مشکل در کار با این ربات داشتید برای گزارش و ارسال پیام به برنامه نویس و تهیه کننده این ربات از طریق اکانت @alo_survivor در ارتباط باشید ";
         $response = simpleTextSend($update->message->chat->id,$text);
+    }
+    elseif($update->message->text == '/tv360')
+    {
+        $arri = digarlistkanal('360tv');
+        $response = simpleTextSend($update->message->chat->id,$arri);
     }
     elseif (strpos(strtolower($update->message->text), '/dizi') === 0 ) {
         $response = $client->sendChatAction(['chat_id' => $update->message->chat->id, 'action' => 'typing']);
@@ -470,7 +488,7 @@ try {
         if ($kanaln == "not found") {
             $response = $client->sendMessage([
                 'chat_id' => $update->message->chat->id,
-                'text' => 'در حال حاضر فقط کانالهای پرطرفدار به لیست اضافه شده است. اگر کانال مورد علاقه شما در این لیست موجود نیست  از طریق اکانت @alo_survivor نام کانال را برای ما ارسال کنید تا به این لیست اضافه کنیم'
+                'text' => "لیست دیگر کانالها \n Tv360 : /tv360 \n در حال حاضر فقط کانالهای پرطرفدار به لیست اضافه شده است. اگر کانال مورد علاقه شما در این لیست موجود نیست  از طریق اکانت @alo_survivor نام کانال را برای ما ارسال کنید تا به این لیست اضافه کنیم"
             ]);
         } else {
             $arri = listbarnameha($kanaln);

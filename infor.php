@@ -2,15 +2,18 @@
 
 require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
-$dom = new Dom;
-$dom->load('https://www.tv360.com.tr/BroadStream-Index');
-$html = $dom->outerHtml;
-$a = $dom->find('div[id=tab-5] div[class=programadi]');
-$arri = "list";
-foreach ($a as $key => $btime) {
-    $arri .= $btime->text;
-}
-echo $arri;
+// $dom = new Dom;
+// $dom->load('https://www.tv360.com.tr/BroadStream-Index');
+// $html = $dom->outerHtml;
+// $a = $dom->find('div[id=tab-5]')[0]->firstChild();
+// $arri = "list";
+// foreach ($a as $key => $btime) {
+//     $arri .= $btime->text;
+// }
+// echo $arri;
+
+// <hr>
+// print_r($a);
     // return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
     // $dom->load('https://www.tv360.com.tr/BroadStream-Index');
     // $html = $dom->outerHtml;
