@@ -51,7 +51,7 @@ function digarlistkanal($kanal)
     $pname = $dom->find('div[id=tab-'.$day_of_week.'] div[class=programadi] span');
     $arri = "لیست برنامه های امروز {$kanal} \n زمان برنامه ها به وقت ایران میباشد \n";
     foreach ($ptime as $key => $prog) {
-        $arri .= $prog->text.":".$pname[$key]->text."\n";
+        $arri .= zamanmahali($prog->text).":".$pname[$key]->text."\n";
     }
     return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
 }
