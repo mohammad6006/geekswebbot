@@ -41,7 +41,7 @@ function zamanmahali($zaman)
     $zaman1 = strtotime($zaman) + strtotime('00:30');
     return date('H:i',$zaman1);
 }
-public function digarlistkanal($kanal)
+function digarlistkanal($kanal)
 {
     $dom = new Dom;
     $dom->load('https://www.tv360.com.tr/BroadStream-Index');
