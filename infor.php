@@ -1,6 +1,23 @@
 <?php
 
 require 'vendor/autoload.php';
+use PHPHtmlParser\Dom;
+$dom = new Dom;
+$dom->load('https://www.tv360.com.tr/BroadStream-Index');
+$html = $dom->outerHtml;
+$a = $dom->find('div[id=tab-5] div[class=programadi]');
+var_dump($a);
+
+    // $dom->load('https://www.tv360.com.tr/BroadStream-Index');
+    // $html = $dom->outerHtml;
+    // $roztime = $dom->find('span[class=date]')[0];
+    // $btimes = $dom->find('div[class=two columns time]');
+    // $progtitles = $dom->find('div[class=ten columns]');
+    // $arri = "لیست برنامه های امروز {$kanal} \n زمان برنامه ها به وقت ایران میباشد \n";
+    // foreach ($btimes as $key => $btime) {
+    //     $arri .= zamanmahali($btime->text).":".$progtitles[$key]->text."\n";
+    // }
+    // return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
 
 // // Start the session
 // session_start();
