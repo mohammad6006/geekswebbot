@@ -6,8 +6,12 @@ $dom = new Dom;
 $dom->load('https://www.tv360.com.tr/BroadStream-Index');
 $html = $dom->outerHtml;
 $a = $dom->find('div[id=tab-5] div[class=programadi]');
-var_dump($a);
-
+$arri = "list";
+foreach ($a as $key => $btime) {
+    $arri .= $btime->text;
+}
+echo $arri;
+    // return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
     // $dom->load('https://www.tv360.com.tr/BroadStream-Index');
     // $html = $dom->outerHtml;
     // $roztime = $dom->find('span[class=date]')[0];
