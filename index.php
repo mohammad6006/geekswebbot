@@ -562,6 +562,12 @@ try {
             'text' => 'fileid:'.$update->message->video->file_id.' width: '.$update->message->video->width.' height: '.$update->message->video->height.' duration: '.$update->message->video->duration.' mime_type: '.$update->message->video->mime_type.' file_size: '.$update->message->video->file_size
             ]);
     }
+    elseif ($update->message->document && ($update->message->chat->username == 'Mohammad6006')) {
+        $response = $client->sendMessage([
+            'chat_id' => $update->message->chat->id,
+            'text' => 'fileid:'.$update->message->document->file_id.' mime_type: '.$update->message->document->mime_type.' file_size: '.$update->message->document->file_size
+            ]);
+    }
 
     elseif ($update->message->reply_to_message->video && ($update->message->chat->username == 'Mohammad6006' || $update->message->chat->username == 'Sahra_ch70')) {
         if ($update->message->text == '@turktv' || $update->message->text == '@canli') {
@@ -581,6 +587,21 @@ try {
                 'duration' => $update->message->reply_to_message->video->duration,
                 'width' => $update->message->reply_to_message->video->width,
                 'height' => $update->message->reply_to_message->video->height
+                ]);            
+        }
+    }
+    elseif ($update->message->reply_to_message->document && ($update->message->chat->username == 'Mohammad6006' || $update->message->chat->username == 'Sahra_ch70')) {
+        if ($update->message->text == '@turktv' || $update->message->text == '@canli') {
+            $response = $client->sendDocument([
+                'chat_id' => $update->message->text,
+                'document' => $update->message->reply_to_message->document->file_id,
+                'caption' => $update->message->reply_to_message->caption
+                ]);            
+        }else{
+            $response = $client->sendDocument([
+                'chat_id' => $update->message->reply_to_message->chat->id,
+                'document' => $update->message->reply_to_message->document->file_id,
+                'caption' => $update->message->text
                 ]);            
         }
     }
