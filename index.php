@@ -10,7 +10,6 @@ define('CONSUMER_SECRET', getenv('CONSUMER_SECRET'));
 define('ACCESS_TOKEN', getenv('ACCESS_TOKEN'));
 define('ACCESS_TOKEN_SECRET', getenv('ACCESS_TOKEN_SECRET'));
 
-
 $token = getenv('acstok');
 
 $dbopts = parse_url(getenv('DATABASE_URL'));
