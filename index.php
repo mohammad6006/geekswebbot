@@ -95,7 +95,7 @@ function simpleTextSend($chatid,$text)
 try {
     if(isset($update->inline_query))
     {
-
+        return 'asd';
     }
     elseif ($update->message->reply_to_message->audio) {
         if ($update->message->text == '@turktv' && $update->message->chat->username == 'Mohammad6006') {
