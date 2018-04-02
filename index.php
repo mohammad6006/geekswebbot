@@ -324,20 +324,20 @@ try {
             $response = $client->sendMessage([
                 'chat_id' => $update->callback_query->message->chat->id,
                 'text' => $vvv,
-                'parse_mode'=>'HTML',
-                'reply_markup' => json_encode([
-                    'inline_keyboard' => [
-                            [
-                                ['text' => 'دریافت تصاویر '.$name,'callback_data'=>'instap;'.$instagram]
-                            ],
-                            [
-                                ['text' => 'دریافت فیلم های '.$name,'callback_data'=>'instav;'.$instagram]
-                            ],
-                            [
-                                ['text' => 'آمار و امتیازات '.$name,'callback_data'=>'stat;'.$slugn]
-                            ]
-                        ]
-                    ])
+                'parse_mode'=>'HTML'
+                // 'reply_markup' => json_encode([
+                //     'inline_keyboard' => [
+                //             [
+                //                 ['text' => 'دریافت تصاویر '.$name,'callback_data'=>'instap;'.$instagram]
+                //             ],
+                //             [
+                //                 ['text' => 'دریافت فیلم های '.$name,'callback_data'=>'instav;'.$instagram]
+                //             ],
+                //             [
+                //                 ['text' => 'آمار و امتیازات '.$name,'callback_data'=>'stat;'.$slugn]
+                //             ]
+                //         ]
+                //     ])
                 ]);
         }elseif (strpos(strtolower($dastor), 'program;') === 0) {
             $dizin = explode(';', $dastor);
