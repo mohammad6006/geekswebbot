@@ -1,11 +1,17 @@
 <?php
-
 require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
-// $dom = new Dom;
-// $dom->load('https://www.tv360.com.tr/BroadStream-Index');
-// $html = $dom->outerHtml;
-// $a = $dom->find('div[id=tab-5]')[0]->firstChild();
+$dom = new Dom;
+$dom->load('https://video.acunn.com/survivor');
+$html = $dom->outerHtml;
+$a = $dom->find('div[class=videos-list] .flexWrap div');
+echo count($a);
+echo $a->text;
+foreach ($a as $key => $value) {
+    echo $value->text;
+}
+return 'asal';
+print_r($a);
 // $arri = "list";
 // foreach ($a as $key => $btime) {
 //     $arri .= $btime->text;

@@ -30,22 +30,6 @@
 			{
 				"text":"Survivor",
 				"callback_data":"survivor"
-			},
-			{
-				"text":"İşte Benim Stilim",
-				"callback_data":"istebenimstilim"
-			},
-			{
-				"text":"Göz6",
-				"callback_data":"goz6"
-			},
-			{
-				"text":"3 Adam",
-				"callback_data":"3adam"
-			},
-			{
-				"text":"O Ses Türkiye",
-				"callback_data":"osesturkiye"
 			}
 		]
 	},
