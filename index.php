@@ -256,7 +256,7 @@ try {
                                 ['text' => 'Gönüllüler','callback_data'=>'surv;gonulluler']
                             ],
                             [
-                                ['text' => 'Ünlüler','callback_data'=>'surv;unluler']
+                                ['text' => 'AllStar','callback_data'=>'surv;unluler']
                             ]
                         ]
                     ])
@@ -274,10 +274,10 @@ try {
             $btns = [];
             if ($dizin[1]=='unluler') {
                 $pre = 'unl;';
-                $imgroup = 'https://img.acunn.com/foto/640x360/uploads/icerikler/2017/01/04/4824154426451085200995586d480d7cc5b.jpg';
+                $imgroup = 'http://im.haberturk.com/2018/02/02/ver1517587895/1821354_620x410.jpg';
             }else{
                 $pre = 'gon;';
-                $imgroup = 'https://img.acunn.com/foto/640x360/uploads/icerikler/2017/01/08/1asdas12da12sd12asd12as1212asd12asdas88292470958715b347c819.jpg';
+                $imgroup = 'http://vayguzzum.com/images/2018_02/2018_02_07/acun-ilicali-survivor-2018-all-star-ve-gonulluler-takimlarinin-kadrolarini-acikladi--0702181200_m2.jpg';
             }
             foreach ($json_surv->{$dizin[1]} as $value) {
                     array_push($btns, [array("text"=>$value->name,"callback_data"=>$pre.$value->slug)]);
