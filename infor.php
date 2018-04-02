@@ -4,15 +4,36 @@ use PHPHtmlParser\Dom;
 $dom = new Dom;
 $dom->load('https://video.acunn.com/survivor');
 $html = $dom->outerHtml;
-$a = $dom->find('div[class=videos-list] .flexWrap div');
+$a = $dom->find('div[class=videos-list] div[class=row] div div[class=list-type-one-content] a');
 echo count($a);
-echo $a->text;
 foreach ($a as $key => $value) {
-    echo $value->text;
+    echo $value->getAttribute('title');
 }
+echo $a->text;
 return 'asal';
 print_r($a);
+
+
+
+// require 'vendor/autoload.php';
+// use PHPHtmlParser\Dom;
+// $dom = new Dom;
+// $dom->load('https://www.w3schools.com/w3css/tryw3css_templates_band.htm');
+// $html = $dom->outerHtml;
+// $a = $dom->find('div[class=w3-row-padding w3-padding-32] div img');
+// echo count($a);
+// foreach ($a as $key => $value) {
+//     echo $value->getAttribute('src');
+// }
+// echo $a->text;
+// return 'asal';
+// print_r($a);
 // $arri = "list";
+
+
+
+
+
 // foreach ($a as $key => $btime) {
 //     $arri .= $btime->text;
 // }
