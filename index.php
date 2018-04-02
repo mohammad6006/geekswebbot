@@ -31,7 +31,7 @@ $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCE
 ));
 $fekeransfile = file_get_contents("./ferekans.json");
 $json_o=json_decode($fekeransfile);
-$survfile = file_get_contents("./survivor.json");
+$survfile = file_get_contents("./survivor2018.json");
 $json_surv=json_decode($survfile);
 
 

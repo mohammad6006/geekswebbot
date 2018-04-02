@@ -1,5 +1,147 @@
 [
     {
+        "name": "abraham/twitteroauth",
+        "version": "0.7.4",
+        "version_normalized": "0.7.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/abraham/twitteroauth.git",
+            "reference": "c6f9e692552dd037b2324ed0dfa28a4e60875acf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/c6f9e692552dd037b2324ed0dfa28a4e60875acf",
+            "reference": "c6f9e692552dd037b2324ed0dfa28a4e60875acf",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "php": "^5.6 || ^7.0"
+        },
+        "require-dev": {
+            "phpmd/phpmd": "~2.6",
+            "phpunit/phpunit": "~5.7",
+            "squizlabs/php_codesniffer": "~3.0"
+        },
+        "time": "2017-06-30T22:02:01+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Abraham\\TwitterOAuth\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Abraham Williams",
+                "email": "abraham@abrah.am",
+                "homepage": "https://abrah.am",
+                "role": "Developer"
+            }
+        ],
+        "description": "The most popular PHP library for use with the Twitter OAuth REST API.",
+        "homepage": "https://twitteroauth.com",
+        "keywords": [
+            "Twitter API",
+            "Twitter oAuth",
+            "api",
+            "oauth",
+            "rest",
+            "social",
+            "twitter"
+        ]
+    },
+    {
+        "name": "bolandish/instagram-grabber",
+        "version": "1.0.13",
+        "version_normalized": "1.0.13.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Bolandish/PHP-Instagram-Grabber.git",
+            "reference": "7d926f6e3557976e194b71c4a023ef30f6d93fc9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Bolandish/PHP-Instagram-Grabber/zipball/7d926f6e3557976e194b71c4a023ef30f6d93fc9",
+            "reference": "7d926f6e3557976e194b71c4a023ef30f6d93fc9",
+            "shasum": ""
+        },
+        "time": "2017-01-10T11:55:02+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Bolandish\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Thomas Bolander",
+                "email": "privat@thomasbolander.dk"
+            }
+        ],
+        "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken"
+    },
+    {
+        "name": "cloudinary/cloudinary_php",
+        "version": "1.9.0",
+        "version_normalized": "1.9.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cloudinary/cloudinary_php.git",
+            "reference": "3f76261e342de120c20355df9e61370a1434cdfd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/3f76261e342de120c20355df9e61370a1434cdfd",
+            "reference": "3f76261e342de120c20355df9e61370a1434cdfd",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.8.*"
+        },
+        "time": "2018-03-12T15:33:59+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src"
+            ],
+            "files": [
+                "src/Helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Cloudinary",
+                "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+            }
+        ],
+        "description": "Cloudinary PHP SDK",
+        "homepage": "https://github.com/cloudinary/cloudinary_php",
+        "keywords": [
+            "cdn",
+            "cloud",
+            "cloudinary",
+            "image management",
+            "sdk"
+        ]
+    },
+    {
         "name": "dg/rss-php",
         "version": "v1.2",
         "version_normalized": "1.2.0.0",
@@ -17,7 +159,7 @@
         "require": {
             "php": ">=5.2.2"
         },
-        "time": "2015-07-02 11:54:05",
+        "time": "2015-07-02T11:54:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -44,246 +186,86 @@
         ]
     },
     {
-        "name": "guzzlehttp/psr7",
-        "version": "1.3.1",
-        "version_normalized": "1.3.1.0",
+        "name": "fpdo/fluentpdo",
+        "version": "v1.1.2",
+        "version_normalized": "1.1.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/guzzle/psr7.git",
-            "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+            "url": "https://github.com/envms/fluentpdo.git",
+            "reference": "2bb54b27e6d53c35329ac7e651d869ac52f1944a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-            "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+            "url": "https://api.github.com/repos/envms/fluentpdo/zipball/2bb54b27e6d53c35329ac7e651d869ac52f1944a",
+            "reference": "2bb54b27e6d53c35329ac7e651d869ac52f1944a",
             "shasum": ""
         },
-        "require": {
-            "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
-        },
-        "provide": {
-            "psr/http-message-implementation": "1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2016-06-24 23:00:38",
+        "time": "2017-10-13T15:23:44+00:00",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.4-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "GuzzleHttp\\Psr7\\": "src/"
-            },
             "files": [
-                "src/functions_include.php"
+                "FluentPDO/FluentPDO.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "MIT"
+            "Apache-2.0",
+            "GPL-2.0+"
         ],
         "authors": [
             {
-                "name": "Michael Dowling",
-                "email": "mtdowling@gmail.com",
-                "homepage": "https://github.com/mtdowling"
+                "name": "envms",
+                "homepage": "http://env.ms"
             }
         ],
-        "description": "PSR-7 message implementation",
+        "description": "FluentPDO is a quick and light PHP library for rapid query building. It features a smart join builder, which automatically creates table joins.",
+        "homepage": "https://github.com/envms/fluentpdo",
         "keywords": [
-            "http",
-            "message",
-            "stream",
-            "uri"
-        ]
-    },
-    {
-        "name": "psr/http-message",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/http-message.git",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-08-06 14:39:51",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Http\\Message\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for HTTP messages",
-        "homepage": "https://github.com/php-fig/http-message",
-        "keywords": [
-            "http",
-            "http-message",
-            "psr",
-            "psr-7",
-            "request",
-            "response"
-        ]
-    },
-    {
-        "name": "paquettg/string-encode",
-        "version": "0.1.1",
-        "version_normalized": "0.1.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paquettg/string-encoder.git",
-            "reference": "cf08343649701979f581c1601d01247fa3782439"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/cf08343649701979f581c1601d01247fa3782439",
-            "reference": "cf08343649701979f581c1601d01247fa3782439",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-05-29 18:38:09",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "stringEncode": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Gilles Paquette",
-                "email": "paquettg@gmail.com",
-                "homepage": "http://gillespaquette.ca"
-            }
-        ],
-        "description": "Facilitating the process of altering string encoding in PHP.",
-        "homepage": "https://github.com/paquettg/string-encoder",
-        "keywords": [
-            "charset",
-            "encoding",
-            "string"
-        ]
-    },
-    {
-        "name": "paquettg/php-html-parser",
-        "version": "1.7.0",
-        "version_normalized": "1.7.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paquettg/php-html-parser.git",
-            "reference": "18845e09831dd0772b88b51e788a4f74c701224c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/18845e09831dd0772b88b51e788a4f74c701224c",
-            "reference": "18845e09831dd0772b88b51e788a4f74c701224c",
-            "shasum": ""
-        },
-        "require": {
-            "paquettg/string-encode": "~0.1.0",
-            "php": ">=5.4"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9.0",
-            "phpunit/phpunit": "~4.8.0",
-            "satooshi/php-coveralls": "~0.6.0"
-        },
-        "time": "2016-04-06 15:24:40",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "PHPHtmlParser": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Gilles Paquette",
-                "email": "paquettg@gmail.com",
-                "homepage": "http://gillespaquette.ca"
-            }
-        ],
-        "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
-        "homepage": "https://github.com/paquettg/php-html-parser",
-        "keywords": [
-            "dom",
-            "html",
-            "parser"
+            "builder",
+            "database",
+            "db",
+            "dbal",
+            "fluent",
+            "mysql",
+            "oracle",
+            "pdo",
+            "query"
         ]
     },
     {
         "name": "guzzlehttp/guzzle",
-        "version": "6.2.2",
-        "version_normalized": "6.2.2.0",
+        "version": "6.3.2",
+        "version_normalized": "6.3.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/guzzle.git",
-            "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
+            "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
-            "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+            "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
             "shasum": ""
         },
         "require": {
             "guzzlehttp/promises": "^1.0",
-            "guzzlehttp/psr7": "^1.3.1",
+            "guzzlehttp/psr7": "^1.4",
             "php": ">=5.5"
         },
         "require-dev": {
             "ext-curl": "*",
-            "phpunit/phpunit": "^4.0",
+            "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
             "psr/log": "^1.0"
         },
-        "time": "2016-10-08 15:01:37",
+        "suggest": {
+            "psr/log": "Required for using the Log middleware"
+        },
+        "time": "2018-03-26T16:33:04+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "6.2-dev"
+                "dev-master": "6.3-dev"
             }
         },
         "installation-source": "dist",
@@ -319,320 +301,6 @@
         ]
     },
     {
-        "name": "zelenin/telegram-bot-api",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zelenin/telegram-bot-api.git",
-            "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zelenin/telegram-bot-api/zipball/166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
-            "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": "~6.0",
-            "php": ">=5.5.0"
-        },
-        "suggest": {
-            "ext/pcntl": "Usage of signal handler"
-        },
-        "time": "2016-08-25 13:40:34",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Zelenin\\Telegram\\Bot\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Aleksandr Zelenin",
-                "email": "aleksandr@zelenin.me",
-                "role": "Developer"
-            }
-        ],
-        "description": "Telegram Bot API Client",
-        "homepage": "https://github.com/zelenin/telegram-bot-api",
-        "keywords": [
-            "api",
-            "bot",
-            "telegram"
-        ]
-    },
-    {
-        "name": "psr/log",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/log.git",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-10-10 12:19:37",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Log\\": "Psr/Log/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for logging libraries",
-        "homepage": "https://github.com/php-fig/log",
-        "keywords": [
-            "log",
-            "psr",
-            "psr-3"
-        ]
-    },
-    {
-        "name": "fpdo/fluentpdo",
-        "version": "v1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fpdo/fluentpdo.git",
-            "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/fa0df68d098a1ebb1b0461e4750ef2749869219c",
-            "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c",
-            "shasum": ""
-        },
-        "time": "2016-07-08 13:40:45",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "FluentPDO/FluentPDO.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0",
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Marek Lichtner",
-                "homepage": "http://licht.sk/"
-            }
-        ],
-        "description": "FluentPDO is small PHP library for rapid query building. Killer feature is smart join builder which generates joins automatically.",
-        "homepage": "https://github.com/fpdo/fluentpdo",
-        "keywords": [
-            "database",
-            "dbal",
-            "pdo"
-        ]
-    },
-    {
-        "name": "monolog/monolog",
-        "version": "1.22.0",
-        "version_normalized": "1.22.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "bad29cb8d18ab0315e6c477751418a82c850d558"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bad29cb8d18ab0315e6c477751418a82c850d558",
-            "reference": "bad29cb8d18ab0315e6c477751418a82c850d558",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "psr/log": "~1.0"
-        },
-        "provide": {
-            "psr/log-implementation": "1.0.0"
-        },
-        "require-dev": {
-            "aws/aws-sdk-php": "^2.4.9 || ^3.0",
-            "doctrine/couchdb": "~1.0@dev",
-            "graylog2/gelf-php": "~1.0",
-            "jakub-onderka/php-parallel-lint": "0.9",
-            "php-amqplib/php-amqplib": "~2.4",
-            "php-console/php-console": "^3.1.3",
-            "phpunit/phpunit": "~4.5",
-            "phpunit/phpunit-mock-objects": "2.3.0",
-            "ruflin/elastica": ">=0.90 <3.0",
-            "sentry/sentry": "^0.13",
-            "swiftmailer/swiftmailer": "~5.3"
-        },
-        "suggest": {
-            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-            "ext-mongo": "Allow sending log messages to a MongoDB server",
-            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
-            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-            "php-console/php-console": "Allow sending log messages to Google Chrome",
-            "rollbar/rollbar": "Allow sending log messages to Rollbar",
-            "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-            "sentry/sentry": "Allow sending log messages to a Sentry server"
-        },
-        "time": "2016-11-26 00:15:39",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Monolog\\": "src/Monolog"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jordi Boggiano",
-                "email": "j.boggiano@seld.be",
-                "homepage": "http://seld.be"
-            }
-        ],
-        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-        "homepage": "http://github.com/Seldaek/monolog",
-        "keywords": [
-            "log",
-            "logging",
-            "psr-3"
-        ]
-    },
-    {
-        "name": "abraham/twitteroauth",
-        "version": "0.7.2",
-        "version_normalized": "0.7.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/abraham/twitteroauth.git",
-            "reference": "119d5a83478a2d21c09cd27980ab67eba11c8fe1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/119d5a83478a2d21c09cd27980ab67eba11c8fe1",
-            "reference": "119d5a83478a2d21c09cd27980ab67eba11c8fe1",
-            "shasum": ""
-        },
-        "require": {
-            "ext-curl": "*",
-            "php": "^5.6 || ^7.0"
-        },
-        "require-dev": {
-            "phpmd/phpmd": "~2.4",
-            "phpunit/phpunit": "~5.6",
-            "squizlabs/php_codesniffer": "~2.7"
-        },
-        "time": "2016-12-12 17:42:13",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Abraham\\TwitterOAuth\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Abraham Williams",
-                "email": "abraham@abrah.am",
-                "homepage": "https://abrah.am",
-                "role": "Developer"
-            }
-        ],
-        "description": "The most popular PHP library for use with the Twitter OAuth REST API.",
-        "homepage": "https://twitteroauth.com",
-        "keywords": [
-            "Twitter API",
-            "Twitter oAuth",
-            "api",
-            "oauth",
-            "rest",
-            "social",
-            "twitter"
-        ]
-    },
-    {
-        "name": "james-heinrich/getid3",
-        "version": "v1.9.13",
-        "version_normalized": "1.9.13.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/JamesHeinrich/getID3.git",
-            "reference": "b9a8564e56bdcc294dc7ade32a7f67885bed3778"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/b9a8564e56bdcc294dc7ade32a7f67885bed3778",
-            "reference": "b9a8564e56bdcc294dc7ade32a7f67885bed3778",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-12-14 14:29:29",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "getid3/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL"
-        ],
-        "description": "PHP script that extracts useful information from popular multimedia file formats",
-        "homepage": "http://www.getid3.org/",
-        "keywords": [
-            "codecs",
-            "php",
-            "tags"
-        ]
-    },
-    {
         "name": "guzzlehttp/promises",
         "version": "v1.3.1",
         "version_normalized": "1.3.1.0",
@@ -653,7 +321,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.0"
         },
-        "time": "2016-12-20 10:07:11",
+        "time": "2016-12-20T10:07:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -686,69 +354,44 @@
         ]
     },
     {
-        "name": "bolandish/instagram-grabber",
-        "version": "1.0.13",
-        "version_normalized": "1.0.13.0",
+        "name": "guzzlehttp/psr7",
+        "version": "1.4.2",
+        "version_normalized": "1.4.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/Bolandish/PHP-Instagram-Grabber.git",
-            "reference": "7d926f6e3557976e194b71c4a023ef30f6d93fc9"
+            "url": "https://github.com/guzzle/psr7.git",
+            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Bolandish/PHP-Instagram-Grabber/zipball/7d926f6e3557976e194b71c4a023ef30f6d93fc9",
-            "reference": "7d926f6e3557976e194b71c4a023ef30f6d93fc9",
-            "shasum": ""
-        },
-        "time": "2017-01-10 11:55:02",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Bolandish\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "Thomas Bolander",
-                "email": "privat@thomasbolander.dk"
-            }
-        ],
-        "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken"
-    },
-    {
-        "name": "cloudinary/cloudinary_php",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cloudinary/cloudinary_php.git",
-            "reference": "1ba1daac2a616a4e99a2fc9f652f00775115e6f5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/1ba1daac2a616a4e99a2fc9f652f00775115e6f5",
-            "reference": "1ba1daac2a616a4e99a2fc9f652f00775115e6f5",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
             "shasum": ""
         },
         "require": {
-            "ext-curl": "*",
-            "ext-json": "*",
-            "php": ">=5.3.0"
+            "php": ">=5.4.0",
+            "psr/http-message": "~1.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "4.7.*"
+            "phpunit/phpunit": "~4.0"
         },
-        "time": "2017-01-19 12:41:48",
+        "time": "2017-03-20T17:10:46+00:00",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "classmap": [
-                "src"
-            ],
+            "psr-4": {
+                "GuzzleHttp\\Psr7\\": "src/"
+            },
             "files": [
-                "src/Helpers.php"
+                "src/functions_include.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -757,18 +400,391 @@
         ],
         "authors": [
             {
-                "name": "Cloudinary",
-                "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            },
+            {
+                "name": "Tobias Schultze",
+                "homepage": "https://github.com/Tobion"
             }
         ],
-        "description": "Cloudinary PHP SDK",
-        "homepage": "https://github.com/cloudinary/cloudinary_php",
+        "description": "PSR-7 message implementation that also provides common utility methods",
         "keywords": [
-            "cdn",
-            "cloud",
-            "cloudinary",
-            "image management",
-            "sdk"
+            "http",
+            "message",
+            "request",
+            "response",
+            "stream",
+            "uri",
+            "url"
+        ]
+    },
+    {
+        "name": "james-heinrich/getid3",
+        "version": "v1.9.15",
+        "version_normalized": "1.9.15.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JamesHeinrich/getID3.git",
+            "reference": "df9b441e547da1018b1be0e239bee095c9962c96"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/df9b441e547da1018b1be0e239bee095c9962c96",
+            "reference": "df9b441e547da1018b1be0e239bee095c9962c96",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-10-26T18:34:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "getid3/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL"
+        ],
+        "description": "PHP script that extracts useful information from popular multimedia file formats",
+        "homepage": "http://www.getid3.org/",
+        "keywords": [
+            "codecs",
+            "php",
+            "tags"
+        ]
+    },
+    {
+        "name": "monolog/monolog",
+        "version": "1.23.0",
+        "version_normalized": "1.23.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Seldaek/monolog.git",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "psr/log": "~1.0"
+        },
+        "provide": {
+            "psr/log-implementation": "1.0.0"
+        },
+        "require-dev": {
+            "aws/aws-sdk-php": "^2.4.9 || ^3.0",
+            "doctrine/couchdb": "~1.0@dev",
+            "graylog2/gelf-php": "~1.0",
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "php-amqplib/php-amqplib": "~2.4",
+            "php-console/php-console": "^3.1.3",
+            "phpunit/phpunit": "~4.5",
+            "phpunit/phpunit-mock-objects": "2.3.0",
+            "ruflin/elastica": ">=0.90 <3.0",
+            "sentry/sentry": "^0.13",
+            "swiftmailer/swiftmailer": "^5.3|^6.0"
+        },
+        "suggest": {
+            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+            "ext-mongo": "Allow sending log messages to a MongoDB server",
+            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+            "php-console/php-console": "Allow sending log messages to Google Chrome",
+            "rollbar/rollbar": "Allow sending log messages to Rollbar",
+            "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+            "sentry/sentry": "Allow sending log messages to a Sentry server"
+        },
+        "time": "2017-06-19T01:22:40+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Monolog\\": "src/Monolog"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jordi Boggiano",
+                "email": "j.boggiano@seld.be",
+                "homepage": "http://seld.be"
+            }
+        ],
+        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+        "homepage": "http://github.com/Seldaek/monolog",
+        "keywords": [
+            "log",
+            "logging",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "paquettg/php-html-parser",
+        "version": "1.7.0",
+        "version_normalized": "1.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paquettg/php-html-parser.git",
+            "reference": "18845e09831dd0772b88b51e788a4f74c701224c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/18845e09831dd0772b88b51e788a4f74c701224c",
+            "reference": "18845e09831dd0772b88b51e788a4f74c701224c",
+            "shasum": ""
+        },
+        "require": {
+            "paquettg/string-encode": "~0.1.0",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.0",
+            "phpunit/phpunit": "~4.8.0",
+            "satooshi/php-coveralls": "~0.6.0"
+        },
+        "time": "2016-04-06T15:24:40+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPHtmlParser": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gilles Paquette",
+                "email": "paquettg@gmail.com",
+                "homepage": "http://gillespaquette.ca"
+            }
+        ],
+        "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
+        "homepage": "https://github.com/paquettg/php-html-parser",
+        "keywords": [
+            "dom",
+            "html",
+            "parser"
+        ]
+    },
+    {
+        "name": "paquettg/string-encode",
+        "version": "0.1.1",
+        "version_normalized": "0.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paquettg/string-encoder.git",
+            "reference": "cf08343649701979f581c1601d01247fa3782439"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/cf08343649701979f581c1601d01247fa3782439",
+            "reference": "cf08343649701979f581c1601d01247fa3782439",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-05-29T18:38:09+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "stringEncode": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gilles Paquette",
+                "email": "paquettg@gmail.com",
+                "homepage": "http://gillespaquette.ca"
+            }
+        ],
+        "description": "Facilitating the process of altering string encoding in PHP.",
+        "homepage": "https://github.com/paquettg/string-encoder",
+        "keywords": [
+            "charset",
+            "encoding",
+            "string"
+        ]
+    },
+    {
+        "name": "psr/http-message",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-message.git",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-08-06T14:39:51+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Message\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for HTTP messages",
+        "homepage": "https://github.com/php-fig/http-message",
+        "keywords": [
+            "http",
+            "http-message",
+            "psr",
+            "psr-7",
+            "request",
+            "response"
+        ]
+    },
+    {
+        "name": "psr/log",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-10-10T12:19:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "zelenin/telegram-bot-api",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zelenin/telegram-bot-api.git",
+            "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zelenin/telegram-bot-api/zipball/166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
+            "reference": "166cb9e1ef9b3e8dbb84c2fee1f90634187ef4cc",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~6.0",
+            "php": ">=5.5.0"
+        },
+        "suggest": {
+            "ext/pcntl": "Usage of signal handler"
+        },
+        "time": "2016-08-25T13:40:34+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zelenin\\Telegram\\Bot\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aleksandr Zelenin",
+                "email": "aleksandr@zelenin.me",
+                "role": "Developer"
+            }
+        ],
+        "description": "Telegram Bot API Client",
+        "homepage": "https://github.com/zelenin/telegram-bot-api",
+        "keywords": [
+            "api",
+            "bot",
+            "telegram"
         ]
     }
 ]

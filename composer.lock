@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5965ff013a84844bad32933d6cbb2ef9",
     "content-hash": "fa5d25621d8ed607b54f757cd21e6c03",
     "packages": [
         {
             "name": "abraham/twitteroauth",
-            "version": "0.7.2",
+            "version": "0.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abraham/twitteroauth.git",
-                "reference": "119d5a83478a2d21c09cd27980ab67eba11c8fe1"
+                "reference": "c6f9e692552dd037b2324ed0dfa28a4e60875acf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/119d5a83478a2d21c09cd27980ab67eba11c8fe1",
-                "reference": "119d5a83478a2d21c09cd27980ab67eba11c8fe1",
+                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/c6f9e692552dd037b2324ed0dfa28a4e60875acf",
+                "reference": "c6f9e692552dd037b2324ed0dfa28a4e60875acf",
                 "shasum": ""
             },
             "require": {
@@ -26,9 +25,9 @@
                 "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpmd/phpmd": "~2.4",
-                "phpunit/phpunit": "~5.6",
-                "squizlabs/php_codesniffer": "~2.7"
+                "phpmd/phpmd": "~2.6",
+                "phpunit/phpunit": "~5.7",
+                "squizlabs/php_codesniffer": "~3.0"
             },
             "type": "library",
             "autoload": {
@@ -59,7 +58,7 @@
                 "social",
                 "twitter"
             ],
-            "time": "2016-12-12 17:42:13"
+            "time": "2017-06-30T22:02:01+00:00"
         },
         {
             "name": "bolandish/instagram-grabber",
@@ -89,20 +88,20 @@
                 }
             ],
             "description": "A workaround for the new Instagram policy to get images by hashtag and user id. No need for accesstoken",
-            "time": "2017-01-10 11:55:02"
+            "time": "2017-01-10T11:55:02+00:00"
         },
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "1.5.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudinary/cloudinary_php.git",
-                "reference": "1ba1daac2a616a4e99a2fc9f652f00775115e6f5"
+                "reference": "3f76261e342de120c20355df9e61370a1434cdfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/1ba1daac2a616a4e99a2fc9f652f00775115e6f5",
-                "reference": "1ba1daac2a616a4e99a2fc9f652f00775115e6f5",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/3f76261e342de120c20355df9e61370a1434cdfd",
+                "reference": "3f76261e342de120c20355df9e61370a1434cdfd",
                 "shasum": ""
             },
             "require": {
@@ -111,7 +110,7 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.7.*"
+                "phpunit/phpunit": "4.8.*"
             },
             "type": "library",
             "autoload": {
@@ -141,7 +140,7 @@
                 "image management",
                 "sdk"
             ],
-            "time": "2017-01-19 12:41:48"
+            "time": "2018-03-12T15:33:59+00:00"
         },
         {
             "name": "dg/rss-php",
@@ -183,20 +182,20 @@
                 "feed",
                 "rss"
             ],
-            "time": "2015-07-02 11:54:05"
+            "time": "2015-07-02T11:54:05+00:00"
         },
         {
             "name": "fpdo/fluentpdo",
-            "version": "v1.1.0",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fpdo/fluentpdo.git",
-                "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c"
+                "url": "https://github.com/envms/fluentpdo.git",
+                "reference": "2bb54b27e6d53c35329ac7e651d869ac52f1944a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/fa0df68d098a1ebb1b0461e4750ef2749869219c",
-                "reference": "fa0df68d098a1ebb1b0461e4750ef2749869219c",
+                "url": "https://api.github.com/repos/envms/fluentpdo/zipball/2bb54b27e6d53c35329ac7e651d869ac52f1944a",
+                "reference": "2bb54b27e6d53c35329ac7e651d869ac52f1944a",
                 "shasum": ""
             },
             "type": "library",
@@ -212,47 +211,56 @@
             ],
             "authors": [
                 {
-                    "name": "Marek Lichtner",
-                    "homepage": "http://licht.sk/"
+                    "name": "envms",
+                    "homepage": "http://env.ms"
                 }
             ],
-            "description": "FluentPDO is small PHP library for rapid query building. Killer feature is smart join builder which generates joins automatically.",
-            "homepage": "https://github.com/fpdo/fluentpdo",
+            "description": "FluentPDO is a quick and light PHP library for rapid query building. It features a smart join builder, which automatically creates table joins.",
+            "homepage": "https://github.com/envms/fluentpdo",
             "keywords": [
+                "builder",
                 "database",
+                "db",
                 "dbal",
-                "pdo"
+                "fluent",
+                "mysql",
+                "oracle",
+                "pdo",
+                "query"
             ],
-            "time": "2016-07-08 13:40:45"
+            "time": "2017-10-13T15:23:44+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.2",
+            "version": "6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
-                "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.3.1",
+                "guzzlehttp/psr7": "^1.4",
                 "php": ">=5.5"
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
                 "psr/log": "^1.0"
+            },
+            "suggest": {
+                "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "autoload": {
@@ -285,7 +293,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2016-10-08 15:01:37"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -336,20 +344,20 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-12-20 10:07:11"
+            "time": "2016-12-20T10:07:11+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.3.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -385,29 +393,36 @@
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
                 }
             ],
-            "description": "PSR-7 message implementation",
+            "description": "PSR-7 message implementation that also provides common utility methods",
             "keywords": [
                 "http",
                 "message",
+                "request",
+                "response",
                 "stream",
-                "uri"
+                "uri",
+                "url"
             ],
-            "time": "2016-06-24 23:00:38"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "james-heinrich/getid3",
-            "version": "v1.9.13",
+            "version": "v1.9.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JamesHeinrich/getID3.git",
-                "reference": "b9a8564e56bdcc294dc7ade32a7f67885bed3778"
+                "reference": "df9b441e547da1018b1be0e239bee095c9962c96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/b9a8564e56bdcc294dc7ade32a7f67885bed3778",
-                "reference": "b9a8564e56bdcc294dc7ade32a7f67885bed3778",
+                "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/df9b441e547da1018b1be0e239bee095c9962c96",
+                "reference": "df9b441e547da1018b1be0e239bee095c9962c96",
                 "shasum": ""
             },
             "require": {
@@ -430,20 +445,20 @@
                 "php",
                 "tags"
             ],
-            "time": "2016-12-14 14:29:29"
+            "time": "2017-10-26T18:34:37+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.22.0",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bad29cb8d18ab0315e6c477751418a82c850d558"
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bad29cb8d18ab0315e6c477751418a82c850d558",
-                "reference": "bad29cb8d18ab0315e6c477751418a82c850d558",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "shasum": ""
             },
             "require": {
@@ -464,7 +479,7 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "~5.3"
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -508,7 +523,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-11-26 00:15:39"
+            "time": "2017-06-19T01:22:40+00:00"
         },
         {
             "name": "paquettg/php-html-parser",
@@ -557,7 +572,7 @@
                 "html",
                 "parser"
             ],
-            "time": "2016-04-06 15:24:40"
+            "time": "2016-04-06T15:24:40+00:00"
         },
         {
             "name": "paquettg/string-encode",
@@ -603,7 +618,7 @@
                 "encoding",
                 "string"
             ],
-            "time": "2014-05-29 18:38:09"
+            "time": "2014-05-29T18:38:09+00:00"
         },
         {
             "name": "psr/http-message",
@@ -653,7 +668,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -700,7 +715,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "zelenin/telegram-bot-api",
@@ -747,7 +762,7 @@
                 "bot",
                 "telegram"
             ],
-            "time": "2016-08-25 13:40:34"
+            "time": "2016-08-25T13:40:34+00:00"
         }
     ],
     "packages-dev": [],

@@ -1,13 +1,20 @@
 <?php
+
 namespace Cloudinary {
 
-    class Error extends \Exception {};  
+    class Uploader
+    {
+        const REMOTE_URL_REGEX = '/^@|^ftp:|^https?:|^s3:|^data:[^;]*;base64,([a-zA-Z0-9\/+\n=]+)$/';
 
-    class Uploader {
         public static function build_upload_params(&$options)
         {
-            $params = array("timestamp" => time(),
+            $params = array(
+                "timestamp" => time(),
+                "access_control" => \Cloudinary::encode_array_to_json(
+                    \Cloudinary::option_get($options, "access_control")
+                ),
                 "allowed_formats" => \Cloudinary::encode_array(\Cloudinary::option_get($options, "allowed_formats")),
+                "async" => \Cloudinary::option_get($options, "async"),
                 "auto_tagging" => \Cloudinary::option_get($options, "auto_tagging"),
                 "background_removal" => \Cloudinary::option_get($options, "background_removal"),
                 "backup" => \Cloudinary::option_get($options, "backup"),
@@ -15,14 +22,18 @@ namespace Cloudinary {
                 "categorization" => \Cloudinary::option_get($options, "categorization"),
                 "colors" => \Cloudinary::option_get($options, "colors"),
                 "context" => \Cloudinary::encode_assoc_array(\Cloudinary::option_get($options, "context")),
-                "custom_coordinates" => \Cloudinary::encode_double_array(\Cloudinary::option_get($options, "custom_coordinates")),
+                "custom_coordinates" => \Cloudinary::encode_double_array(
+                    \Cloudinary::option_get($options, "custom_coordinates")
+                ),
                 "detection" => \Cloudinary::option_get($options, "detection"),
                 "discard_original_filename" => \Cloudinary::option_get($options, "discard_original_filename"),
                 "eager" => Uploader::build_eager(\Cloudinary::option_get($options, "eager")),
                 "eager_async" => \Cloudinary::option_get($options, "eager_async"),
                 "eager_notification_url" => \Cloudinary::option_get($options, "eager_notification_url"),
                 "exif" => \Cloudinary::option_get($options, "exif"),
-                "face_coordinates" => \Cloudinary::encode_double_array(\Cloudinary::option_get($options, "face_coordinates")),
+                "face_coordinates" => \Cloudinary::encode_double_array(
+                    \Cloudinary::option_get($options, "face_coordinates")
+                ),
                 "faces" => \Cloudinary::option_get($options, "faces"),
                 "folder" => \Cloudinary::option_get($options, "folder"),
                 "format" => \Cloudinary::option_get($options, "format"),
@@ -36,6 +47,7 @@ namespace Cloudinary {
                 "phash" => \Cloudinary::option_get($options, "phash"),
                 "proxy" => \Cloudinary::option_get($options, "proxy"),
                 "public_id" => \Cloudinary::option_get($options, "public_id"),
+                "quality_override" => \Cloudinary::option_get($options, "quality_override"),
                 "raw_convert" => \Cloudinary::option_get($options, "raw_convert"),
                 "return_delete_token" => \Cloudinary::option_get($options, "return_delete_token"),
                 "similarity_search" => \Cloudinary::option_get($options, "similarity_search"),
@@ -45,29 +57,49 @@ namespace Cloudinary {
                 "unique_filename" => \Cloudinary::option_get($options, "unique_filename"),
                 "upload_preset" => \Cloudinary::option_get($options, "upload_preset"),
                 "use_filename" => \Cloudinary::option_get($options, "use_filename"),
-                "responsive_breakpoints" => Uploader::build_responsive_breakpoints(\Cloudinary::option_get($options, "responsive_breakpoints"))
+                "responsive_breakpoints" => Uploader::build_responsive_breakpoints(
+                    \Cloudinary::option_get($options, "responsive_breakpoints")
+                ),
             );
-            array_walk($params, function (&$value, $key){ $value = (is_bool($value) ? ($value ? "1" : "0") : $value);});
-            return array_filter($params,function($v){ return !is_null($v) && ($v !== "" );});
+            array_walk(
+                $params,
+                function (&$value, $key) {
+                    $value = (is_bool($value) ? ($value ? "1" : "0") : $value);
+                }
+            );
+
+            return array_filter(
+                $params,
+                function ($v) {
+                    return !is_null($v) && ($v !== "");
+                }
+            );
         }
 
         public static function unsigned_upload($file, $upload_preset, $options = array())
         {
-            return Uploader::upload($file, array_merge($options, array("unsigned"=>TRUE, "upload_preset"=>$upload_preset)));
+            return Uploader::upload(
+                $file,
+                array_merge($options, array("unsigned" => true, "upload_preset" => $upload_preset))
+            );
         }
 
         public static function upload($file, $options = array())
         {
             $params = Uploader::build_upload_params($options);
+
             return Uploader::call_api("upload", $params, $options, $file);
         }
 
         // Upload large raw files. Note that public_id should include an extension for best results.
-        public static function upload_large($file, $options=array())
+        public static function upload_large($file, $options = array())
         {
+            if (preg_match(self::REMOTE_URL_REGEX, $file)) {
+                return self::upload($file, $options);
+            }
             $src = fopen($file, 'r');
             $temp_file_name = tempnam(sys_get_temp_dir(), 'cldupload.' . pathinfo($file, PATHINFO_EXTENSION));
-            $upload = $upload_id = NULL;
+            $upload = $upload_id = null;
             $chunk_size = \Cloudinary::option_get($options, "chunk_size", 20000000);
             $public_id = \Cloudinary::option_get($options, "public_id");
             $index = 0;
@@ -81,20 +113,22 @@ namespace Cloudinary {
                 stream_copy_to_stream($src, $dest, $chunk_size);
                 fclose($dest);
                 if (phpversion() >= "5.3.0") {
-                    clearstatcache(TRUE, $temp_file_name);
+                    clearstatcache(true, $temp_file_name);
                 } else {
                     clearstatcache();
                 }
 
                 $temp_file_size = filesize($temp_file_name);
-                $range = "bytes ". $current_loc . "-" . ($current_loc + $temp_file_size - 1) . "/" . $file_size;
+                $range = "bytes " . $current_loc . "-" . ($current_loc + $temp_file_size - 1) . "/" . $file_size;
                 try {
-                    $upload = Uploader::upload_large_part($temp_file_name, array_merge($options, 
-                                array("public_id"=>$public_id, "content_range"=>$range)));
-                } catch(\Exception $e) {
+                    $upload = Uploader::upload_large_part(
+                        $temp_file_name,
+                        array_merge($options, array("public_id" => $public_id, "content_range" => $range))
+                    );
+                } catch (\Exception $e) {
                     unlink($temp_file_name);
                     fclose($src);
-                    throw $e;                    
+                    throw $e;
                 }
                 $upload_id = \Cloudinary::option_get($upload, "upload_id");
                 $public_id = \Cloudinary::option_get($upload, "public_id");
@@ -102,15 +136,18 @@ namespace Cloudinary {
             }
             unlink($temp_file_name);
             fclose($src);
+
             return $upload;
         }
-    
+
 
         // Upload large raw files. Note that public_id should include an extension for best results.
-        public static function upload_large_part($file, $options=array())
+        public static function upload_large_part($file, $options = array())
         {
             $params = Uploader::build_upload_params($options);
-            return Uploader::call_api("upload_chunked", $params, array_merge(array("resource_type" => "raw"), $options), $file);
+            $full_options = array_merge(array("resource_type" => "raw"), $options);
+
+            return Uploader::call_api("upload_chunked", $params, $full_options, $file);
         }
 
         public static function destroy($public_id, $options = array())
@@ -119,8 +156,9 @@ namespace Cloudinary {
                 "timestamp" => time(),
                 "type" => \Cloudinary::option_get($options, "type"),
                 "invalidate" => \Cloudinary::option_get($options, "invalidate"),
-                "public_id" => $public_id
+                "public_id" => $public_id,
             );
+
             return Uploader::call_api("destroy", $params, $options);
         }
 
@@ -135,27 +173,31 @@ namespace Cloudinary {
                 "overwrite" => \Cloudinary::option_get($options, "overwrite"),
                 "to_type" => \Cloudinary::option_get($options, "to_type"),
             );
+
             return Uploader::call_api("rename", $params, $options);
         }
-        
+
         public static function explicit($public_id, $options = array())
         {
             $options["public_id"] = $public_id;
             $params = Uploader::build_upload_params($options);
+
             return Uploader::call_api("explicit", $params, $options);
         }
 
         public static function generate_sprite($tag, $options = array())
         {
             $transformation = \Cloudinary::generate_transformation_string(
-              array_merge(array("fetch_format"=>\Cloudinary::option_get($options, "format")), $options));
+                array_merge(array("fetch_format" => \Cloudinary::option_get($options, "format")), $options)
+            );
             $params = array(
                 "timestamp" => time(),
                 "tag" => $tag,
                 "async" => \Cloudinary::option_get($options, "async"),
                 "notification_url" => \Cloudinary::option_get($options, "notification_url"),
-                "transformation" => $transformation
+                "transformation" => $transformation,
             );
+
             return Uploader::call_api("sprite", $params, $options);
         }
 
@@ -168,8 +210,9 @@ namespace Cloudinary {
                 "format" => \Cloudinary::option_get($options, "format"),
                 "async" => \Cloudinary::option_get($options, "async"),
                 "notification_url" => \Cloudinary::option_get($options, "notification_url"),
-                "transformation" => $transformation
+                "transformation" => $transformation,
             );
+
             return Uploader::call_api("multi", $params, $options);
         }
 
@@ -182,8 +225,9 @@ namespace Cloudinary {
                 "format" => \Cloudinary::option_get($options, "format"),
                 "type" => \Cloudinary::option_get($options, "type"),
                 "notification_url" => \Cloudinary::option_get($options, "notification_url"),
-                "transformation" => $transformation
+                "transformation" => $transformation,
             );
+
             return Uploader::call_api("explode", $params, $options);
         }
 
@@ -195,6 +239,18 @@ namespace Cloudinary {
         public static function remove_tag($tag, $public_ids = array(), $options = array())
         {
             return Uploader::call_tags_api($tag, "remove", $public_ids, $options);
+        }
+
+        /**
+         * Remove all tags from the specified public IDs.
+         *
+         * @param array $public_ids     the public IDs of the resources to update
+         * @param array $options        additional options passed to the request
+         * @return mixed                list of public IDs that were updated
+         */
+        public static function remove_all_tags($public_ids, $options = array())
+        {
+            return Uploader::call_tags_api(NULL, "remove_all", $public_ids, $options);
         }
 
         public static function replace_tag($tag, $public_ids = array(), $options = array())
@@ -209,17 +265,20 @@ namespace Cloudinary {
                 "tag" => $tag,
                 "public_ids" => \Cloudinary::build_array($public_ids),
                 "type" => \Cloudinary::option_get($options, "type"),
-                "command" => $command
+                "command" => $command,
             );
+
             return Uploader::call_api("tags", $params, $options);
         }
 
-        public static function add_context($context, $public_ids = array(), $options = array()) {
-          return Uploader::call_context_api($context, 'add', $public_ids, $options);
+        public static function add_context($context, $public_ids = array(), $options = array())
+        {
+            return Uploader::call_context_api($context, 'add', $public_ids, $options);
         }
 
-        public static function remove_all_context($public_ids = array(), $options = array()) {
-          return Uploader::call_context_api(null, 'remove_all', $public_ids, $options);
+        public static function remove_all_context($public_ids = array(), $options = array())
+        {
+            return Uploader::call_context_api(null, 'remove_all', $public_ids, $options);
         }
 
         public static function call_context_api($context, $command, $public_ids = array(), &$options = array())
@@ -229,12 +288,24 @@ namespace Cloudinary {
                 "context" => $context,
                 "public_ids" => \Cloudinary::build_array($public_ids),
                 "type" => \Cloudinary::option_get($options, "type"),
-                "command" => $command
+                "command" => $command,
             );
+
             return Uploader::call_api("context", $params, $options);
         }
 
-        private static $TEXT_PARAMS = array("public_id", "font_family", "font_size", "font_color", "text_align", "font_weight", "font_style", "background", "opacity", "text_decoration");
+        private static $TEXT_PARAMS = array(
+            "public_id",
+            "font_family",
+            "font_size",
+            "font_color",
+            "text_align",
+            "font_weight",
+            "font_style",
+            "background",
+            "opacity",
+            "text_decoration",
+        );
 
         public static function text($text, $options = array())
         {
@@ -242,16 +313,18 @@ namespace Cloudinary {
             foreach (Uploader::$TEXT_PARAMS as $key) {
                 $params[$key] = \Cloudinary::option_get($options, $key);
             }
+
             return Uploader::call_api("text", $params, $options);
         }
 
         # Creates a new archive in the server and returns information in JSON format
-        public static function create_archive($options = array(), $target_format = NULL)
+        public static function create_archive($options = array(), $target_format = null)
         {
             $params = \Cloudinary::build_archive_params($options);
-            if ($target_format != NULL) {
+            if ($target_format != null) {
                 $params["target_format"] = $target_format;
             }
+
             return Uploader::call_api("generate_archive", $params, $options);
         }
 
@@ -261,7 +334,7 @@ namespace Cloudinary {
             return Uploader::create_archive($options, "zip");
         }
 
-        public static function call_api($action, $params, $options = array(), $file = NULL)
+        public static function call_api($action, $params, $options = array(), $file = null)
         {
             $return_error = \Cloudinary::option_get($options, "return_error");
             if (!\Cloudinary::option_get($options, "unsigned")) {
@@ -285,7 +358,7 @@ namespace Cloudinary {
                 }
             }
             if ($file) {
-                if (!preg_match('/^@|^ftp:|^https?:|^s3:|^data:[^;]*;base64,([a-zA-Z0-9\/+\n=]+)$/', $file)) {
+                if (!preg_match(self::REMOTE_URL_REGEX, $file)) {
                     if (function_exists("curl_file_create")) {
                         $post_params['file'] = curl_file_create($file);
                         $post_params['file']->setPostFilename($file);
@@ -300,25 +373,32 @@ namespace Cloudinary {
             curl_setopt($ch, CURLOPT_POST, true);
             $timeout = \Cloudinary::option_get($options, "timeout", \Cloudinary::config_get("timeout", 60));
             curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-            $connection_timeout = \Cloudinary::option_get($options, "connection_timeout", \Cloudinary::config_get("connection_timeout"));
-            if ($connection_timeout != NULL) {
+            $connection_timeout = \Cloudinary::option_get(
+                $options,
+                "connection_timeout",
+                \Cloudinary::config_get("connection_timeout")
+            );
+            if ($connection_timeout != null) {
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connection_timeout);
             }
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_params);
-            curl_setopt($ch, CURLOPT_CAINFO,realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR."cacert.pem");
+            curl_setopt($ch, CURLOPT_CAINFO, realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "cacert.pem");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); # no effect since PHP 5.1.3
             curl_setopt($ch, CURLOPT_USERAGENT, \Cloudinary::userAgent());
-            curl_setopt($ch, CURLOPT_PROXY, \Cloudinary::option_get($options, "api_proxy", \Cloudinary::config_get("api_proxy")));
+            curl_setopt(
+                $ch,
+                CURLOPT_PROXY,
+                \Cloudinary::option_get($options, "api_proxy", \Cloudinary::config_get("api_proxy"))
+            );
 
             $range = \Cloudinary::option_get($options, "content_range");
-            if ($range != NULL){
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Range: '.$range));
+            if ($range != null) {
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Range: ' . $range));
             }
-            
+
             $response = curl_exec($ch);
-            $curl_error = NULL;
-            if(curl_errno($ch))
-            {
+            $curl_error = null;
+            if (curl_errno($ch)) {
                 $curl_error = curl_error($ch);
             }
 
@@ -326,14 +406,17 @@ namespace Cloudinary {
             $response_data = $response;
 
             curl_close($ch);
-            if ($curl_error != NULL) {
+            if ($curl_error != null) {
                 throw new \Cloudinary\Error("Error in sending request to server - " . $curl_error);
             }
             if ($code != 200 && $code != 400 && $code != 500 && $code != 401 && $code != 404) {
-                throw new \Cloudinary\Error("Server returned unexpected status code - " . $code . " - " . $response_data, $code);
+                throw new \Cloudinary\Error(
+                    "Server returned unexpected status code - " . $code . " - " . $response_data,
+                    $code
+                );
             }
-            $result = json_decode($response_data, TRUE);
-            if ($result == NULL) {
+            $result = json_decode($response_data, true);
+            if ($result == null) {
                 throw new \Cloudinary\Error("Error parsing server response (" . $code . ") - " . $response_data);
             }
             if (isset($result["error"])) {
@@ -343,41 +426,51 @@ namespace Cloudinary {
                     throw new \Cloudinary\Error($result["error"]["message"], $code);
                 }
             }
+
             return $result;
         }
 
-        protected static function build_eager($transformations) {
+        protected static function build_eager($transformations)
+        {
             return \Cloudinary::build_eager($transformations);
         }
 
-        protected static function build_responsive_breakpoints($breakpoints) {
+        protected static function build_responsive_breakpoints($breakpoints)
+        {
             if (!$breakpoints) {
-                return NULL;
+                return null;
             }
             $breakpoints_params = array();
             foreach (\Cloudinary::build_array($breakpoints) as $breakpoint_settings) {
                 if ($breakpoint_settings) {
                     $transformation = \Cloudinary::option_consume($breakpoint_settings, "transformation");
                     if ($transformation) {
-                        $breakpoint_settings["transformation"] = \Cloudinary::generate_transformation_string($transformation);
+                        $breakpoint_settings["transformation"] = \Cloudinary::generate_transformation_string(
+                            $transformation
+                        );
                     }
                     array_push($breakpoints_params, $breakpoint_settings);
                 }
             }
+
             return json_encode($breakpoints_params);
         }
 
-        protected static function build_custom_headers($headers) {
-            if ($headers == NULL) {
-                return NULL;
+        protected static function build_custom_headers($headers)
+        {
+            if ($headers == null) {
+                return null;
             } elseif (is_string($headers)) {
                 return $headers;
             } elseif ($headers == array_values($headers)) {
                 return implode("\n", $headers);
             } else {
-                $join_pair = function($key, $value) { return $key . ": " . $value; };
+                $join_pair = function ($key, $value) {
+                    return $key . ": " . $value;
+                };
+
                 return implode("\n", array_map($join_pair, array_keys($headers), array_values($headers)));
             }
-        }  
+        }
     }
 }

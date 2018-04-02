@@ -1,4 +1,117 @@
 
+1.9.0 / 2018-03-12
+==================
+
+New functionality and features
+------------------------------
+
+  * Add `delete_derived_by_transformation` API
+  * Add `remove_all_tags` to `Uploader`
+  * Add `resources_by_context` to `Api`
+  * Add `access_control` parameter to uploader `upload` and api `update`
+  * Support remote URLs in upload_large API
+  * Add `transformations` parameter to delete_resources APIs
+  * Support `quality_override` param for `update` and `explicit` api
+  * Adding Streaming Profile to transformation.
+  * Add URL suffix support for image/authenticated, video/upload
+  * Remove restriction of URL suffix in shared CDN
+  * Support string $public_ids parameter in `delete_derived_by_transformation`
+  * Support `0` and `0.0` in `norm_range_value` function. Fixes #64 (#97)
+
+Other Changes
+-------------
+
+  * Improve PSR-2 compliance (#101)
+  * Add `next_cursor` test of `transformation()` API
+  * Add `encode_array_to_json`
+  * Fix encoding of attributes and url in html tags. Fixes #87
+  * Add PHP versions to TravisCI setup
+  * Add a test of streaming_profile parameter
+  * Fix Categorization test
+  * Add `UNIQUE_TEST_ID` to test helper
+  * Remove `test_auto_tagging` unit test (#95)
+  * Update Readme.md for setup with composer
+  * Remove unreachable code. Fixes #66
+
+1.8.0 / 2017-05-03
+==================
+
+New functionality and features
+------------------------------
+
+  * Advanced search API
+  * Add `async` parameter to upload parameters.
+
+Other Changes
+-------------
+
+  * Update tests to use `TestHelper`
+  * Add compatibility for newer PHPUnit versions
+
+1.7.2 / 2017-04-03
+==================
+
+  * Add update ocr parameters test
+  * Merge pull request #71 from jtabet/fix-floats-issue
+    * Added a number_format on float values in the transformation string
+  * Add ocr parameters tests
+  * Fix variables order. Add variables order tests.
+
+1.7.1 / 2017-03-13
+==================
+
+  * Update phpunit to 5.7.*
+  * Update travis.yml to test 5.6 and 7.0 (matching phpunit)
+  * Don't normalize negative numbers. Fixed #68.
+
+1.7.0 / 2017-03-09
+==================
+
+New functionality and features
+------------------------------
+
+  * User defined variables
+  * Add `async` parameter to upload params (#65)
+  * Add `fetch` prefix to overlay path
+  * Support fetch overlay underlay
+
+Other Changes
+-------------
+
+  * Rename items and add missing variables.
+
+1.6.2 / 2017-02-23
+==================
+
+  * Add URL authentication.
+  * Rename `auth_token`. 
+  * Support nested values in `CLOUDINARY_URL`
+  * Fix archive test.
+  * Add a test for `build_eager`.
+
+1.6.1 / 2017-02-16
+==================
+
+  * Allow 'invalidate' param in 'delete_transformation'
+  * Upgrade Travis test from 7.0 to 7.1
+  * Merge pull request #61 from dragosprotung/patch-1
+  * Merge pull request #63 from cloudinary/support-invalidate-in-delete-transformation
+  * Deleted stub file
+
+1.6.0 / 2017-01-30
+==================
+
+New functionality and features
+------------------------------
+
+  * Add Akamai token generator
+
+Other Changes
+-------------
+
+  * Revert using VERSION to set USER_AGENT. Fixes #58.
+  * Fix USER_AGENT version.
+
 1.5.0 / 2017-01-19
 ==================
 

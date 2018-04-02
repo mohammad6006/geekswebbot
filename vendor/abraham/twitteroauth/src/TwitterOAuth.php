@@ -18,7 +18,6 @@ class TwitterOAuth extends Config
     const API_VERSION = '1.1';
     const API_HOST = 'https://api.twitter.com';
     const UPLOAD_HOST = 'https://upload.twitter.com';
-    const UPLOAD_CHUNK = 40960; // 1024 * 40
 
     /** @var Response details about the result of the last request */
     private $response;
@@ -262,22 +261,17 @@ class TwitterOAuth extends Config
      */
     private function uploadMediaChunked($path, array $parameters)
     {
-        // Init
-        $init = $this->http('POST', self::UPLOAD_HOST, $path, [
-            'command' => 'INIT',
-            'media_type' => $parameters['media_type'],
-            'total_bytes' => filesize($parameters['media'])
-        ]);
+        $init = $this->http('POST', self::UPLOAD_HOST, $path, $this->mediaInitParameters($parameters));
         // Append
-        $segment_index = 0;
+        $segmentIndex = 0;
         $media = fopen($parameters['media'], 'rb');
         while (!feof($media))
         {
             $this->http('POST', self::UPLOAD_HOST, 'media/upload', [
                 'command' => 'APPEND',
                 'media_id' => $init->media_id_string,
-                'segment_index' => $segment_index++,
-                'media_data' => base64_encode(fread($media, self::UPLOAD_CHUNK))
+                'segment_index' => $segmentIndex++,
+                'media_data' => base64_encode(fread($media, $this->chunkSize))
             ]);
         }
         fclose($media);
@@ -287,6 +281,30 @@ class TwitterOAuth extends Config
             'media_id' => $init->media_id_string
         ]);
         return $finalize;
+    }
+
+    /**
+     * Private method to get params for upload media chunked init.
+     * Twitter docs: https://dev.twitter.com/rest/reference/post/media/upload-init.html
+     *
+     * @param array  $parameters
+     *
+     * @return array
+     */
+    private function mediaInitParameters(array $parameters)
+    {
+        $return = [
+            'command' => 'INIT',
+            'media_type' => $parameters['media_type'],
+            'total_bytes' => filesize($parameters['media'])
+        ];
+        if (isset($parameters['additional_owners'])) {
+            $return['additional_owners'] = $parameters['additional_owners'];
+        }
+        if (isset($parameters['media_category'])) {
+            $return['media_category'] = $parameters['media_category'];
+        }
+        return $return;
     }
 
     /**
@@ -328,10 +346,52 @@ class TwitterOAuth extends Config
         if ($this->bearer === null) {
             $request->signRequest($this->signatureMethod, $this->consumer, $this->token);
             $authorization = $request->toHeader();
+            if (array_key_exists('oauth_verifier', $parameters)) {
+                // Twitter doesn't always work with oauth in the body and in the header
+                // and it's already included in the $authorization header
+                unset($parameters['oauth_verifier']);
+            }
         } else {
             $authorization = 'Authorization: Bearer ' . $this->bearer;
         }
         return $this->request($request->getNormalizedHttpUrl(), $method, $authorization, $parameters);
+    }
+
+    /**
+     * Set Curl options.
+     *
+     * @return array
+     */
+    private function curlOptions()
+    {
+        $options = [
+            // CURLOPT_VERBOSE => true,
+            CURLOPT_CONNECTTIMEOUT => $this->connectionTimeout,
+            CURLOPT_HEADER => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_TIMEOUT => $this->timeout,
+            CURLOPT_USERAGENT => $this->userAgent,
+        ];
+
+        if ($this->useCAFile()) {
+            $options[CURLOPT_CAINFO] = __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem';
+        }
+
+        if($this->gzipEncoding) {
+            $options[CURLOPT_ENCODING] = 'gzip';
+        }
+
+        if (!empty($this->proxy)) {
+            $options[CURLOPT_PROXY] = $this->proxy['CURLOPT_PROXY'];
+            $options[CURLOPT_PROXYUSERPWD] = $this->proxy['CURLOPT_PROXYUSERPWD'];
+            $options[CURLOPT_PROXYPORT] = $this->proxy['CURLOPT_PROXYPORT'];
+            $options[CURLOPT_PROXYAUTH] = CURLAUTH_BASIC;
+            $options[CURLOPT_PROXYTYPE] = CURLPROXY_HTTP;
+        }
+
+        return $options;
     }
 
     /**
@@ -347,37 +407,9 @@ class TwitterOAuth extends Config
      */
     private function request($url, $method, $authorization, array $postfields)
     {
-        /* Curl settings */
-        $options = [
-            // CURLOPT_VERBOSE => true,
-            CURLOPT_CAINFO => __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem',
-            CURLOPT_CONNECTTIMEOUT => $this->connectionTimeout,
-            CURLOPT_HEADER => true,
-            CURLOPT_HTTPHEADER => ['Accept: application/json', $authorization, 'Expect:'],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_TIMEOUT => $this->timeout,
-            CURLOPT_URL => $url,
-            CURLOPT_USERAGENT => $this->userAgent,
-        ];
-
-        /* Remove CACert file when in a PHAR file. */
-        if ($this->pharRunning()) {
-            unset($options[CURLOPT_CAINFO]);
-        }
-
-        if($this->gzipEncoding) {
-            $options[CURLOPT_ENCODING] = 'gzip';
-        }
-
-        if (!empty($this->proxy)) {
-            $options[CURLOPT_PROXY] = $this->proxy['CURLOPT_PROXY'];
-            $options[CURLOPT_PROXYUSERPWD] = $this->proxy['CURLOPT_PROXYUSERPWD'];
-            $options[CURLOPT_PROXYPORT] = $this->proxy['CURLOPT_PROXYPORT'];
-            $options[CURLOPT_PROXYAUTH] = CURLAUTH_BASIC;
-            $options[CURLOPT_PROXYTYPE] = CURLPROXY_HTTP;
-        }
+        $options = $this->curlOptions($url, $authorization);
+        $options[CURLOPT_URL] = $url;
+        $options[CURLOPT_HTTPHEADER] = ['Accept: application/json', $authorization, 'Expect:'];
 
         switch ($method) {
             case 'GET':
@@ -460,6 +492,17 @@ class TwitterOAuth extends Config
      */
     private function pharRunning()
     {
-        return class_exists('Phar') && !empty(\Phar::running(false));
+        return class_exists('Phar') && \Phar::running(false) !== '';
+    }
+
+    /**
+     * Use included CA file instead of OS provided list.
+     *
+     * @return boolean
+     */
+    private function useCAFile()
+    {
+        /* Use CACert file when not in a PHAR file. */
+        return !$this->pharRunning();
     }
 }
