@@ -5,21 +5,37 @@ $dom = new Dom;
 $dom->load('https://video.acunn.com/survivor');
 $html = $dom->outerHtml;
 $a = $dom->find('div[class=videos-list] div[class=row] div div[class=list-type-one-content] a');
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
 echo count($a);
 foreach ($a as $key => $value) {
     echo $value->getAttribute('title');
+    echo "\n";
+    $url = $value->getAttribute('href');
+    $data = file_get_contents( $url );
+    $parsed = get_string_between($data, 'https://video-cdn.acunn.com', '-480p.mp4');
+    echo 'https://video-cdn.acunn.com'.$parsed.'-480p.mp4';
+    echo "\n";
 }
-echo $a->text;
-return 'asal';
-print_r($a);
+// echo $a->text;
+// return 'asal';
+// print_r($a);
 
 
+// $data = file_get_contents('https://www.w3schools.com/w3css/tryw3css_templates_band.htm');
 
 // require 'vendor/autoload.php';
 // use PHPHtmlParser\Dom;
 // $dom = new Dom;
 // $dom->load('https://www.w3schools.com/w3css/tryw3css_templates_band.htm');
 // $html = $dom->outerHtml;
+// var_dump($html);
 // $a = $dom->find('div[class=w3-row-padding w3-padding-32] div img');
 // echo count($a);
 // foreach ($a as $key => $value) {
@@ -31,6 +47,7 @@ print_r($a);
 // $arri = "list";
 
 
+// $match = '';
 
 
 
