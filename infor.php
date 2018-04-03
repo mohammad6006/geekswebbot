@@ -13,15 +13,19 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
-echo count($a);
+// echo count($a);
+$tmp = 0;
 foreach ($a as $key => $value) {
-    echo $value->getAttribute('title');
-    echo "\n";
-    $url = $value->getAttribute('href');
-    $data = file_get_contents( $url );
-    $parsed = get_string_between($data, 'https://video-cdn.acunn.com', '-480p.mp4');
-    echo 'https://video-cdn.acunn.com'.$parsed.'-480p.mp4';
-    echo "\n";
+    if ($tmp < 12) {
+        echo $value->getAttribute('title');
+        echo "\n";
+        $url = $value->getAttribute('href');
+        $data = file_get_contents( $url );
+        $parsed = get_string_between($data, 'https://video-cdn.acunn.com', '-480p.mp4');
+        echo 'https://video-cdn.acunn.com'.$parsed.'-480p.mp4';
+        echo "\n";
+    }
+    $tmp++;
 }
 // echo $a->text;
 // return 'asal';
