@@ -5,19 +5,12 @@ namespace Cloudinary {
     const RAW_FILE = "tests/docx.docx";
     const TEST_IMG = "tests/logo.png";
     const TEST_ICO = "tests/favicon.ico";
+    const TEST_PRESET_NAME = 'test_preset';
     const LOGO_SIZE = 3381;
     define("SUFFIX", getenv("TRAVIS_JOB_ID") ?: rand(11111, 99999));
     define('TEST_TAG', 'cloudinary_php');
     define('UNIQUE_TEST_TAG', TEST_TAG . "_" . SUFFIX);
-	define('UNIQUE_TEST_ID', UNIQUE_TEST_TAG);
-
-    // For compatibility with the new versions of phpunit
-    if (!class_exists('\PHPUnit\Framework\TestCase') &&
-        class_exists('\PHPUnit_Framework_TestCase')
-    ) {
-        /** @noinspection PhpUndefinedClassInspection */
-        class_alias('\PHPUnit_Framework_TestCase', '\PHPUnit\Framework\TestCase');
-    }
+    define('UNIQUE_TEST_ID', UNIQUE_TEST_TAG);
 
     /**
      * Class Curl
@@ -60,32 +53,25 @@ Connection: keep-alive
 {"public_id":"oej8n7ezhwmk1fp1xqfd"}
 END;
             $this->apiResponse = str_replace("\n", "\r\n", $this->apiResponse);
-            $this->uploadResponse = <<<END
-{
-"public_id":"oej8n7ezhwmk1fp1xqfd"
 
-}
-END;
-            $this->uploadResponse = str_replace("\n", "\r\n", $this->uploadResponse);
+            $this->uploadResponse = '{"public_id":"oej8n7ezhwmk1fp1xqfd"}';
         }
 
         public static function mockApi($test)
         {
-            Curl::$instance = $test
-                ->getMockBuilder("\\Cloudinary\\Curl")
-                ->setMethods(array("exec", "getinfo"))
-                ->getMock();
-
-            Curl::$instance
-                ->method("exec")
-                ->will($test->returnValue(Curl::$instance->apiResponse));
-
-            Curl::$instance
-                ->method("getinfo")
-                ->will($test->returnValue(200));
+            self::mockRequest($test, Curl::$instance->apiResponse);
         }
 
         public static function mockUpload($test)
+        {
+            self::mockRequest($test, Curl::$instance->uploadResponse);
+        }
+
+        /**
+         * @param \PHPUnit\Framework\TestCase $test Test case to mock
+         * @param $mocked_response
+         */
+        public static function mockRequest($test, $mocked_response)
         {
             Curl::$instance = $test
                 ->getMockBuilder("\\Cloudinary\\Curl")
@@ -94,7 +80,7 @@ END;
 
             Curl::$instance
                 ->method("exec")
-                ->will($test->returnValue(Curl::$instance->uploadResponse));
+                ->will($test->returnValue($mocked_response));
 
             Curl::$instance
                 ->method("getinfo")
@@ -183,6 +169,8 @@ END;
         }
     }
 
+    Curl::$instance = new Curl();
+
     // Override global curl functions
 
     function curl_init($url = null)
@@ -263,5 +251,18 @@ END;
     {
         $cloud_name = \Cloudinary::config_get("cloud_name");
         $test->assertEquals("/v1_1/" . $cloud_name . $path, Curl::$instance->url_path(), $message);
+    }
+
+    function assertHasHeader($test, $header, $message = '')
+    {
+        $headers = Curl::$instance->getopt(CURLOPT_HTTPHEADER);
+        $test->assertTrue(is_array($headers), $message);
+        $names = array();
+        foreach ($headers as $h) {
+            $chunks = explode(":", $h);
+            // header names are case-insensitive according to rfc7230
+            $names[] = strtolower(trim($chunks[0]));
+        }
+        $test->assertContains(strtolower($header), $names, $message);
     }
 }

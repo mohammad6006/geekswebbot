@@ -1,4 +1,88 @@
 
+1.13.0 / 2018-12-16
+===================
+
+New functionality and features
+------------------------------
+
+  * Add custom `pre` function support
+  * Add `fps` video transformation parameter
+  * Add `keyframe_interval` video transformation parameter
+  * Add `quality_analysis` upload parameter
+
+Other Changes
+-------------
+
+  * Fix file extension in `upload_large`
+  * Fix for Uploader.php to prevent uploads failing
+  * Fix missing padding in `base64url_encode`
+  * Mock upload presets tests
+  * Fix `test_detection` unit test
+  * Remove secure variables from travis.yml
+  
+1.12.0 / 2018-10-11
+===================
+
+New functionality and features
+------------------------------
+  * Add support of custom codecs in video tag
+  * Add Google Cloud Storage protocol support in upload
+
+Other Changes
+-------------
+  * Add `update_version.sh` tool
+  * Rename `custom_action` to `custom_function`
+
+1.11.1 / 2018-09-12
+===================
+
+  * Update version number in files
+
+1.11.0 / 2018-09-07
+===================
+
+New functionality and features
+------------------------------
+  * Add responsive breakpoints cache
+  * Add `cl_picture_tag` and `cl_source_tag` helpers
+  * Add support for web assembly and lambda functions in transformations.
+  * Add `font_antialiasing` and `font_hinting` text style parameters
+  * Add `cl_client_hints_meta_tag` helper
+  * Add support of `named` parameter in list transformations API
+  * Add support of `auto` value for `start_offset` transformation parameter (#123)
+  * Add `notification_url` param to the `update` method
+  * Add `format` parameter to responsive breakpoints settings
+  * Add legacy autoloader
+
+Other Changes
+-------------
+  * Improve PSR-2 compliance + PSR-4 autoload + documentation update
+  * Update `radius` transformation parameter
+  * Add `base64url_encode` internal helper
+  * Fix base64 encoding in urls.
+  * Use `X-Unique-Upload-Id` header in `upload_large`
+  * Fix sample project includes.
+
+1.10.0 / 2018-05-10
+===================
+
+New functionality and features
+------------------------------
+
+  * Add `srcset` and `sizes` attributes to the `img` tag (#117)
+  * Support special characters in public IDs, tags, etc in Admin API calls
+  * Add php version to user agent (#114)
+  
+Other Changes
+-------------
+  * Fix URL-encode parts of api-uri
+  * Add `test_url_encoding` unit test
+  * Fix `test_transformation_cursor_results` unit test
+  * Fix `test_raw_conversion` unit test
+  * Fix streaming profiles cleanup after unit tests
+  * Add PHPDoc to Cloudinary\Api and Exceptions
+  * Update PHP version requirement
+
 1.9.0 / 2018-03-12
 ==================
 

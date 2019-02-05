@@ -28,7 +28,7 @@ You can install through composer with:
 
 Or download cloudinary_php from [here](https://github.com/cloudinary/cloudinary_php/tarball/master)
 
-*Note: cloudinary_php require PHP 5.3*
+*Note: cloudinary_php require PHP 5.4*
 
 ## Try it right away
 
@@ -205,6 +205,10 @@ You can [open an issue through GitHub](https://github.com/cloudinary/cloudinary_
 Contact us [http://cloudinary.com/contact](http://cloudinary.com/contact)
 
 Stay tuned for updates, tips and tutorials: [Blog](http://cloudinary.com/blog), [Twitter](https://twitter.com/cloudinary), [Facebook](http://www.facebook.com/Cloudinary).
+
+## Join the Community ##########################################################
+
+Impact the product, hear updates, test drive new features and more! Join [here](https://www.facebook.com/groups/CloudinaryCommunity).
 
 ## License #######################################################################
 

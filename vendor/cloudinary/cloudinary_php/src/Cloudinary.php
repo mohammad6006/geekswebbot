@@ -1,5 +1,6 @@
 <?php
-require_once 'AuthToken.php';
+
+use Cloudinary\HttpClient;
 
 class Cloudinary
 {
@@ -11,9 +12,44 @@ class Cloudinary
     const RANGE_VALUE_RE = '/^(?P<value>(\d+\.)?\d+)(?P<modifier>[%pP])?$/';
     const RANGE_RE = '/^(\d+\.)?\d+[%pP]?\.\.(\d+\.)?\d+[%pP]?$/';
 
-    const VERSION = "1.9.0";
-    /** @internal Do not change this value */
-    const USER_AGENT = "CloudinaryPHP/1.9.0";
+    const VERSION = "1.13.0";
+
+    /**
+     * @internal
+     * @var array a list of keys used by the cloudinary_url function
+     */
+    public static $URL_KEYS = array(
+        'api_secret',
+        'auth_token',
+        'cdn_subdomain',
+        'cloud_name',
+        'cname',
+        'format',
+        'private_cdn',
+        'resource_type',
+        'secure',
+        'secure_cdn_subdomain',
+        'secure_distribution',
+        'shorten',
+        'sign_url',
+        'ssl_detected',
+        'type',
+        'url_suffix',
+        'use_root_path',
+        'version'
+    );
+
+    /**
+     * Contains information about SDK user agent. Passed to the Cloudinary servers.
+     *
+     * Initialized on the first call to {@see self::userAgent()}
+     *
+     * Sample value: CloudinaryPHP/1.2.3 (PHP 5.6.7)
+     *
+     * @internal
+     * Do not change this value
+     */
+    private static $USER_AGENT = "";
 
     /**
      * Additional information to be passed with the USER_AGENT, e.g. "CloudinaryMagento/1.0.1".
@@ -23,6 +59,7 @@ class Cloudinary
      * The format of the value should be <ProductName>/Version[ (comment)].
      * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43
      *
+     * @internal
      * <b>Do not set this value in application code!</b>
      *
      * @var string
@@ -32,6 +69,7 @@ class Cloudinary
     public static $DEFAULT_RESPONSIVE_WIDTH_TRANSFORMATION = array("width" => "auto", "crop" => "limit");
 
     private static $config = null;
+
     public static $JS_CONFIG_PARAMS = array(
         "api_key",
         "cloud_name",
@@ -41,24 +79,47 @@ class Cloudinary
     );
 
     /**
-     * Provides the USER_AGENT string that is passed to the Cloudinary servers.
+     * Provides the {@see self::$USER_AGENT} string that is passed to the Cloudinary servers.
      *
-     * Prepends {@link $USER_PLATFORM} if it is defined.
+     * Prepends {@see self::$USER_PLATFORM} if it is defined.
      *
      * @return string
      */
     public static function userAgent()
     {
-        if (self::$USER_PLATFORM == "") {
-            return self::USER_AGENT;
-        } else {
-            return self::$USER_PLATFORM . " " . self::USER_AGENT;
+        if (empty(self::$USER_AGENT)) {
+            self::$USER_AGENT = 'CloudinaryPHP/' . self::VERSION . ' (PHP ' . PHP_VERSION. ')';
         }
+
+        if (empty(self::$USER_PLATFORM)) {
+            return self::$USER_AGENT;
+        }
+
+        return self::$USER_PLATFORM . ' '  . self::$USER_AGENT;
     }
 
     public static function is_not_null($var)
     {
         return !is_null($var);
+    }
+
+    /**
+     * @internal
+     * When upload type is fetch, remove the format options.
+     * In addition, set the fetch_format options to the format value unless it was already set.
+     * Mutates the $options parameter!
+     * @param array $options URL and transformation options
+     */
+    public static function patch_fetch_format(&$options)
+    {
+        $type = Cloudinary::option_get($options, "type", "upload");
+        if ($type != "fetch") return;
+
+        // format does not apply to fetch resources since they are identified by a URL
+        $format = Cloudinary::option_consume($options, "format");
+        if (!isset($options["fetch_format"])) {
+            $options["fetch_format"] = $format;
+        }
     }
 
     public static function config($values = null)
@@ -120,29 +181,23 @@ class Cloudinary
 
     public static function option_consume(&$options, $option, $default = null)
     {
-        if (isset($options[$option])) {
-            $value = $options[$option];
-            unset($options[$option]);
+        $value = self::option_get($options, $option, $default);
+        unset($options[$option]);
 
-            return $value;
-        } else {
-            unset($options[$option]);
-
-            return $default;
-        }
+        return $value;
     }
 
     public static function build_array($value)
     {
+        if (is_null($value)) {
+            return array();
+        }
+
         if (is_array($value) && !Cloudinary::is_assoc($value)) {
             return $value;
-        } else {
-            if ($value === null) {
-                return array();
-            } else {
-                return array($value);
-            }
         }
+
+        return array($value);
     }
 
 
@@ -273,8 +328,7 @@ class Cloudinary
             if (!$is_assoc) {
                 throw new InvalidArgumentException("Expected an array of associative arrays");
             }
-            if(!is_null($encoder))
-            {
+            if (!is_null($encoder)) {
                 foreach ($item as $key => $value) {
                     $item[$key] = call_user_func($encoder, $value);
                 }
@@ -282,7 +336,6 @@ class Cloudinary
         }
 
         return \json_encode($array);
-
     }
 
     public static function json_decode_cb($json, $decoder)
@@ -291,10 +344,8 @@ class Cloudinary
             throw new InvalidArgumentException("Expected an string");
         }
         $array = json_decode($json, true);
-        if(!is_null($decoder) && !is_null($array))
-        {
+        if (!is_null($decoder) && !is_null($array)) {
             foreach ($array as $key => $value) {
-
                 try {
                     $array[$key] = call_user_func($decoder, $value);
                 } catch (Exception $e) {
@@ -304,8 +355,8 @@ class Cloudinary
         }
 
         return $array;
-
     }
+
     /**
      * Wrapper for calling build_array_of_assoc_arrays and json_encode_array_of_assoc_arrays with null value handling.
      *
@@ -361,6 +412,59 @@ class Cloudinary
         }
     }
 
+    /**
+     * Encodes data with URL safe base64
+     *
+     * @see https://tools.ietf.org/html/rfc4648#section-5
+     *
+     * @param mixed $data The data to encode.
+     *
+     * @return string The encoded data, as a string.
+     */
+    private static function base64url_encode($data)
+    {
+        return strtr(base64_encode($data), '+/', '-_');
+    }
+
+    /**
+     * Helper function for making a recursive array copy while cloning objects on the way.
+     *
+     * @param array $array Source array
+     *
+     * @return array Recursive copy of the source array
+     */
+    public static function array_copy($array)
+    {
+        if (!is_array($array)) {
+            return $array;
+        }
+
+        $result = array();
+        foreach ($array as $key => $val) {
+            if (is_array($val)) {
+                $result[$key] = self::array_copy($val);
+            } elseif (is_object($val)) {
+                $result[$key] = clone $val;
+            } else {
+                $result[$key] = $val;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Returns subset of associative array specified by array of keys
+     *
+     * @param array $array Source associative array
+     * @param array $keys Simple array of keys
+     *
+     * @return array Resulting array
+     */
+    public static function array_subset($array, $keys)
+    {
+        return array_intersect_key($array, array_flip($keys));
+    }
+
     private static function is_assoc($array)
     {
         if (!is_array($array)) {
@@ -368,6 +472,23 @@ class Cloudinary
         }
 
         return $array != array_values($array);
+    }
+
+    /** @internal
+     * Prepends associative element to the beginning of an array
+     *
+     * @param array $arr The input array.
+     * @param mixed $key The prepended key
+     * @param mixed $val The prepended value
+     *
+     * @return array The resulting array
+     */
+    public static function array_unshift_assoc(&$arr, $key, $val)
+    {
+        $arr = array_reverse($arr, true);
+        $arr[$key] = $val;
+        $arr = array_reverse($arr, true);
+        return $arr;
     }
 
     private static function generate_base_transformation($base_transformation)
@@ -403,7 +524,6 @@ class Cloudinary
 
         $width = Cloudinary::option_get($options, "width");
         $height = Cloudinary::option_get($options, "height");
-        $streaming_profile = Cloudinary::option_get($options, "streaming_profile");
 
         $has_layer = Cloudinary::option_get($options, "underlay") || Cloudinary::option_get($options, "overlay");
         $angle = implode(Cloudinary::build_array(Cloudinary::option_consume($options, "angle")), ".");
@@ -448,24 +568,27 @@ class Cloudinary
         $dpr = Cloudinary::option_consume($options, "dpr", Cloudinary::config_get("dpr"));
 
         $duration = Cloudinary::norm_range_value(Cloudinary::option_consume($options, "duration"));
-        $start_offset = Cloudinary::norm_range_value(Cloudinary::option_consume($options, "start_offset"));
+        $start_offset = Cloudinary::norm_auto_range_value(Cloudinary::option_consume($options, "start_offset"));
         $end_offset = Cloudinary::norm_range_value(Cloudinary::option_consume($options, "end_offset"));
         $offset = Cloudinary::split_range(Cloudinary::option_consume($options, "offset"));
         if (!empty($offset)) {
-            $start_offset = Cloudinary::norm_range_value($offset[0]);
+            $start_offset = Cloudinary::norm_auto_range_value($offset[0]);
             $end_offset = Cloudinary::norm_range_value($offset[1]);
         }
 
         $video_codec = Cloudinary::process_video_codec_param(Cloudinary::option_consume($options, "video_codec"));
+        $fps = Cloudinary::process_fps(Cloudinary::option_consume($options, "fps"));
+        $keyframe_interval = Cloudinary::process_keyframe_interval(Cloudinary::option_consume($options, "keyframe_interval"));
 
         $overlay = Cloudinary::process_layer(Cloudinary::option_consume($options, "overlay"), "overlay");
         $underlay = Cloudinary::process_layer(Cloudinary::option_consume($options, "underlay"), "underlay");
         $if = Cloudinary::process_if(Cloudinary::option_consume($options, "if"));
-
+        $custom_function = Cloudinary::process_custom_function(Cloudinary::option_consume($options, "custom_function"));
+        $custom_pre_function = Cloudinary::process_custom_pre_function(Cloudinary::option_consume($options, "custom_pre_function"));
         $aspect_ratio = Cloudinary::option_consume($options, "aspect_ratio");
         $opacity = Cloudinary::option_consume($options, "opacity");
         $quality = Cloudinary::option_consume($options, "quality");
-        $radius = Cloudinary::option_consume($options, "radius");
+        $radius = Cloudinary::process_radius(Cloudinary::option_consume($options, "radius"));
         $x = Cloudinary::option_consume($options, "x");
         $y = Cloudinary::option_consume($options, "y");
         $zoom = Cloudinary::option_consume($options, "zoom");
@@ -482,13 +605,15 @@ class Cloudinary
             "e" => self::normalize_expression($effect),
             "eo" => $end_offset,
             "fl" => $flags,
+            "fn" => $custom_function ?: $custom_pre_function,
+            "fps" => $fps,
+            "ki" => $keyframe_interval,
             "h" => self::normalize_expression($height),
             "l" => $overlay,
             "o" => self::normalize_expression($opacity),
             "q" => self::normalize_expression($quality),
-            "r" => self::normalize_expression($radius),
+            "r" => $radius,
             "so" => $start_offset,
-            "sp" => $streaming_profile,
             "t" => $named_transformation,
             "u" => $underlay,
             "vc" => $video_codec,
@@ -510,6 +635,7 @@ class Cloudinary
             "g" => "gravity",
             "p" => "prefix",
             "pg" => "page",
+            "sp" => "streaming_profile",
             "vs" => "video_sampling",
         );
 
@@ -572,6 +698,26 @@ class Cloudinary
         return implode("/", array_filter($base_transformations));
     }
 
+    /**
+     * Helper function, allows chaining transformations to the end of transformations list
+     *
+     * The result of this function is an updated $options parameter
+     *
+     * @param array     $options         Original options
+     * @param array     $transformations Transformations to chain at the end
+     *
+     * @return array Resulting options
+     */
+    public static function chain_transformations($options, $transformations)
+    {
+        $transformations = \Cloudinary::build_array($transformations);
+        // preserve url options
+        $url_options = self::array_subset($options, self::$URL_KEYS);
+        array_unshift($transformations, $options);
+        $url_options["transformation"] = $transformations;
+        return $url_options;
+    }
+
     private static $LAYER_KEYWORD_PARAMS = array(
         "font_weight" => "normal",
         "font_style" => "normal",
@@ -585,20 +731,34 @@ class Cloudinary
         $font_family = Cloudinary::option_get($layer, "font_family");
         $font_size = Cloudinary::option_get($layer, "font_size");
         $keywords = array();
+
         foreach (Cloudinary::$LAYER_KEYWORD_PARAMS as $attr => $default_value) {
             $attr_value = Cloudinary::option_get($layer, $attr, $default_value);
             if ($attr_value != $default_value) {
                 array_push($keywords, $attr_value);
             }
         }
+
         $letter_spacing = Cloudinary::option_get($layer, "letter_spacing");
         if ($letter_spacing != null) {
             array_push($keywords, "letter_spacing_$letter_spacing");
         }
+
         $line_spacing = Cloudinary::option_get($layer, "line_spacing");
         if ($line_spacing != null) {
             array_push($keywords, "line_spacing_$line_spacing");
         }
+
+        $font_antialiasing = Cloudinary::option_get($layer, "font_antialiasing");
+        if ($font_antialiasing != null) {
+            array_push($keywords, "antialias_$font_antialiasing");
+        }
+
+        $font_hinting = Cloudinary::option_get($layer, "font_hinting");
+        if ($font_hinting != null) {
+            array_push($keywords, "hinting_$font_hinting");
+        }
+
         $has_text_options = $font_size != null || $font_family != null || !empty($keywords);
         if (!$has_text_options) {
             return null;
@@ -614,6 +774,7 @@ class Cloudinary
 
         return implode("_", array_filter($keywords, 'Cloudinary::is_not_null'));
     }
+
 
     /**
      * Handle overlays.
@@ -646,7 +807,7 @@ class Cloudinary
             if (!empty($fetch) || $resource_type === "fetch") {
                 $public_id = null;
                 $resource_type = "fetch";
-                $fetch = base64_encode($fetch);
+                $fetch = self::base64url_encode($fetch);
             } // Text overlay.
             elseif (!empty($text) || $resource_type === "text") {
                 $resource_type = "text";
@@ -696,7 +857,7 @@ class Cloudinary
         } // Handle fetch overlay from string definition.
         elseif (substr($layer, 0, strlen('fetch:')) === 'fetch:') {
             $url = substr($layer, strlen('fetch:'));
-            $b64 = base64_encode($url);
+            $b64 = self::base64url_encode($url);
             $layer = 'fetch:' . $b64;
         }
 
@@ -752,10 +913,22 @@ class Cloudinary
         return $if;
     }
 
+    private static function float_to_string($value) {
+        if (!is_float($value)) {
+            return $value;
+        }
+
+        $locale = localeconv();
+        $string = strval($value);
+        $string = str_replace($locale['decimal_point'], '.', $string);
+
+        return $string;
+    }
+
     private static function normalize_expression($exp)
     {
         if (is_float($exp)) {
-            return number_format($exp, 1);
+            return self::float_to_string($exp);
         }
         if (preg_match('/^!.+!$/', $exp)) {
             return $exp;
@@ -782,6 +955,37 @@ class Cloudinary
         }
 
         return $border;
+    }
+
+    private static function process_radius($radius)
+    {
+        if (!is_array($radius)) {
+            return $radius;
+        }
+
+        return implode(":", array_map("self::normalize_expression", $radius));
+    }
+
+    private static function process_custom_function($custom_function)
+    {
+        if (!is_array($custom_function)) {
+            return $custom_function;
+        }
+
+        $function_type = Cloudinary::option_get($custom_function, "function_type");
+        $source = Cloudinary::option_get($custom_function, "source");
+
+        if ($function_type == 'remote') {
+            $source = self::base64url_encode($source);
+        }
+
+        return implode(':', [$function_type, $source]);
+    }
+
+    private static function process_custom_pre_function($custom_function)
+    {
+        $value = self::process_custom_function($custom_function);
+        return $value ? 'pre:' . $value : null;
     }
 
     private static function split_range($range)
@@ -823,6 +1027,14 @@ class Cloudinary
         return $matches['value'] . $modifier;
     }
 
+    private static function norm_auto_range_value($value)
+    {
+        if ($value == 'auto') {
+            return $value;
+        }
+        return self::norm_range_value($value);
+    }
+
     private static function process_video_codec_param($param)
     {
         $out_param = $param;
@@ -839,15 +1051,53 @@ class Cloudinary
         return $out_param;
     }
 
+    /**
+     * Serializes fps transformation parameter
+     *
+     * @param mixed $fps A single number, an array of mixed type, a string, including open-ended and closed range values
+     *                   Examples: '24-29.97', 24, 24.973, '-24', [24, 29.97]
+     *
+     * @return string
+     */
+    private static function process_fps($fps)
+    {
+        if (!is_array($fps)) {
+            return strval($fps);
+        }
+
+        return implode("-", array_map("self::normalize_expression", $fps));
+    }
+
+    /**
+     * Serializes keyframe_interval transformation parameter
+     *
+     * @param float|int|string $keyframe_interval A positive number or a string
+     *
+     * @return string
+     */
+    private static function process_keyframe_interval($keyframe_interval)
+    {
+        if (is_string($keyframe_interval) || $keyframe_interval == null) {
+            return $keyframe_interval;
+        }
+        if (!is_numeric($keyframe_interval)) {
+            throw new InvalidArgumentException("Keyframe interval should be a number or a string");
+        }
+        if ($keyframe_interval < 0) {
+            throw new InvalidArgumentException("Keyframe interval should be greater than zero");
+        }
+        if (is_int($keyframe_interval)) {
+            return $keyframe_interval . ".0";
+        }
+        return $keyframe_interval;
+    }
+
     // Warning: $options are being destructively updated!
     public static function cloudinary_url($source, &$options = array())
     {
         $source = self::check_cloudinary_field($source, $options);
+        self::patch_fetch_format($options);
         $type = Cloudinary::option_consume($options, "type", "upload");
-
-        if ($type == "fetch" && !isset($options["fetch_format"])) {
-            $options["fetch_format"] = Cloudinary::option_consume($options, "format");
-        }
         $transformation = Cloudinary::generate_transformation_string($options);
 
         $resource_type = Cloudinary::option_consume($options, "resource_type", "image");
@@ -918,11 +1168,7 @@ class Cloudinary
         $signature = null;
         if ($sign_url && !$auth_token) {
             $to_sign = implode("/", array_filter(array($transformation, $source_to_sign)));
-            $signature = str_replace(
-                array('+', '/', '='),
-                array('-', '_', ''),
-                base64_encode(sha1($to_sign . $api_secret, true))
-            );
+            $signature = self::base64url_encode(sha1($to_sign . $api_secret, true));
             $signature = 's--' . substr($signature, 0, 8) . '--';
         }
 
@@ -1111,18 +1357,27 @@ class Cloudinary
         return (((crc32($source) % 5) + 5) % 5 + 1);
     }
 
-    // [<resource_type>/][<image_type>/][v<version>/]<public_id>[.<format>][#<signature>]
     // Warning: $options are being destructively updated!
     public static function check_cloudinary_field($source, &$options = array())
     {
+        // [<resource_type>/][<image_type>/][v<version>/]<public_id>[.<format>][#<signature>]
         $IDENTIFIER_RE = "~" .
-            "^(?:([^/]+)/)??(?:([^/]+)/)??(?:(?:v(\\d+)/)(?:([^#]+)/)?)?" .
-            "([^#/]+?)(?:\\.([^.#/]+))?(?:#([^/]+))?$" .
+            "^" .
+            "(?:([^/]+)/)??" . // resource type
+            "(?:([^/]+)/)??" . // type
+            "(?:(?:v(\\d+)/)(?:([^#]+)/)?)?" . // version
+            "([^#/]+?)" . // public ID
+            "(?:\\.([^.#/]+))?" . //format
+            "(?:#([^/]+))?" . // signature
+            "$" .
             "~";
-        $matches = array();
-        if (!(is_object($source) && method_exists($source, 'identifier'))) {
+        if (!is_object($source) || !method_exists($source, 'identifier')) {
+            // $source doesn't look like a CloudinaryField, so just return it
             return $source;
         }
+
+        // $source is a CloudinaryField, parse its identifier
+        $matches = array();
         $identifier = $source->identifier();
         if (!$identifier || strstr(':', $identifier) !== false || !preg_match($IDENTIFIER_RE, $identifier, $matches)) {
             return $source;
@@ -1170,6 +1425,39 @@ class Cloudinary
     {
         return $result["resource_type"] . "/upload/v" . $result["version"] . "/" . $result["public_id"] .
             (isset($result["format"]) ? "." . $result["format"] : "") . "#" . $result["signature"];
+    }
+
+    /**
+     * Generates a cloudinary url scaled to specified width.
+     *
+     * In case transformation parameter is provided, it is used instead of transformations specified in $options
+     *
+     * @param string       $source         Public ID of the resource
+     * @param int          $width          Width in pixels of the srcset item
+     * @param array|string $transformation Custom transformation that overrides transformations provided in $options
+     * @param array        $options        Additional options
+     *
+     * @return null|string
+     */
+    public static function cloudinary_scaled_url($source, $width, $transformation, $options)
+    {
+        if (!empty($transformation)) {
+            // Replace transformation parameters in $options with those in $transformation
+
+            if(is_string($transformation)){
+                $transformation = array("raw_transformation"=> $transformation);
+            }
+            $options = self::array_subset($options, self::$URL_KEYS);
+            $options = array_merge($options, $transformation);
+        }
+
+        $scale_transformation = ["crop" => "scale", "width" => $width];
+
+        self::check_cloudinary_field($source, $options);
+        self::patch_fetch_format($options);
+        $options = self::chain_transformations($options, $scale_transformation);
+
+        return cloudinary_url_internal($source, $options);
     }
 
     # Utility method that uses the deprecated ZIP download API.
@@ -1407,5 +1695,3 @@ class Cloudinary
         return implode(" ", array_map($join_pair, array_keys($attrs), array_values($attrs)));
     }
 }
-
-require_once(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'Helpers.php')));

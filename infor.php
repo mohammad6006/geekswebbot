@@ -2,31 +2,59 @@
 require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
 $dom = new Dom;
-$dom->load('https://video.acunn.com/survivor');
-$html = $dom->outerHtml;
-$a = $dom->find('div[class=videos-list] div[class=row] div div[class=list-type-one-content] a');
-function get_string_between($string, $start, $end){
-    $string = ' ' . $string;
-    $ini = strpos($string, $start);
-    if ($ini == 0) return '';
-    $ini += strlen($start);
-    $len = strpos($string, $end, $ini) - $ini;
-    return substr($string, $ini, $len);
+function zamanmahali($zaman)
+{
+    $zaman1 = strtotime($zaman) + strtotime('00:30');
+    return date('H:i',$zaman1);
 }
-// echo count($a);
-$tmp = 0;
-foreach ($a as $key => $value) {
-    if ($tmp < 12) {
-        echo $value->getAttribute('title');
-        echo "\n";
-        $url = $value->getAttribute('href');
-        $data = file_get_contents( $url );
-        $parsed = get_string_between($data, 'https://video-cdn.acunn.com', '-480p.mp4');
-        echo 'https://video-cdn.acunn.com'.$parsed.'-480p.mp4';
-        echo "\n";
+
+    $dom->load('https://www.tvyayinakisi.com/kanal-d-tv');
+    $html = $dom->outerHtml;
+
+    $bnames = $dom->find('div[class=active] ul li');
+    // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
+    // echo $btimes;
+    foreach ($bnames as $key => $value) {
+        echo zamanmahali($value->{'data-start'});
+        echo $value->find('p[class="name"]')->text;
+        echo "<br>";
     }
-    $tmp++;
-}
+
+    // echo count($btimes);
+    // $roztime = $dom->find('span[class=date]')[0];
+    // $btimes = $dom->find('div[class=two columns time]');
+    // $progtitles = $dom->find('div[class=ten columns]');
+    // $arri = "سسس";
+    // foreach ($btimes as $key => $btime) {
+    //     $arri .= ($btime->text).":".$progtitles[$key]->text."\n";
+    // }
+    // return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
+
+// $dom->load('https://video.acunn.com/survivor');
+// $html = $dom->outerHtml;
+// $a = $dom->find('div[class=videos-list] div[class=row] div div[class=list-type-one-content] a');
+// function get_string_between($string, $start, $end){
+//     $string = ' ' . $string;
+//     $ini = strpos($string, $start);
+//     if ($ini == 0) return '';
+//     $ini += strlen($start);
+//     $len = strpos($string, $end, $ini) - $ini;
+//     return substr($string, $ini, $len);
+// }
+// // echo count($a);
+// $tmp = 0;
+// foreach ($a as $key => $value) {
+//     if ($tmp < 12) {
+//         echo $value->getAttribute('title');
+//         echo "\n";
+//         $url = $value->getAttribute('href');
+//         $data = file_get_contents( $url );
+//         $parsed = get_string_between($data, 'https://video-cdn.acunn.com', '-480p.mp4');
+//         echo 'https://video-cdn.acunn.com'.$parsed.'-480p.mp4';
+//         echo "\n";
+//     }
+//     $tmp++;
+// }
 // echo $a->text;
 // return 'asal';
 // print_r($a);

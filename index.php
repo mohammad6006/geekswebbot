@@ -59,12 +59,13 @@ function listbarnameha($kanal)
     $dom = new Dom;
     $dom->load('http://www.tvyayinakisi.com/'.$kanal);
     $html = $dom->outerHtml;
-    $roztime = $dom->find('span[class=date]')[0];
-    $btimes = $dom->find('div[class=two columns time]');
-    $progtitles = $dom->find('div[class=ten columns]');
+    $bnames = $dom->find('div[class=active] ul li');
+    // $roztime = $dom->find('span[class=date]')[0];
+    // $btimes = $dom->find('div[class=two columns time]');
+    // $progtitles = $dom->find('div[class=ten columns]');
     $arri = "لیست برنامه های امروز {$kanal} \n زمان برنامه ها به وقت ایران میباشد \n";
-    foreach ($btimes as $key => $btime) {
-        $arri .= zamanmahali($btime->text).":".$progtitles[$key]->text."\n";
+    foreach ($bnames as $key => $value) {
+        $arri .= zamanmahali($value->{'data-start'}).":".$value->find('p[class="name"]')->text."\n";
     }
     return $arri .= "\n آدرس کانال : @TurkTv \n کانال ویدئویی: @canli \n ربات راهنما : @TurkTvBot";
 }
