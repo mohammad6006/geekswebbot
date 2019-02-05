@@ -1,6 +1,5 @@
 {
     "require": {
-        "php": "^7.2.0",
     	"ext-mbstring": "*",
         "zelenin/telegram-bot-api": "~1.0",
 		"dg/rss-php": "^1.2",

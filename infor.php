@@ -9,8 +9,9 @@ echo phpversion();
 //     return date('H:i',$zaman1);
 // }
 
-//     $dom->loadFromUrl('https://video.acunn.com/survivor');
-//     $html = $dom->outerHtml;
+    $dom->loadFromUrl('http://www.tvyayinakisi.com/kanal-d-tv');
+    $html = $dom->outerHtml;
+    var_dump($html);
 
 //     $bnames = $dom->find('div[class=active] ul li');
 //     echo $bnames;
