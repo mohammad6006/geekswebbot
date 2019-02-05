@@ -2,7 +2,6 @@
 require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
 $dom = new Dom;
-echo phpversion();
 // function zamanmahali($zaman)
 // {
 //     $zaman1 = strtotime($zaman) + strtotime('00:30');
@@ -11,10 +10,9 @@ echo phpversion();
 
     $dom->loadFromUrl('http://www.tvyayinakisi.com/kanal-d-tv');
     $html = $dom->outerHtml;
-    var_dump($html);
 
-//     $bnames = $dom->find('div[class=active] ul li');
-//     echo $bnames;
+    $bnames = $dom->find('div[class=active] ul li');
+    echo count($bnames);
 //     // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
 //     // echo $btimes;
 //     foreach ($bnames as $key => $value) {
