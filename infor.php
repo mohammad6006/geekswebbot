@@ -10,9 +10,9 @@ $dom = new Dom;
 
     $dom->loadFromUrl('http://www.tvyayinakisi.com/kanal-d-tv');
     $html = $dom->outerHtml;
+    $bnames = $dom->find('div[class=active]');
+echo count($bnames);
     var_dump($html);
-
-//     $bnames = $dom->find('div[class=active] ul li');
 //     echo $bnames;
 //     // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
 //     // echo $btimes;
