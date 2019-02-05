@@ -2,24 +2,25 @@
 require 'vendor/autoload.php';
 use PHPHtmlParser\Dom;
 $dom = new Dom;
-function zamanmahali($zaman)
-{
-    $zaman1 = strtotime($zaman) + strtotime('00:30');
-    return date('H:i',$zaman1);
-}
+echo phpversion();
+// function zamanmahali($zaman)
+// {
+//     $zaman1 = strtotime($zaman) + strtotime('00:30');
+//     return date('H:i',$zaman1);
+// }
 
-    $dom->loadFromUrl('https://video.acunn.com/survivor');
-    $html = $dom->outerHtml;
+//     $dom->loadFromUrl('https://video.acunn.com/survivor');
+//     $html = $dom->outerHtml;
 
-    $bnames = $dom->find('div[class=active] ul li');
-    echo $bnames;
-    // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
-    // echo $btimes;
-    foreach ($bnames as $key => $value) {
-        echo zamanmahali($value->{'data-start'});
-        echo $value->find('p[class="name"]')->text;
-        echo "<br>";
-    }
+//     $bnames = $dom->find('div[class=active] ul li');
+//     echo $bnames;
+//     // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
+//     // echo $btimes;
+//     foreach ($bnames as $key => $value) {
+//         echo zamanmahali($value->{'data-start'});
+//         echo $value->find('p[class="name"]')->text;
+//         echo "<br>";
+//     }
 
     // echo count($btimes);
     // $roztime = $dom->find('span[class=date]')[0];
