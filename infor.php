@@ -8,7 +8,7 @@ function zamanmahali($zaman)
     return date('H:i',$zaman1);
 }
 
-    $dom->load('https://www.tvyayinakisi.com/kanal-d-tv');
+    $dom->loadFromUrl('https://www.tvyayinakisi.com/kanal-d-tv');
     $html = $dom->outerHtml;
 
     $bnames = $dom->find('div[class=active] ul li');
