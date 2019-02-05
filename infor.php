@@ -12,6 +12,7 @@ function zamanmahali($zaman)
     $html = $dom->outerHtml;
 
     $bnames = $dom->find('div[class=active] ul li');
+    echo $bnames;
     // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
     // echo $btimes;
     foreach ($bnames as $key => $value) {
