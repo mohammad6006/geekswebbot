@@ -1,18 +1,26 @@
 <?php
-require 'vendor/autoload.php';
+require "vendor/autoload.php";
 use PHPHtmlParser\Dom;
-$dom = new Dom;
-// function zamanmahali($zaman)
-// {
-//     $zaman1 = strtotime($zaman) + strtotime('00:30');
-//     return date('H:i',$zaman1);
-// }
 
-    $dom->loadFromUrl('http://www.tvyayinakisi.com/kanal-d-tv');
-    $html = $dom->outerHtml;
-    $bnames = $dom->find('div[class=site-logo]');
-echo count($bnames);
-    echo ($bnames);
+$dom = new Dom;
+$dom->load('<div class="all"><p>Hey bro, <a href="google.com">click here</a><br /> :)</p></div>');
+$a = $dom->find('a')[0];
+echo $a->text; // "click here"
+
+// require 'vendor/autoload.php';
+// use PHPHtmlParser\Dom;
+// $dom = new Dom;
+// // function zamanmahali($zaman)
+// // {
+// //     $zaman1 = strtotime($zaman) + strtotime('00:30');
+// //     return date('H:i',$zaman1);
+// // }
+
+//     $dom->loadFromUrl('http://www.tvyayinakisi.com/kanal-d-tv');
+//     $html = $dom->outerHtml;
+//     $bnames = $dom->find('div[class=site-logo]');
+// echo count($bnames);
+//     echo ($bnames);
 //     echo $bnames;
 //     // $btimes = $dom->find('div[class=active] ul li p[class="time"]');
 //     // echo $btimes;
